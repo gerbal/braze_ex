@@ -31,7 +31,8 @@ defmodule BrazeEx.Api.ExportCanvas do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -80,7 +81,8 @@ defmodule BrazeEx.Api.ExportCanvas do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_data_summary_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_data_summary_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_data_summary_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -123,7 +125,7 @@ defmodule BrazeEx.Api.ExportCanvas do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_details_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_details_get(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_details_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -163,7 +165,7 @@ defmodule BrazeEx.Api.ExportCanvas do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_list_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_list_get(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_list_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

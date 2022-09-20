@@ -27,7 +27,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec subscription_status_get_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec subscription_status_get_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def subscription_status_get_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -67,7 +68,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec subscription_status_set_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec subscription_status_set_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def subscription_status_set_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -109,7 +111,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec subscription_user_status_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec subscription_user_status_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def subscription_user_status_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

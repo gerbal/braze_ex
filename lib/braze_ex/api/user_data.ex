@@ -26,7 +26,8 @@ defmodule BrazeEx.Api.UserData do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_alias_new_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_alias_new_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def users_alias_new_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -66,7 +67,7 @@ defmodule BrazeEx.Api.UserData do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_delete_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_delete_post(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def users_delete_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -106,7 +107,7 @@ defmodule BrazeEx.Api.UserData do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_identify_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_identify_post(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def users_identify_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -146,7 +147,7 @@ defmodule BrazeEx.Api.UserData do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_track_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_track_post(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def users_track_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,

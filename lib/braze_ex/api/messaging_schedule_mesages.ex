@@ -26,7 +26,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec campaigns_trigger_schedule_create_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec campaigns_trigger_schedule_create_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def campaigns_trigger_schedule_create_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -66,7 +67,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec campaigns_trigger_schedule_delete_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec campaigns_trigger_schedule_delete_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def campaigns_trigger_schedule_delete_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -106,7 +108,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec campaigns_trigger_schedule_update_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec campaigns_trigger_schedule_update_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def campaigns_trigger_schedule_update_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -146,7 +149,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_trigger_schedule_create_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_trigger_schedule_create_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_trigger_schedule_create_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -186,7 +190,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_trigger_schedule_delete_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_trigger_schedule_delete_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_trigger_schedule_delete_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -226,7 +231,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_trigger_schedule_update_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_trigger_schedule_update_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_trigger_schedule_update_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -264,7 +270,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec messages_schedule_create_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec messages_schedule_create_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def messages_schedule_create_post(connection, opts \\ []) do
     optional_params = %{
       :body => :body
@@ -302,7 +309,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec messages_schedule_delete_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec messages_schedule_delete_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def messages_schedule_delete_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -342,7 +350,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec messages_schedule_update_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec messages_schedule_update_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def messages_schedule_update_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -381,7 +390,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec messages_scheduled_broadcasts_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec messages_scheduled_broadcasts_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def messages_scheduled_broadcasts_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

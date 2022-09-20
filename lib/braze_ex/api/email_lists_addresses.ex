@@ -26,7 +26,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec email_blacklist_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec email_blacklist_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def email_blacklist_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -66,7 +67,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec email_bounce_remove_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec email_bounce_remove_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def email_bounce_remove_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -109,7 +111,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec email_hard_bounces_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec email_hard_bounces_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def email_hard_bounces_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -151,7 +154,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec email_spam_remove_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec email_spam_remove_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def email_spam_remove_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -191,7 +195,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec email_status_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec email_status_post(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def email_status_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -235,7 +239,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec email_unsubscribes_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec email_unsubscribes_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def email_unsubscribes_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

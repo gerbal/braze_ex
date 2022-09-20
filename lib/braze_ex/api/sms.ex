@@ -29,7 +29,8 @@ defmodule BrazeEx.Api.SMS do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec sms_invalid_phone_numbers_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec sms_invalid_phone_numbers_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def sms_invalid_phone_numbers_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -71,7 +72,8 @@ defmodule BrazeEx.Api.SMS do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec sms_invalid_phone_numbers_remove_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec sms_invalid_phone_numbers_remove_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def sms_invalid_phone_numbers_remove_post(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

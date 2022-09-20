@@ -26,7 +26,8 @@ defmodule BrazeEx.Api.ExportUsers do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_export_global_control_group_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_export_global_control_group_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def users_export_global_control_group_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -66,7 +67,8 @@ defmodule BrazeEx.Api.ExportUsers do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_export_ids_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_export_ids_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def users_export_ids_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -106,7 +108,8 @@ defmodule BrazeEx.Api.ExportUsers do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_export_segment_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_export_segment_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def users_export_segment_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,

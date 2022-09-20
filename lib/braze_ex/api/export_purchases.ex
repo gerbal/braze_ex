@@ -25,7 +25,8 @@ defmodule BrazeEx.Api.ExportPurchases do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec purchases_product_list_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec purchases_product_list_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def purchases_product_list_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

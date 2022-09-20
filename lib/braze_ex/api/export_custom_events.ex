@@ -30,7 +30,8 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec events_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec events_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def events_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -72,7 +73,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec events_list_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec events_list_get(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def events_list_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

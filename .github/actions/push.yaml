@@ -1,0 +1,20 @@
+name: Main workflow
+
+on:
+  push:
+    branches:
+      - 'main'
+  schedule:
+    - cron: 0 0 * * *
+
+jobs:
+  update_specs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: asdf_install
+        uses: asdf-vm/actions/install@v1
+      - uses: extractions/setup-just@v1
+      - run: just build
+      - run: just publish

@@ -28,7 +28,8 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec feed_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec feed_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def feed_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -68,7 +69,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec feed_details_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec feed_details_get(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def feed_details_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -107,7 +108,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec feed_list_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec feed_list_get(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def feed_list_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

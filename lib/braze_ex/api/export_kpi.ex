@@ -27,7 +27,8 @@ defmodule BrazeEx.Api.ExportKPI do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec kpi_dau_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec kpi_dau_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def kpi_dau_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -68,7 +69,8 @@ defmodule BrazeEx.Api.ExportKPI do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec kpi_mau_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec kpi_mau_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def kpi_mau_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -109,7 +111,8 @@ defmodule BrazeEx.Api.ExportKPI do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec kpi_new_users_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec kpi_new_users_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def kpi_new_users_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -150,7 +153,8 @@ defmodule BrazeEx.Api.ExportKPI do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec kpi_uninstalls_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec kpi_uninstalls_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def kpi_uninstalls_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

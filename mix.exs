@@ -9,7 +9,7 @@ defmodule BrazeEx.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
-      description: "# Braze HTTP API",
+      description: "Braze HTTP API (generated from Braze Postman Collection)",
       deps: deps()
     ]
   end
@@ -39,10 +39,12 @@ defmodule BrazeEx.Mixfile do
     ]
   end
 
-   defp package do
-      [
-        name: "braze_ex",
-        files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
-      ]
+  defp package do
+    [
+      name: "braze_ex",
+      files: ~w(.formatter.exs config lib mix.exs README* LICENSE*),
+      licenses: ["MIT"],
+      links: %{github: "https://github.com/gerbal/braze_ex"}
+    ]
   end
 end

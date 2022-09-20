@@ -1,6 +1,6 @@
 # BrazeEx
 
-# Braze HTTP API
+Braze HTTP API (generated from Braze Postman Collection)
 
 ## Building
 

@@ -29,7 +29,8 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec sessions_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec sessions_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def sessions_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

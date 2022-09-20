@@ -26,7 +26,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec templates_email_create_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec templates_email_create_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def templates_email_create_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -65,7 +66,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec templates_email_info_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec templates_email_info_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def templates_email_info_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -105,7 +107,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec templates_email_list_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec templates_email_list_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def templates_email_list_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -146,7 +149,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec templates_email_update_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec templates_email_update_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def templates_email_update_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,

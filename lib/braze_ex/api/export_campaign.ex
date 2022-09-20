@@ -27,7 +27,8 @@ defmodule BrazeEx.Api.ExportCampaign do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec campaigns_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec campaigns_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def campaigns_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -66,7 +67,8 @@ defmodule BrazeEx.Api.ExportCampaign do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec campaigns_details_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec campaigns_details_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def campaigns_details_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -106,7 +108,7 @@ defmodule BrazeEx.Api.ExportCampaign do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec campaigns_list_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec campaigns_list_get(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def campaigns_list_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -149,7 +151,8 @@ defmodule BrazeEx.Api.ExportCampaign do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec sends_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec sends_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def sends_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,

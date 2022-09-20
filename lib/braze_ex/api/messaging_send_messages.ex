@@ -26,7 +26,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec campaigns_trigger_send_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec campaigns_trigger_send_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def campaigns_trigger_send_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -66,7 +67,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec canvas_trigger_send_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec canvas_trigger_send_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def canvas_trigger_send_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -106,7 +108,7 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec messages_send_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec messages_send_post(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def messages_send_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -146,7 +148,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec sends_id_create_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec sends_id_create_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def sends_id_create_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -186,7 +189,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec transactional_v1_campaigns_yourcampaignidhere_send_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec transactional_v1_campaigns_yourcampaignidhere_send_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def transactional_v1_campaigns_yourcampaignidhere_send_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,

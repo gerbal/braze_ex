@@ -26,7 +26,8 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_external_ids_remove_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_external_ids_remove_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def users_external_ids_remove_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
@@ -66,7 +67,8 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec users_external_ids_rename_post(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec users_external_ids_rename_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def users_external_ids_rename_post(connection, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,

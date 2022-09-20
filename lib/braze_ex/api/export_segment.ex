@@ -27,7 +27,8 @@ defmodule BrazeEx.Api.ExportSegment do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec segments_data_series_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec segments_data_series_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def segments_data_series_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -66,7 +67,8 @@ defmodule BrazeEx.Api.ExportSegment do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec segments_details_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec segments_details_get(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
   def segments_details_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
@@ -104,7 +106,7 @@ defmodule BrazeEx.Api.ExportSegment do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec segments_list_get(Tesla.Env.client, keyword()) :: {:ok, nil} | {:error, Tesla.Env.t}
+  @spec segments_list_get(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
   def segments_list_get(connection, opts \\ []) do
     optional_params = %{
       :Authorization => :headers,
