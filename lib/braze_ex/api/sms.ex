@@ -10,8 +10,46 @@ defmodule BrazeEx.Api.SMS do
   import BrazeEx.RequestBuilder
 
   @doc """
-  Query Invalid Phone Numbers
-  This endpoint allows you to pull a list of phone numbers that have been deemed “invalid” within a certain time frame.  *   If you provide a `start_date`, an `end_date`, and `phone_numbers`, we prioritize the given phone numbers and disregard the date range. *   If your date range has more than the `limit` number of invalid phone numbers, you will need to make multiple API calls with increasing the `offset` each time until a call returns either fewer than `limit` or zero results.       ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  Entries are listed in descending order.  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {   \"sms\": [     {       \"phone\": \"12345678900\",       \"invalid_detected_at\": \"2016-08-25 15:24:32 +0000\"     },     {       \"phone\": \"12345678901\",       \"invalid_detected_at\": \"2016-08-24 17:41:58 +0000\"     },     {       \"phone\": \"12345678902\",       \"invalid_detected_at\": \"2016-08-24 12:01:13 +0000\"     }   ],   \"message\": \"success\" }  ```
+
+  # Query Invalid Phone Numbers
+
+  # Notes 
+  This endpoint allows you to pull a list of phone numbers that have been deemed “invalid” within a certain time frame.
+
+  *   If you provide a `start_date`, an `end_date`, and `phone_numbers`, we prioritize the given phone numbers and disregard the date range.
+  *   If your date range has more than the `limit` number of invalid phone numbers, you will need to make multiple API calls with increasing the `offset` each time until a call returns either fewer than `limit` or zero results.
+    
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  Entries are listed in descending order.
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+  "sms": [
+    {
+      "phone": "12345678900",
+      "invalid_detected_at": "2016-08-25 15:24:32 +0000"
+    },
+    {
+      "phone": "12345678901",
+      "invalid_detected_at": "2016-08-24 17:41:58 +0000"
+    },
+    {
+      "phone": "12345678902",
+      "invalid_detected_at": "2016-08-24 12:01:13 +0000"
+    }
+  ],
+  "message": "success"
+  }
+
+  ```
 
   ### Parameters
 
@@ -56,8 +94,21 @@ defmodule BrazeEx.Api.SMS do
   end
 
   @doc """
-  Remove Invalid Phone Numbers
-  This endpoint allows you to remove “invalid” phone numbers from Braze’s invalid list. This can be used to re-validate phone numbers after they have been marked as invalid.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Request parameters  | Parameter | Required | Data Type | Description | | --- | --- | --- | --- | | `phone_number` | Required | Array of strings in e.164 format | An array of up to 50 phone numbers to modify. |
+
+  # Remove Invalid Phone Numbers
+
+  # Notes 
+  This endpoint allows you to remove “invalid” phone numbers from Braze’s invalid list. This can be used to re-validate phone numbers after they have been marked as invalid.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Request parameters
+
+  | Parameter | Required | Data Type | Description |
+  | --- | --- | --- | --- |
+  | `phone_number` | Required | Array of strings in e.164 format | An array of up to 50 phone numbers to modify. |
 
   ### Parameters
 

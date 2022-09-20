@@ -10,8 +10,35 @@ defmodule BrazeEx.Api.ExportKPI do
   import BrazeEx.RequestBuilder
 
   @doc """
-  Daily Active Users by Date
-  This endpoint allows you to retrieve a daily series of the total number of unique active users on each date.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"data\" : [         {             \"time\" : (string) date as ISO 8601 date,             \"dau\" : (int)         },         ...     ] }  ```  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
+  # Daily Active Users by Date
+
+  # Notes 
+  This endpoint allows you to retrieve a daily series of the total number of unique active users on each date.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "data" : [
+        {
+            "time" : (string) date as ISO 8601 date,
+            "dau" : (int)
+        },
+        ...
+    ]
+  }
+
+  ```
+
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
@@ -52,8 +79,35 @@ defmodule BrazeEx.Api.ExportKPI do
   end
 
   @doc """
-  Monthly Active Users for Last 30 Days
-  This endpoint allows you to retrieve a daily series of the total number of unique active users over a 30-day rolling window.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"data\" : [         {             \"time\" : (string) date as ISO 8601 date,             \"mau\" : (int)         },         ...     ] }  ```  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
+  # Monthly Active Users for Last 30 Days
+
+  # Notes 
+  This endpoint allows you to retrieve a daily series of the total number of unique active users over a 30-day rolling window.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "data" : [
+        {
+            "time" : (string) date as ISO 8601 date,
+            "mau" : (int)
+        },
+        ...
+    ]
+  }
+
+  ```
+
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
@@ -94,8 +148,35 @@ defmodule BrazeEx.Api.ExportKPI do
   end
 
   @doc """
-  Daily New Users by Date
-  This endpoint allows you to retrieve a daily series of the total number of new users on each date.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"data\" : [         {             \"time\" : (string) date as ISO 8601 date,             \"new_users\" : (int)         },         ...     ] }  ```  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
+  # Daily New Users by Date
+
+  # Notes 
+  This endpoint allows you to retrieve a daily series of the total number of new users on each date.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "data" : [
+        {
+            "time" : (string) date as ISO 8601 date,
+            "new_users" : (int)
+        },
+        ...
+    ]
+  }
+
+  ```
+
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
@@ -136,8 +217,35 @@ defmodule BrazeEx.Api.ExportKPI do
   end
 
   @doc """
-  KPIs for Daily App Uninstalls by Date
-  This endpoint allows you to retrieve a daily series of the total number of uninstalls on each date.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"data\" : [         {             \"time\" : (string) date as ISO 8601 date,             \"uninstalls\" : (int)         },         ...     ] }  ```  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
+  # KPIs for Daily App Uninstalls by Date
+
+  # Notes 
+  This endpoint allows you to retrieve a daily series of the total number of uninstalls on each date.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "data" : [
+        {
+            "time" : (string) date as ISO 8601 date,
+            "uninstalls" : (int)
+        },
+        ...
+    ]
+  }
+
+  ```
+
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 

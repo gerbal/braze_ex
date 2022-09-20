@@ -10,8 +10,33 @@ defmodule BrazeEx.Api.ExportSegment do
   import BrazeEx.RequestBuilder
 
   @doc """
-  Segment Analytics
-  This endpoint allows you to retrieve a daily series of the size of a segment over time for a segment.  ### Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"data\" : [         {             \"time\" : (string) date as ISO 8601 date,             \"size\" : (int) size of the segment on that date         },         ...     ] }  ```
+
+  # Segment Analytics
+
+  # Notes 
+  This endpoint allows you to retrieve a daily series of the size of a segment over time for a segment.
+
+  ### Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "data" : [
+        {
+            "time" : (string) date as ISO 8601 date,
+            "size" : (int) size of the segment on that date
+        },
+        ...
+    ]
+  }
+
+  ```
 
   ### Parameters
 
@@ -52,8 +77,32 @@ defmodule BrazeEx.Api.ExportSegment do
   end
 
   @doc """
-  Segment Details
-  This endpoint allows you to retrieve relevant information on the segment, which can be identified by the `segment_id`.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {       \"message\": (required, string) the status of the export, returns 'success' when completed without errors,       \"created_at\" : (string) date created as ISO 8601 date,       \"updated_at\" : (string) date last updated as ISO 8601 date,       \"name\" : (string) segment name,       \"description\" : (string) human-readable description of filters,       \"text_description\" : (string) segment description,        \"tags\" : (array) tag names associated with the segment }  ```
+
+  # Segment Details
+
+  # Notes 
+  This endpoint allows you to retrieve relevant information on the segment, which can be identified by the `segment_id`.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+      "message": (required, string) the status of the export, returns 'success' when completed without errors,
+      "created_at" : (string) date created as ISO 8601 date,
+      "updated_at" : (string) date last updated as ISO 8601 date,
+      "name" : (string) segment name,
+      "description" : (string) human-readable description of filters,
+      "text_description" : (string) segment description, 
+      "tags" : (array) tag names associated with the segment
+  }
+
+  ```
 
   ### Parameters
 
@@ -90,8 +139,35 @@ defmodule BrazeEx.Api.ExportSegment do
   end
 
   @doc """
-  Segment List
-  This endpoint allows you to export a list of segments, each of which will include its name, Segment API Identifier, and whether it has analytics tracking enabled. The segments are returned in groups of 100 sorted by time of creation (oldest to newest by default). Archived segments are not included.  ### Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"segments\" : [         {             \"id\" : (string) Segment API Identifier,             \"name\" : (string) segment name,             \"analytics_tracking_enabled\" : (boolean) whether the segment has analytics tracking enabled,             \"tags\" : (array) tag names associated with the segment         },         ...     ] }  ```
+
+  # Segment List
+
+  # Notes 
+  This endpoint allows you to export a list of segments, each of which will include its name, Segment API Identifier, and whether it has analytics tracking enabled. The segments are returned in groups of 100 sorted by time of creation (oldest to newest by default). Archived segments are not included.
+
+  ### Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "segments" : [
+        {
+            "id" : (string) Segment API Identifier,
+            "name" : (string) segment name,
+            "analytics_tracking_enabled" : (boolean) whether the segment has analytics tracking enabled,
+            "tags" : (array) tag names associated with the segment
+        },
+        ...
+    ]
+  }
+
+  ```
 
   ### Parameters
 

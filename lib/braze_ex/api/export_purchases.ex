@@ -10,8 +10,36 @@ defmodule BrazeEx.Api.ExportPurchases do
   import BrazeEx.RequestBuilder
 
   @doc """
-  Product IDs List
-  This endpoint returns paginated lists of product IDs.  ## Rate limit  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 1,000 requests per hour to this endpoint. This rate limit is shared with the `/events/list` endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {   \"products\": [     \"5499334426779\",     \"5499334819995\",     \"5499335442587\",     \"5499335835803\",     \"Calendula Face Mask Peel\",     \"Dior Lip Gloss\",     \"Rice Bowl\",     \"product_name\"   ],   \"message\": \"success\" }  ```
+
+  # Product IDs List
+
+  # Notes 
+  This endpoint returns paginated lists of product IDs.
+
+  ## Rate limit
+
+  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 1,000 requests per hour to this endpoint. This rate limit is shared with the `/events/list` endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+  "products": [
+    "5499334426779",
+    "5499334819995",
+    "5499335442587",
+    "5499335835803",
+    "Calendula Face Mask Peel",
+    "Dior Lip Gloss",
+    "Rice Bowl",
+    "product_name"
+  ],
+  "message": "success"
+  }
+
+  ```
 
   ### Parameters
 

@@ -10,8 +10,34 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   import BrazeEx.RequestBuilder
 
   @doc """
-  List User's  Subscription Group Status - SMS
-  Use this endpoint to get the subscription state of a user in a subscription group. These groups will be available on the **Subscription Group** page. The response from this endpoint will include the external ID and either subscribed, unsubscribed, or unknown for the specific subscription group requested in the API call. This can be used to update the subscription group state in subsequent API calls or to be displayed on a hosted web page.  > *Either `external_id` or `email` are required. When both are submitted, only the external_id is used for querying and the phone number is applied to that user.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  All successful responses will return `subscribed`, `unsubscribed`, or `unknown` depending on status and user history with the subscription group.  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {   \"status\": {     \"1\": \"Unsubscribed\",     \"2\": \"Subscribed\"   },   \"message\": \"success\" }  ```
+
+  # List User's  Subscription Group Status - SMS
+
+  # Notes 
+  Use this endpoint to get the subscription state of a user in a subscription group. These groups will be available on the **Subscription Group** page. The response from this endpoint will include the external ID and either subscribed, unsubscribed, or unknown for the specific subscription group requested in the API call. This can be used to update the subscription group state in subsequent API calls or to be displayed on a hosted web page.
+
+  > *Either `external_id` or `email` are required. When both are submitted, only the external_id is used for querying and the phone number is applied to that user.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  All successful responses will return `subscribed`, `unsubscribed`, or `unknown` depending on status and user history with the subscription group.
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+  "status": {
+    "1": "Unsubscribed",
+    "2": "Subscribed"
+  },
+  "message": "success"
+  }
+
+  ```
 
   ### Parameters
 
@@ -52,8 +78,41 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   end
 
   @doc """
-  Update User's Subscription Group Status - SMS
-  Use this endpoint to update the subscription state of a user on the Braze dashboard. You can access a subscription groups `subscription_group_id` by navigating to it on the **Subscription Group** page.  > *Only `external_id` or `phone` is accepted for SMS subscription groups. >  > This property should not be used for updating a user’s profile information. Use the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) property instead. >  > When creating new users via the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) endpoint, you should leave a delay of around 2 minutes before adding users to the relevant Subscription Group to allow Braze time to fully create the user profile.  ### Rate limit  For customers who onboarded with Braze on or after January 6, 2022, we apply a rate limit of 5,000 requests per minute to this endpoint as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ### Request parameters  | Parameter | Required | Data Type | Description | | --- | --- | --- | --- | | `subscription_group_id` | Required | String | The `id` of your subscription group. | | `subscription_state` | Required | String | Available values are `unsubscribed` (not in subscription group) or `subscribed` (in subscription group). | | `external_id` | Required* | Array of strings | The `external_id` of the user or users, may include up to 50 `id`s. | | `phone` | Required* | String in [E.164](https://en.wikipedia.org/wiki/E.164) format | The phone number of the user, can be passed as an array of strings. Must include at least one phone number (with a max of 50). |  ### Example successful response  Response: (status 201)  ``` json {     \"message\": \"success\" }  ```
+
+  # Update User's Subscription Group Status - SMS
+
+  # Notes 
+  Use this endpoint to update the subscription state of a user on the Braze dashboard. You can access a subscription groups `subscription_group_id` by navigating to it on the **Subscription Group** page.
+
+  > *Only `external_id` or `phone` is accepted for SMS subscription groups.
+  > 
+  > This property should not be used for updating a user’s profile information. Use the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) property instead.
+  > 
+  > When creating new users via the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) endpoint, you should leave a delay of around 2 minutes before adding users to the relevant Subscription Group to allow Braze time to fully create the user profile.
+
+  ### Rate limit
+
+  For customers who onboarded with Braze on or after January 6, 2022, we apply a rate limit of 5,000 requests per minute to this endpoint as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ### Request parameters
+
+  | Parameter | Required | Data Type | Description |
+  | --- | --- | --- | --- |
+  | `subscription_group_id` | Required | String | The `id` of your subscription group. |
+  | `subscription_state` | Required | String | Available values are `unsubscribed` (not in subscription group) or `subscribed` (in subscription group). |
+  | `external_id` | Required* | Array of strings | The `external_id` of the user or users, may include up to 50 `id`s. |
+  | `phone` | Required* | String in [E.164](https://en.wikipedia.org/wiki/E.164) format | The phone number of the user, can be passed as an array of strings. Must include at least one phone number (with a max of 50). |
+
+  ### Example successful response
+
+  Response: (status 201)
+
+  ``` json
+  {
+    "message": "success"
+  }
+
+  ```
 
   ### Parameters
 
@@ -93,8 +152,17 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   end
 
   @doc """
-  List User's Subscription Group - SMS
-  Use this endpoint to list and get the subscription groups of a certain user.  > If there are multiple users (multiple external ids) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group).  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  # List User's Subscription Group - SMS
+
+  # Notes 
+  Use this endpoint to list and get the subscription groups of a certain user.
+
+  > If there are multiple users (multiple external ids) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group).
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Parameters
 

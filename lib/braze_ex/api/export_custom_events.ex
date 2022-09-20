@@ -10,8 +10,46 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   import BrazeEx.RequestBuilder
 
   @doc """
-  Custom Events Analytics
-  This endpoint allows you to retrieve a series of the number of occurrences of a custom event in your app over a designated time period.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"data\" : [         {             \"time\" : (string) point in time - as ISO 8601 extended when unit is \"hour\" and as ISO 8601 date when unit is \"day\",             \"count\" : (int)         },         ...     ] }  ```  ### Fatal error response codes  The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.  | Error Code | Reason / Cause | | --- | --- | | 400 Bad Request | Bad Syntax | | 401 Unauthorized | Unknown or missing REST API Key | | 429 Rate Limited | Over rate limit | | 5XX | Internal server error, you should retry with exponential backoff |  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
+  # Custom Events Analytics
+
+  # Notes 
+  This endpoint allows you to retrieve a series of the number of occurrences of a custom event in your app over a designated time period.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "data" : [
+        {
+            "time" : (string) point in time - as ISO 8601 extended when unit is "hour" and as ISO 8601 date when unit is "day",
+            "count" : (int)
+        },
+        ...
+    ]
+  }
+
+  ```
+
+  ### Fatal error response codes
+
+  The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.
+
+  | Error Code | Reason / Cause |
+  | --- | --- |
+  | 400 Bad Request | Bad Syntax |
+  | 401 Unauthorized | Unknown or missing REST API Key |
+  | 429 Rate Limited | Over rate limit |
+  | 5XX | Internal server error, you should retry with exponential backoff |
+
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
@@ -58,8 +96,45 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   end
 
   @doc """
-  Custom Events List
-  This endpoint allows you to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically.  ## Rate limit  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 1,000 requests per hour to this endpoint. This rate limit is shared with the `/purchases/product_list` endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"events\" : [         \"Event A\",         \"Event B\",         \"Event C\",         ...     ] }  ```  ### Fatal error response codes  The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.  | Error Code | Reason / Cause | | --- | --- | | 400 Bad Request | Bad Syntax | | 401 Unauthorized | Unknown or missing REST API Key | | 429 Rate Limited | Over rate limit | | 5XX | Internal server error, you should retry with exponential backoff |  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
+  # Custom Events List
+
+  # Notes 
+  This endpoint allows you to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically.
+
+  ## Rate limit
+
+  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 1,000 requests per hour to this endpoint. This rate limit is shared with the `/purchases/product_list` endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "events" : [
+        "Event A",
+        "Event B",
+        "Event C",
+        ...
+    ]
+  }
+
+  ```
+
+  ### Fatal error response codes
+
+  The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.
+
+  | Error Code | Reason / Cause |
+  | --- | --- |
+  | 400 Bad Request | Bad Syntax |
+  | 401 Unauthorized | Unknown or missing REST API Key |
+  | 429 Rate Limited | Over rate limit |
+  | 5XX | Internal server error, you should retry with exponential backoff |
+
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 

@@ -10,8 +10,33 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
   import BrazeEx.RequestBuilder
 
   @doc """
-  App Sessions by Time
-  This endpoint allows you to retrieve a series of the number of sessions for your app over a designated time period.  ## Rate limit  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).  ## Response  ``` json Content-Type: application/json Authorization: Bearer YOUR-REST-API-KEY {     \"message\": (required, string) the status of the export, returns 'success' when completed without errors,     \"data\" : [         {             \"time\" : (string) point in time - as ISO 8601 extended when unit is \"hour\" and as ISO 8601 date when unit is \"day\",             \"sessions\" : (int)         },         ...     ] }  ```
+
+  # App Sessions by Time
+
+  # Notes 
+  This endpoint allows you to retrieve a series of the number of sessions for your app over a designated time period.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-REST-API-KEY
+  {
+    "message": (required, string) the status of the export, returns 'success' when completed without errors,
+    "data" : [
+        {
+            "time" : (string) point in time - as ISO 8601 extended when unit is "hour" and as ISO 8601 date when unit is "day",
+            "sessions" : (int)
+        },
+        ...
+    ]
+  }
+
+  ```
 
   ### Parameters
 
