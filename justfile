@@ -51,12 +51,8 @@ regenerate:
     bin/openapi-generator-cli generate \
         --input-spec={{api_spec_path}} \
         --generator-name elixir \
-        --additional-properties=packageName=braze_ex,invokerPackage=BrazeEx,disallowAdditionalPropertiesIfNotPresent=false,licenseId=MIT
-    @echo "node_modules" >> .gitignore
-    @echo "bin" >> .gitignore
-    just inject-links-in-mix
+        --config priv/openapi_config.yaml 
     mix format
-    # just inject-docs-description
 
 build:
     just deps

@@ -1,18 +1,7 @@
 defmodule BrazeEx do
   @moduledoc """
-  Documentation for `BrazeEx`.
+  `BrazeEx` is an automatically generated http api wrapper for integrating with the Braze HTTP API.
+
+  See `BrazeEx.Connection` for configuration details
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> BrazeEx.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
 end

@@ -1,0 +1,7 @@
+templateDir: templates
+additionalProperties:
+    packageName: braze_ex
+    invokerPackage: BrazeEx
+    disallowAdditionalPropertiesIfNotPresent: false
+    licenseId: MIT
+    mixLinks: '%{github: "https://github.com/gerbal/braze_ex"}'
