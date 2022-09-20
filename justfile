@@ -8,6 +8,10 @@ version := `cat VERSION`
 api_spec_path := "priv/openapi_spec.yaml"
 postman_collection_path := "priv/postman_collection.json"
 
+elixir:
+    mix local.hex --force
+    mix deps.get
+
 deps: 
     npm install
     curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh > bin/openapi-generator-cli
@@ -61,12 +65,12 @@ build:
     just regenerate
 
 
-publish:
+publish:elixir
     #!/usr/bin/env bash
     if ! git diff-index --quiet HEAD --; then
-        mix hex.publish
-        git add .
-        git commit -m "🤖 Version Bump to `cat VERSION`"
+        mix deps.get
+        mix hex.publish --yes
+        git commit -am "🤖 Version Bump to `cat VERSION`"
         git push
     else
         echo "No Changes to publish"

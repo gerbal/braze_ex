@@ -13,8 +13,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: asdf_install
-        uses: asdf-vm/actions/install@v1
+      - name: Setup Git
+        run: |
+          git config --global user.name "Continuous Deployment"
+          git config --global user.email 'github@users.noreply.github.com'
+
+      - name: Install tools from asdf config
+        uses: ai/asdf-cache-action@v1
       - uses: extractions/setup-just@v1
       - run: just build
       - run: just publish
+        env:
+          HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
