@@ -10,6 +10,10 @@ defmodule {{moduleName}}.Mixfile do
       start_permanent: Mix.env() == :prod,
       package: package(),
       description: "{{appDescription}}",
+      docs: [
+        main: "readme",
+        extras: ["README.md", "API_DESCRIPTION.md"]
+      ],
       deps: deps()
     ]
   end

@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   @doc """
 
-  # News Feed Card Analytics
+  ## News Feed Card Analytics
 
-  # Notes 
   This endpoint allows you to retrieve a daily series of engagement stats for a card over time.
 
   ## Rate limit
@@ -83,9 +82,8 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   @doc """
 
-  # News Feed Cards Details
+  ## News Feed Cards Details
 
-  # Notes 
   This endpoint allows you to retrieve relevant information on the card, which can be identified by the `card_id`.
 
   ## Rate limit
@@ -150,9 +148,8 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   @doc """
 
-  # News Feed Cards List
+  ## News Feed Cards List
 
-  # Notes 
   This endpoint allows you to export a list of News Feed cards, each of which will include its name and Card API Identifier. The cards are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
   ## Rate limit

@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.UserData do
 
   @doc """
 
-  # Create New User Aliases
+  ## Create New User Aliases
 
-  # Notes 
   Use this endpoint to add new user aliases for existing identified users, or to create new unidentified users.
 
   > **Note:** You can add up to 50 user aliases per request.
@@ -69,9 +68,8 @@ defmodule BrazeEx.Api.UserData do
 
   @doc """
 
-  # User Delete
+  ## User Delete
 
-  # Notes 
   This endpoint allows you to delete any user profile by specifying a known user identifier. Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request.
 
   > **Important:** Deleting user profiles cannot be undone. It will permanently remove users which may cause discrepancies in your data. Learn more about what happens when you [delete a user profile via API](https://braze.com/docs/help/help_articles/api/delete_user/) in our Help documentation.
@@ -126,9 +124,8 @@ defmodule BrazeEx.Api.UserData do
 
   @doc """
 
-  # Identify Users
+  ## Identify Users
 
-  # Notes 
   Use this endpoint to identify an unidentified (alias-only) user.
 
   > **Note:** You can add up to 50 user aliases per request.
@@ -197,9 +194,8 @@ defmodule BrazeEx.Api.UserData do
 
   @doc """
 
-  # User Track
+  ## User Track
 
-  # Notes 
   Use this endpoint to record custom events, purchases, and update user profile attributes.
 
   > **Note:** Braze processes the data passed via API at face value and customers should only pass deltas (changing data) to minimize unnecessary data point consumption. To read more, refer to [Data points](https://www.braze.com/docs/user_guide/onboarding_with_braze/data_points#data-points).

@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.ExportUsers do
 
   @doc """
 
-  # User Profile Export by Global Control Group
+  ## User Profile Export by Global Control Group
 
-  # Notes 
   This endpoint allows you to export all the users within the Global Control Group. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
 
   > Warning: Individual custom attributes cannot be exported. However, all custom attributes can be exported by including custom_attributes in the fields_to_export array (e.g.,\[‘first_name’, ‘email’, ‘custom_attributes’\]).
@@ -199,9 +198,8 @@ defmodule BrazeEx.Api.ExportUsers do
 
   @doc """
 
-  # User Profile Export by Identifier
+  ## User Profile Export by Identifier
 
-  # Notes 
   This endpoint allows you to export data from any user profile by specifying a form of user identifier. Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
 
   ## Rate limit
@@ -458,9 +456,8 @@ defmodule BrazeEx.Api.ExportUsers do
 
   @doc """
 
-  # User Profile Export by Segment
+  ## User Profile Export by Segment
 
-  # Notes 
   This endpoint allows you to export all the users within a segment. User data is exported as multiple files of user JSON objects separated by new lines (i.e. one JSON object per line). Data is exported to an automatically generated URL, or to an S3 bucket if this integration is already set up.
 
   This endpoint is currently not supported by Google Cloud Storage.

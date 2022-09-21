@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   @doc """
 
-  # Custom Events Analytics
+  ## Custom Events Analytics
 
-  # Notes 
   This endpoint allows you to retrieve a series of the number of occurrences of a custom event in your app over a designated time period.
 
   ## Rate limit
@@ -97,9 +96,8 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   @doc """
 
-  # Custom Events List
+  ## Custom Events List
 
-  # Notes 
   This endpoint allows you to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically.
 
   ## Rate limit

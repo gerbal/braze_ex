@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   @doc """
 
-  # External ID Remove
+  ## External ID Remove
 
-  # Notes 
   > **Note:** For security purposes, this feature is disabled by default. To enable this feature, reach out to your customer success manager.
 
   Use this endpoint to remove your users' old deprecated external IDs. This endpoint completely removes the deprecated ID and cannot be undone.
@@ -93,9 +92,8 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   @doc """
 
-  # External ID Rename
+  ## External ID Rename
 
-  # Notes 
   > **Note:** For security purposes, this feature is disabled by default. To enable this feature, reach out to your customer success manager.
 
   Use this endpoint to “rename” your users’ external IDs. This endpoint sets a new (primary) `external_id` for the user and deprecates their existing `external_id`. This means that the user can be identified by either `external_id` until the deprecated one is removed. The deprecated ID can be removed using the [External ID remove](https://www.braze.com/docs/api/endpoints/user_data/external_id_migration/post_external_ids_remove) endpoint. Having multiple external IDs allows for a migration period whereby older versions of your apps still in the wild that use the previous external ID naming schema don’t break. We highly recommend removing deprecated external IDs once your old naming schema is no longer in use.

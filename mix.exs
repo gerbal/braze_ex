@@ -10,6 +10,10 @@ defmodule BrazeEx.Mixfile do
       start_permanent: Mix.env() == :prod,
       package: package(),
       description: "Braze HTTP API (generated from Braze Postman Collection)",
+      docs: [
+        main: "readme",
+        extras: ["README.md", "API_DESCRIPTION.md"]
+      ],
       deps: deps()
     ]
   end

@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   @doc """
 
-  # Blacklist Email Addresses
+  ## Blacklist Email Addresses
 
-  # Notes 
   Blacklisting an email address will unsubscribe the user from email and mark them as hard bounced.
 
   ## Rate limit
@@ -65,9 +64,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   @doc """
 
-  # Remove Hard Bounced Emails
+  ## Remove Hard Bounced Emails
 
-  # Notes 
   This endpoint allows you to remove email addresses from your Braze bounce list. We will also remove them from the bounce list maintained by your email provider.
 
   ## Rate limit
@@ -119,9 +117,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   @doc """
 
-  # Query Hard Bounced Emails
+  ## Query Hard Bounced Emails
 
-  # Notes 
   This endpoint allows you to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame.
 
   > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. If you provide all three, `start_date`, `end_date`, and an `email`, we prioritize the emails given and disregard the date range.
@@ -203,9 +200,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   @doc """
 
-  # Remove Email Addresses from Spam List
+  ## Remove Email Addresses from Spam List
 
-  # Notes 
   This endpoint allows you to remove email addresses from your Braze spam list. We will also remove them from the spam list maintained by your email provider.
 
   ## Rate limit
@@ -257,9 +253,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   @doc """
 
-  # Change Email Subscription Status
+  ## Change Email Subscription Status
 
-  # Notes 
   This endpoint allows you to set the email subscription state for your users. Users can be `opted_in`, `unsubscribed`, or `subscribed` (not specifically opted in or out).
 
   You can set the email subscription state for an email address that is not yet associated with any of your users within Braze. When that email address is subsequently associated with a user, the email subscription state that you uploaded will be automatically set.
@@ -313,9 +308,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   @doc """
 
-  # Query List of Unsubscribed Email Addresses
+  ## Query List of Unsubscribed Email Addresses
 
-  # Notes 
   Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`. You can use this endpoint to set up a bi-directional sync between Braze and other email systems or your own database.
 
   > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`.

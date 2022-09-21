@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   @doc """
 
-  # List User's  Subscription Group Status - SMS
+  ## List User's  Subscription Group Status - SMS
 
-  # Notes 
   Use this endpoint to get the subscription state of a user in a subscription group. These groups will be available on the **Subscription Group** page. The response from this endpoint will include the external ID and either subscribed, unsubscribed, or unknown for the specific subscription group requested in the API call. This can be used to update the subscription group state in subsequent API calls or to be displayed on a hosted web page.
 
   > *Either `external_id` or `email` are required. When both are submitted, only the external_id is used for querying and the phone number is applied to that user.
@@ -79,9 +78,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   @doc """
 
-  # Update User's Subscription Group Status - SMS
+  ## Update User's Subscription Group Status - SMS
 
-  # Notes 
   Use this endpoint to update the subscription state of a user on the Braze dashboard. You can access a subscription groups `subscription_group_id` by navigating to it on the **Subscription Group** page.
 
   > *Only `external_id` or `phone` is accepted for SMS subscription groups.
@@ -153,9 +151,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   @doc """
 
-  # List User's Subscription Group - SMS
+  ## List User's Subscription Group - SMS
 
-  # Notes 
   Use this endpoint to list and get the subscription groups of a certain user.
 
   > If there are multiple users (multiple external ids) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group).

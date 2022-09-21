@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   @doc """
 
-  # Create Content Block
+  ## Create Content Block
 
-  # Notes 
   This endpoint will create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
@@ -103,9 +102,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   @doc """
 
-  # See Content Block Information
+  ## See Content Block Information
 
-  # Notes 
   This endpoint will call information for an existing [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
@@ -179,9 +177,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   @doc """
 
-  # List Available Content Blocks
+  ## List Available Content Blocks
 
-  # Notes 
   This endpoint will list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information.
 
   ### Rate limit
@@ -266,9 +263,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   @doc """
 
-  # Update Content Block
+  ## Update Content Block
 
-  # Notes 
   This endpoint will update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit

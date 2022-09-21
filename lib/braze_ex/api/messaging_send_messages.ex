@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   @doc """
 
-  # Sending Campaign Messages via API Triggered Delivery
+  ## Sending Campaign Messages via API Triggered Delivery
 
-  # Notes 
   API-triggered delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
 
   The send endpoint allows you to send immediate, ad-hoc messages to designated users. If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) . Note that to send messages with this endpoint, you must have a Campaign ID created when you build an [API-triggered campaign](https://www.braze.com/docs/api/api_campaigns/).
@@ -97,9 +96,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   @doc """
 
-  # Sending Canvas Messages via API Triggered Delivery
+  ## Sending Canvas Messages via API Triggered Delivery
 
-  # Notes 
   API-Triggered Delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
 
   This endpoint allows you to send Canvas messages via API-Triggered delivery, allowing you to decide what action should trigger the message to be sent. Note that to send messages with this endpoint, you must have a Canvas ID, created when you build a [Canvas](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier).
@@ -180,9 +178,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   @doc """
 
-  # Sending Messages Immediately via API Only
+  ## Sending Messages Immediately via API Only
 
-  # Notes 
   This endpoint allows you send your messages using our API. Be sure to include Messaging Objects in your body to complete your requests.
 
   The send endpoint allows you to send immediate, ad-hoc messages to designated users. If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/).
@@ -255,9 +252,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   @doc """
 
-  # Create Send IDs For Message Send Tracking
+  ## Create Send IDs For Message Send Tracking
 
-  # Notes 
   Braze’s Send Identifier adds the ability to send messages and track message performance entirely programmatically, without campaign creation for each send. Using the Send Identifier to track and send messages is useful if you are planning to programmatically generate and send content.
 
   ## Rate limit
@@ -322,9 +318,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   @doc """
 
-  # Sending Transactional Email via API Triggered Delivery
+  ## Sending Transactional Email via API Triggered Delivery
 
-  # Notes 
   The Send Transactional Email endpoint allows you to send immediate, ad-hoc messages to a designated user. This endpoint is used alongside the creation of a [Transactional Email campaign](https://www.braze.com/docs/api/api_campaigns/transactional_campaigns) and corresponding campaign ID.
 
   > **Important:** Transactional Email is currently available as part of select Braze packages. Reach out to your Braze customer success manager for more details.

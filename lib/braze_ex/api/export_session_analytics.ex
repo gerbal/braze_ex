@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
   @doc """
 
-  # App Sessions by Time
+  ## App Sessions by Time
 
-  # Notes 
   This endpoint allows you to retrieve a series of the number of sessions for your app over a designated time period.
 
   ## Rate limit

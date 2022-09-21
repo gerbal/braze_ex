@@ -11,9 +11,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   @doc """
 
-  # Create Email Template
+  ## Create Email Template
 
-  # Notes 
   Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
 
   Users' email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.
@@ -88,9 +87,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   @doc """
 
-  # See Email Template Information
+  ## See Email Template Information
 
-  # Notes 
   Use to get information on your email templates.
 
   Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
@@ -159,9 +157,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   @doc """
 
-  # List Available Email Templates
+  ## List Available Email Templates
 
-  # Notes 
   Use this endpoint to get a list of available templates in your Braze account.
 
   Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
@@ -228,9 +225,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   @doc """
 
-  # Update Email Template
+  ## Update Email Template
 
-  # Notes 
   Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
 
   > Use the endpoints below to update email templates on the Braze dashboard. You can access an email template's `email_template_id` by navigating to it on the Templates and Media page. The email template creation API endpoint will also return an `email_template_id` reference.<br><br>All fields other than the `email_template_id` are optional, but you must specify at least one field to update.
