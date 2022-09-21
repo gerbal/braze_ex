@@ -1,3 +1,3 @@
 ## Usage
 
-This Library is automatically generated. As such it has some rough edges and the library docs and readme are particularly unhelpful
+TODO .. examples of usage to come as we use this internally

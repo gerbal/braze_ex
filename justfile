@@ -31,7 +31,7 @@ bump-version:
 
 #  TODO Inject usage instructions in Readme instead of Postman instructions
 inject-docs-description:
-    echo "" >> README.md
+    printf "\n" >> README.md
     jq -r '.info.description' {{postman_collection_path}} >> README.md
 
 
@@ -53,6 +53,11 @@ regenerate:
         --generator-name elixir \
         --config priv/openapi_config.yaml 
     mix format
+    printf "\n" >> README.md
+    cat USAGE.md >> README.md
+    printf "\n" >> README.md
+    cat DEVELOPMENT.md >> README.md
+    just inject-docs-description
 
 build:
     just deps
