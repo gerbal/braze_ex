@@ -61,6 +61,8 @@ Requirements:
 
 To Rebuild the API using the latest postman collection revision run `just build`
 
+---
+
 # Braze API overview
 
 Braze provides a high-performance REST API to allow you to track users, send messages, export data, and more. This reference article covers what a REST API is, the terminology, a brief overview of API keys, and API limits.

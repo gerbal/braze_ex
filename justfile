@@ -31,7 +31,7 @@ bump-version:
 
 #  TODO Inject usage instructions in Readme instead of Postman instructions
 inject-docs-description:
-    printf "\n" >> README.md
+    printf "\n---\n\n" >> README.md
     jq -r '.info.description' {{postman_collection_path}} >> README.md
 
 
