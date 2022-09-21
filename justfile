@@ -14,6 +14,8 @@ elixir:
 
 deps: 
     npm install
+    # replace with @openapitools/openapi-generator from npm after release of v6.1.1 w/ improvements to Elixir generator
+    curl https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/6.1.1-SNAPSHOT/openapi-generator-cli-6.1.1-20220920.151936-13.jar > bin/openapi-generator-cli-6.1.0.jar
     curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh > bin/openapi-generator-cli
     chmod u+x bin/openapi-generator-cli
     go install github.com/mikefarah/yq/v4@latest
