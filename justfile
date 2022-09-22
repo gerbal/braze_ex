@@ -33,7 +33,7 @@ bump-version:
 
 #  TODO Inject usage instructions in Readme instead of Postman instructions
 inject-docs-description:
-    jq -r '.info.description' {{postman_collection_path}} >> API_DESCRIPTION.md
+    jq -r '.info.description' {{postman_collection_path}} >| API_DESCRIPTION.md
 
 
 # mix_file_links := ',\n      links: %{github: "https\:\/\/github.com\/gerbal\/braze_ex"'
