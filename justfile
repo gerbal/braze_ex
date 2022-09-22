@@ -39,7 +39,11 @@ inject-docs-description:
 # mix_file_links := ',\n      links: %{github: "https\:\/\/github.com\/gerbal\/braze_ex"'
 mix_file_links := ',\n      links: %{github: "https\:\/\/github.com\/gerbal\/braze_ex"}'
 inject-links-in-mix:
-    sed -i 's/\(\["MIT"\]\)$/\1{{mix_file_links}}/' mix.exs 
+    sed -i 's/\(\["MIT"\]\)$/\1{{mix_file_links}}/' mix.
+
+# generator is using old version of poison, causing conflicts. just use whatever is compatible
+bump-poison-version:
+    sed -i 's/{:poison, "~> 3.0"}/{:poison, "> 0.0.0"}/' mix.exs
 
 fixup-spec: 
     -just bump-version
@@ -59,6 +63,7 @@ regenerate:
     printf "\n" >> README.md
     cat DEVELOPMENT.md >> README.md
     just inject-docs-description
+    just bump-poison-version
 
 build:
     just deps
