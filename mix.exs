@@ -4,7 +4,7 @@ defmodule BrazeEx.Mixfile do
   def project do
     [
       app: :braze_ex,
-      version: "1.0.2",
+      version: "1.0.3",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,

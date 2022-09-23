@@ -204,7 +204,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## Rate limit
 
-  For customers who onboarded with Braze on or after August 16, 2021, we apply a rate limit of 2,500 requests per minute to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply a rate limit of 2,500 requests per minute to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -222,39 +222,39 @@ defmodule BrazeEx.Api.ExportUsers do
 
   The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
 
-  *   `apps`
-  *   `attributed_campaign`
-  *   `attributed_source`
-  *   `attributed_adgroup`
-  *   `attributed_ad`
-  *   `braze_id`
-  *   `campaigns_received`
-  *   `canvases_received`
-  *   `cards_clicked`
-  *   `country`
-  *   `created_at`
-  *   `custom_attributes`
-  *   `custom_events`
-  *   `devices`
-  *   `dob`
-  *   `email`
-  *   `email_subscribe`
-  *   `external_id`
-  *   `first_name`
-  *   `gender`
-  *   `home_city`
-  *   `language`
-  *   `last_coordinates`
-  *   `last_name`
-  *   `phone`
-  *   `purchases`
-  *   `push_subscribe`
-  *   `push_tokens`
-  *   `random_bucket`
-  *   `time_zone`
-  *   `total_revenue`
-  *   `uninstalled_at`
-  *   `user_aliases`
+  \*   `apps`
+  \*   `attributed_campaign`
+  \*   `attributed_source`
+  \*   `attributed_adgroup`
+  \*   `attributed_ad`
+  \*   `braze_id`
+  \*   `campaigns_received`
+  \*   `canvases_received`
+  \*   `cards_clicked`
+  \*   `country`
+  \*   `created_at`
+  \*   `custom_attributes`
+  \*   `custom_events`
+  \*   `devices`
+  \*   `dob`
+  \*   `email`
+  \*   `email_subscribe`
+  \*   `external_id`
+  \*   `first_name`
+  \*   `gender`
+  \*   `home_city`
+  \*   `language`
+  \*   `last_coordinates`
+  \*   `last_name`
+  \*   `phone`
+  \*   `purchases`
+  \*   `push_subscribe`
+  \*   `push_tokens`
+  \*   `random_bucket`
+  \*   `time_zone`
+  \*   `total_revenue`
+  \*   `uninstalled_at`
+  \*   `user_aliases`
     
 
   Be aware that the `/users/export/ids` endpoint will pull together the entire user profile for this user, including data such as all campaigns and Canvases received, all custom events performed, all purchases made, and all custom attributes. As a result, this endpoint is slower than other REST API endpoints.
