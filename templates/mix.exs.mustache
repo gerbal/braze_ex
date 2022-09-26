@@ -9,7 +9,7 @@ defmodule {{moduleName}}.Mixfile do
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       package: package(),
-      description: "{{appDescription}}",
+      description: "Braze HTTP API (generated from Braze Postman Collection)",
       docs: [
         main: "readme",
         extras: ["README.md", "API_DESCRIPTION.md"]
@@ -37,9 +37,9 @@ defmodule {{moduleName}}.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-{{#deps}}
+{{#customDeps}}
       {{{this}}}{{^-last}},{{/-last}}
-{{/deps}}
+{{/customDeps}}
     ]
   end
 

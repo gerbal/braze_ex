@@ -5,3 +5,10 @@ additionalProperties:
     disallowAdditionalPropertiesIfNotPresent: false
     licenseId: MIT
     mixLinks: '%{github: "https://github.com/gerbal/braze_ex"}'
+    legacyDiscriminatorBehavior: false
+    enumUnknownDefaultCase: true
+    customDeps: 
+        - '{:tesla, "~> 1.4"}'
+        - '{:poison, "> 0.0.0"}'
+        - '{:ex_doc, "~> 0.28", only: :dev, runtime: false}'
+

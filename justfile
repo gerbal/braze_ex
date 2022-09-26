@@ -8,42 +8,26 @@ version := `cat VERSION`
 api_spec_path := "priv/openapi_spec.yaml"
 postman_collection_path := "priv/postman_collection.json"
 
-elixir:
-    mix local.hex --force
-    mix deps.get
+
+build:
+    just deps
+    just refresh-spec
+    just fixup-spec
+    just regenerate
+    just prepare-readme
 
 deps: 
     npm install
-    # replace with @openapitools/openapi-generator from npm after release of v6.1.1 w/ improvements to Elixir generator
-    curl https://oss.sonatype.org/content/repositories/snapshots/org/openapitools/openapi-generator-cli/6.1.1-SNAPSHOT/openapi-generator-cli-6.1.1-20220920.151936-13.jar > bin/openapi-generator-cli-6.1.0.jar
-    curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh > bin/openapi-generator-cli
-    chmod u+x bin/openapi-generator-cli
     go install github.com/mikefarah/yq/v4@latest
     
-refresh: 
+refresh-spec: 
     curl "https://www.postman.com/collections/{{postman_collection_id}}" | jq > {{postman_collection_path}}
     npm exec p2o {{postman_collection_path}} | yq -P > {{api_spec_path}} 
+    just dump-api-description
 
-bump-version: 
-    # Version will only bump if api spec has unstaged changes
-    ! git diff --exit-code {{postman_collection_path}}
-    @echo {{version}}
-    awk  -i inplace -F. '/[0-9]+\./{$NF++;print}BEGIN{OFS="."}' VERSION
-    @echo "Openapi Spec has changed. Bumping Version from {{version}} to `cat VERSION`"
-
-#  TODO Inject usage instructions in Readme instead of Postman instructions
-inject-docs-description:
+dump-api-description:
     jq -r '.info.description' {{postman_collection_path}} >| API_DESCRIPTION.md
 
-
-# mix_file_links := ',\n      links: %{github: "https\:\/\/github.com\/gerbal\/braze_ex"'
-mix_file_links := ',\n      links: %{github: "https\:\/\/github.com\/gerbal\/braze_ex"}'
-inject-links-in-mix:
-    sed -i 's/\(\["MIT"\]\)$/\1{{mix_file_links}}/' mix.
-
-# generator is using old version of poison, causing conflicts. just use whatever is compatible
-bump-poison-version:
-    sed -i 's/{:poison, "~> 3.0"}/{:poison, "> 0.0.0"}/' mix.exs
 
 fixup-spec: 
     -just bump-version
@@ -52,24 +36,30 @@ fixup-spec:
     # Specs description is malformed when translated to readme
     yq -iP '.info.description = "Braze HTTP API (generated from Braze Postman Collection)"' {{api_spec_path}} 
 
+bump-version: 
+    # Version will only bump if api spec has unstaged changes
+    ! git diff --exit-code {{postman_collection_path}}
+    @echo {{version}}
+    awk  -i inplace -F. '/[0-9]+\./{$NF++;print}BEGIN{OFS="."}' VERSION
+    @echo "Openapi Spec has changed. Bumping Version from {{version}} to `cat VERSION`"
+
 regenerate:
-    bin/openapi-generator-cli generate \
+    npx "@openapitools/openapi-generator-cli" generate \
         --input-spec={{api_spec_path}} \
-        --generator-name elixir \
-        --config priv/openapi_config.yaml 
+        --generator-name=elixir \
+        --config=priv/openapi_config.yaml 
     mix format
+    
+prepare-readme:
     printf "\n" >> README.md
     cat USAGE.md >> README.md
     printf "\n" >> README.md
     cat DEVELOPMENT.md >> README.md
-    just inject-docs-description
-    just bump-poison-version
 
-build:
-    just deps
-    just refresh
-    just fixup-spec
-    just regenerate
+
+elixir:
+    mix local.hex --force
+    mix deps.get
 
 
 publish:elixir
