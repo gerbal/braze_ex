@@ -74,8 +74,5 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 end

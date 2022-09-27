@@ -89,9 +89,6 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 
   @doc """
@@ -171,9 +168,6 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 
   @doc """
@@ -245,9 +239,6 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 
   @doc """
@@ -311,9 +302,6 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 
   @doc """
@@ -533,8 +521,5 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 end

@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Braze Endpoints
   description: Braze HTTP API (generated from Braze Postman Collection)
-  version: 1.0.3
+  version: 1.0.4
 servers:
   - url: https://{{instance_url}}
   - url: https://rest.iad-01.braze.com

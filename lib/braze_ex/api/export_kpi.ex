@@ -72,9 +72,6 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 
   @doc """
@@ -140,9 +137,6 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 
   @doc """
@@ -208,9 +202,6 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 
   @doc """
@@ -276,8 +267,5 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 end

@@ -69,8 +69,5 @@ defmodule BrazeEx.Api.ExportPurchases do
 
     connection
     |> Connection.request(request)
-    |> evaluate_response([
-      {200, false}
-    ])
   end
 end
