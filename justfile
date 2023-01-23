@@ -6,7 +6,7 @@
 postman_collection_id := "4689407-29829c45-e619-4c12-910f-564ec8ccfda9-SVYrsdsG"
 version := `cat VERSION`
 api_spec_path := "priv/openapi_spec.yaml"
-postman_collection_path := "priv/postman_collection.json"
+postman_path := "priv/postman_collection.json"
 
 
 build:
@@ -21,25 +21,25 @@ deps:
     go install github.com/mikefarah/yq/v4@latest
     
 refresh-spec: 
-    curl "https://www.postman.com/collections/{{postman_collection_id}}" | jq > {{postman_collection_path}}
-    npm exec p2o {{postman_collection_path}} -f "priv/openapi_spec.json" 
-    yq -P "priv/openapi_spec.json" > {{api_spec_path}} 
+    curl "https://www.postman.com/collections/{{postman_collection_id}}" | jq >| {{postman_path}}
+    sed -i 's/\}\} \//\}\}\//g' {{postman_path}}
+    npm exec p2o {{postman_path}} | yq -P  >| {{api_spec_path}} 
     just dump-api-description
 
 dump-api-description:
-    jq -r '.info.description' {{postman_collection_path}} >| API_DESCRIPTION.md
+    jq -r '.info.description' {{postman_path}} >| API_DESCRIPTION.md
 
 
 fixup-spec: 
     -just bump-version
     # set correct version in api spec
-    VERSION=`cat VERSION` yq -iP '.info.version = strenv(VERSION)' {{api_spec_path}} 
+    VERSION=`cat VERSION` yq -iP '.info.version = strenv(VERSION)' {{api_spec_path}}
     # Specs description is malformed when translated to readme
     yq -iP '.info.description = "Braze HTTP API (generated from Braze Postman Collection)"' {{api_spec_path}} 
 
 bump-version: 
     # Version will only bump if api spec has unstaged changes
-    ! git diff --exit-code {{postman_collection_path}}
+    ! git diff --exit-code {{postman_path}}
     @echo {{version}}
     awk  -i inplace -F. '/[0-9]+\./{$NF++;print}BEGIN{OFS="."}' VERSION
     @echo "Openapi Spec has changed. Bumping Version from {{version}} to `cat VERSION`"
