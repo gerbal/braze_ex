@@ -22,7 +22,8 @@ deps:
     
 refresh-spec: 
     curl "https://www.postman.com/collections/{{postman_collection_id}}" | jq > {{postman_collection_path}}
-    npm exec p2o {{postman_collection_path}} | yq -P > {{api_spec_path}} 
+    npm exec p2o {{postman_collection_path}} -f "priv/openapi_spec.json" 
+    yq -P "priv/openapi_spec.json" > {{api_spec_path}} 
     just dump-api-description
 
 dump-api-description:
