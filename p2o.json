@@ -1,0 +1,38 @@
+{
+  "servers": [
+    {
+      "url": "https://rest.iad-01.braze.com",
+      "variables": {}
+    },
+    {
+      "url": "https://rest.iad-02.braze.com",
+      "variables": {}
+    },
+    {
+      "url": "https://rest.iad-03.braze.com",
+      "variables": {}
+    },
+    {
+      "url": "https://rest.iad-04.braze.com",
+      "variables": {}
+    },
+    {
+      "url": "https://rest.iad-06.braze.com",
+      "variables": {}
+    },
+    {
+      "url": "https://rest.fra-01.braze.eu",
+      "variables": {}
+    }
+  ],
+  "auth": {
+    "bearerAuth": {
+      "type": "http",
+      "scheme": "bearer"
+    }
+  },
+  "externalDocs": {
+    "url": "https://www.braze.com/docs/developer_guide/rest_api/basics",
+    "description": "API Overview"
+  }
+}

@@ -7,35 +7,48 @@ postman_collection_id := "4689407-29829c45-e619-4c12-910f-564ec8ccfda9-SVYrsdsG"
 version := `cat VERSION`
 api_spec_path := "priv/openapi_spec.yaml"
 postman_path := "priv/postman_collection.json"
+braze_swagger_path := "/tmp/braze_swagger.json"
 
 
 build:
     just deps
-    just refresh-spec
-    just fixup-spec
+    just refresh-postman
+    just fetch-api-info
+    just postman-to-openapi
+    # just bump-version
+    just set-missing-content-types
+    just fixup-postman-spec
     just regenerate
     just prepare-readme
+
+    
 
 deps: 
     npm install
     go install github.com/mikefarah/yq/v4@latest
+
+fetch-api-info:
+    curl https://www.braze.com/docs/assets/js/swagger/braze_swagger.json | yq >| {{braze_swagger_path}}
+    SERVERS=`cat {{braze_swagger_path}} | jq '.servers'` yq -o json -i '.servers = env(SERVERS)' p2o.json
+    AUTH=`cat {{braze_swagger_path}} | jq '.components.securitySchemes'` yq -o json -i '.auth = env(AUTH)' p2o.json
     
-refresh-spec: 
+refresh-postman: 
     curl "https://www.postman.com/collections/{{postman_collection_id}}" | jq >| {{postman_path}}
     sed -i 's/\}\} \//\}\}\//g' {{postman_path}}
-    npm exec p2o {{postman_path}} | yq -P  >| {{api_spec_path}} 
-    just dump-api-description
-
-dump-api-description:
     jq -r '.info.description' {{postman_path}} >| API_DESCRIPTION.md
 
-
-fixup-spec: 
-    -just bump-version
-    # set correct version in api spec
+postman-to-openapi:
+    npm exec p2o -- {{postman_path}} -o p2o.json | yq -P  >| {{api_spec_path}} 
+    
+fixup-postman-spec: 
     VERSION=`cat VERSION` yq -iP '.info.version = strenv(VERSION)' {{api_spec_path}}
-    # Specs description is malformed when translated to readme
     yq -iP '.info.description = "Braze HTTP API (generated from Braze Postman Collection)"' {{api_spec_path}} 
+
+# 2023-02-03 - Postman collection is missing Content types for these resources, stub them with an empty string
+set-missing-content-types:
+    yq -iP '.paths."/catalogs/{catalog_name}/items".patch.requestBody.content = {"*/*": {"schema": {"type": "string"}}}' {{api_spec_path}} 
+    yq -iP '.paths."/catalogs".post.requestBody.content = {"*/*": {"schema": {"type": "string"}}}' {{api_spec_path}} 
+    yq -iP '.paths."/catalogs/{catalog_name}/items".post.requestBody.content = {"*/*": {"schema": {"type": "string"}}}' {{api_spec_path}} 
 
 bump-version: 
     # Version will only bump if api spec has unstaged changes
@@ -46,8 +59,9 @@ bump-version:
 
 regenerate:
     npx "@openapitools/openapi-generator-cli" generate \
-        --input-spec={{api_spec_path}} \
+        --input-spec={{postman_api_spec_path}} \
         --generator-name=elixir \
+        --skip-validate-spec \
         --config=priv/openapi_config.yaml 
     mix format
     
