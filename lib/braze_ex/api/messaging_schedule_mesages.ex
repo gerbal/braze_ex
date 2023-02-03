@@ -13,9 +13,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Schedule API Triggered Campaigns
 
-  Use this endpoint to trigger API-triggered campaigns, which are created on the dashboard and initiated via the API. You can pass in `trigger_properties` that will be templated into the message itself.
+  Use this endpoint to send dashboard created campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. You can pass in `trigger_properties` that will be templated into the message itself.
 
-  This endpoint allows you to send campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. Note that to send messages with this endpoint, you must have a Campaign ID, created when you build an [API-Triggered Campaign](https://www.braze.com/docs/api/api_campaigns/).
+  Note that to send messages with this endpoint, you must have a Campaign ID, created when you build an [API-Triggered Campaign](https://www.braze.com/docs/api/api_campaigns/).
 
   ### Rate limit
 
@@ -23,19 +23,20 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   Braze endpoints support [batching API requests](https://www.braze.com/docs/api/api_limits/#batching-api-requests). A single request to the messaging endpoints can reach any of the following:
 
-  * Up to 50 specific external_ids, each with individual message parameters
-  * A segment of any size created in the Braze dashboard, specified by its `segment_id`
-  * An ad-hoc audience segment of any size, defined in the request as a [Connected Audience](https://www.braze.com/docs/api/objects_filters/connected_audience/) object
+  - Up to 50 specific external_ids, each with individual message parameters
+  - A segment of any size created in the Braze dashboard, specified by its `segment_id`
+  - An ad-hoc audience segment of any size, defined in the request as a [Connected Audience](https://www.braze.com/docs/api/objects_filters/connected_audience/) object
+    
 
   ### Request parameters
 
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  |`campaign_id`|Required|String| See [campaign identifier](https://www.braze.com/docs/api/identifier_types/)|
-  | `send_id` | Optional | String | See [send identifier](https://www.braze.com/docs/api/identifier_types/). | 
+  | --- | --- | --- | --- |
+  | `campaign_id` | Required | String | See [campaign identifier](https://www.braze.com/docs/api/identifier_types/) |
+  | `send_id` | Optional | String | See [send identifier](https://www.braze.com/docs/api/identifier_types/). |
   | `recipients` | Optional | Array of recipient objects | See [recipients object](https://www.braze.com/docs/api/objects_filters/recipient_object/). |
   | `audience` | Optional | Connected audience object | See [connected audience](https://www.braze.com/docs/api/objects_filters/connected_audience/). |
-  |`broadcast`| Optional | Boolean | See [broadcast](https://www.braze.com/docs/api/parameters/#broadcast). This parameter defaults to false (as of August 31, 2017). <br><br> If `recipients` is omitted, `broadcast` must be set to true. However, use caution when setting `broadcast: true`, as unintentionally setting this flag may cause you to send your message to a larger than expected audience. |
+  | `broadcast` | Optional | Boolean | See [broadcast](https://www.braze.com/docs/api/parameters/#broadcast). This parameter defaults to false (as of August 31, 2017).  <br>  <br>If `recipients` is omitted, `broadcast` must be set to true. However, use caution when setting `broadcast: true`, as unintentionally setting this flag may cause you to send your message to a larger than expected audience. |
   | `trigger_properties` | Optional | Object | Personalization key-value pairs for all users in this send. See [trigger properties](https://www.braze.com/docs/api/objects_filters/trigger_properties_object/). |
   | `schedule` | Required | Schedule object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/). |
 
@@ -77,7 +78,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Delete Scheduled API Triggered Campaigns
 
-  The delete schedule endpoint allows you to cancel a message that you previously scheduled API Triggered Campaigns before it has been sent.
+  The delete schedule endpoint allows you to cancel a message that you previously scheduled API-triggered Canvases before it has been sent.
 
   Scheduled messages or triggers that are deleted very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second deletions could be applied to all, some, or none of your targeted users.
 
@@ -86,9 +87,10 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Request parameters
+
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  | `campaign_id`| Required | String | See [campaign identifier](https://www.braze.com/docs/api/identifier_types/). |
+  | --- | --- | --- | --- |
+  | `campaign_id` | Required | String | See [campaign identifier](https://www.braze.com/docs/api/identifier_types/). |
   | `schedule_id` | Required | String | The `schedule_id` to delete (obtained from the response to create schedule). |
 
   ### Parameters
@@ -129,9 +131,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Update Scheduled API Triggered Campaigns
 
-  Use this endpoint to update scheduled API Triggered Campaigns, which are created on the Dashboard and initiated via the API. You can pass in `trigger_properties` that will be templated into the message itself.
+  Use this endpoint to update scheduled API-triggered campaigns created in the dashboard, allowing you to decide what action should trigger the message to be sent. You can pass in `trigger_properties` that will be templated into the message itself.
 
-  This endpoint allows you to send Campaign messages via API Triggered delivery, allowing you to decide what action should trigger the message to be sent. Please note that to send messages with this endpoint, you must have a Campaign ID, created when you build an [API-Triggered Campaign](https://www.braze.com/docs/api/api_campaigns/).
+  Note that to send messages with this endpoint, you must have a Campaign ID, created when you build an [API-Triggered Campaign](https://www.braze.com/docs/api/api_campaigns/).
 
   Any schedule will completely overwrite the one that you provided in the create schedule request or in previous update schedule requests. For example, if you originally provide `"schedule" : {"time" : "2015-02-20T13:14:47", "in_local_time" : true}` and then in your update you provide `"schedule" : {"time" : "2015-02-20T14:14:47"}`, your message will now be sent at the provided time in UTC, not in the user's local time. Scheduled triggers that are updated very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second changes could be applied to all, some, or none of your targeted users.
 
@@ -140,11 +142,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Request parameters
+
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  |`campaign_id`|Required|String| See [campaign identifier](https://www.braze.com/docs/api/identifier_types/)|
+  | --- | --- | --- | --- |
+  | `campaign_id` | Required | String | See [campaign identifier](https://www.braze.com/docs/api/identifier_types/) |
   | `schedule_id` | Optional | String | The `schedule_id` to update (obtained from the response to create schedule). |
-  |`schedule` | Required | Object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/). |
+  | `schedule` | Required | Object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/). |
 
   ### Parameters
 
@@ -184,9 +187,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Schedule API Triggered Canvases
 
-  Use this endpoint to trigger API Triggered Canvases, which are created on the Dashboard and initiated via the API. You can pass in `canvas_entry_properties` that will be templated into the messages sent by the first steps of the Canvas.
+  Use this endpoint to schedule Canvas messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. You can pass in `canvas_entry_properties` that will be templated into the messages sent by the first steps of the Canvas.
 
-  This endpoint allows you to schedule Canvas messages (up to 90 days in advance) via API Triggered delivery, allowing you to decide what action should trigger the message to be sent. Please note that to send messages with this endpoint, you must have a Canvas ID, created when you build a [Canvas](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier).
+  Note that to send messages with this endpoint, you must have a Canvas ID, created when you build a [Canvas](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier).
 
   ### Rate limit
 
@@ -194,19 +197,20 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   Braze endpoints support [batching API requests](https://www.braze.com/docs/api/api_limits/#batching-api-requests). A single request to the messaging endpoints can reach any of the following:
 
-  * Up to 50 specific external_ids, each with individual message parameters
-  * A segment of any size created in the Braze dashboard, specified by its `segment_id`
-  * An ad-hoc audience segment of any size, defined in the request as a [Connected Audience](https://www.braze.com/docs/api/objects_filters/connected_audience/) object
+  - Up to 50 specific external_ids, each with individual message parameters
+  - A segment of any size created in the Braze dashboard, specified by its `segment_id`
+  - An ad-hoc audience segment of any size, defined in the request as a [Connected Audience](https://www.braze.com/docs/api/objects_filters/connected_audience/) object
+    
 
   ### Request parameters
 
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  |`canvas_id`|Required|String| See [Canvas identifier](https://www.braze.com/docs/api/identifier_types/). |
-  | `send_id` | Optional | String | See [send identifier](https://www.braze.com/docs/api/identifier_types/). | 
+  | --- | --- | --- | --- |
+  | `canvas_id` | Required | String | See [Canvas identifier](https://www.braze.com/docs/api/identifier_types/). |
+  | `send_id` | Optional | String | See [send identifier](https://www.braze.com/docs/api/identifier_types/). |
   | `recipients` | Optional | Array of recipient objects | See [recipients object](https://www.braze.com/docs/api/objects_filters/recipient_object/). |
   | `audience` | Optional | Connected audience object | See [connected audience](https://www.braze.com/docs/api/objects_filters/connected_audience/). |
-  |`broadcast`| Optional | Boolean | See [broadcast](https://www.braze.com/docs/api/parameters/#broadcast). This parameter defaults to false (as of August 31, 2017). <br><br> If `recipients` is omitted, `broadcast` must be set to true. However, use caution when setting `broadcast: true`, as unintentionally setting this flag may cause you to send your message to a larger than expected audience. |
+  | `broadcast` | Optional | Boolean | See [broadcast](https://www.braze.com/docs/api/parameters/#broadcast). This parameter defaults to false (as of August 31, 2017).  <br>  <br>If `recipients` is omitted, `broadcast` must be set to true. However, use caution when setting `broadcast: true`, as unintentionally setting this flag may cause you to send your message to a larger than expected audience. |
   | `trigger_properties` | Optional | Object | Personalization key-value pairs for all users in this send. See [trigger properties](https://www.braze.com/docs/api/objects_filters/trigger_properties_object/). |
   | `schedule` | Required | Schedule object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/). |
 
@@ -248,7 +252,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Delete Scheduled API-Triggered Canvases
 
-  The delete schedule endpoint allows you to cancel a message that you previously scheduled API-triggered Canvases before it has been sent.
+  Use this endpoint to cancel a Canvas message that you previously scheduled via API-triggered before it has been sent.
 
   Scheduled messages or triggers that are deleted very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second deletions could be applied to all, some, or none of your targeted users.
 
@@ -257,8 +261,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  | `canvas_id`| Required | String | See [Canvas identifier](https://braze.com/docs/api/identifier_types/). |
+  | --- | --- | --- | --- |
+  | `canvas_id` | Required | String | See [Canvas identifier](https://braze.com/docs/api/identifier_types/). |
   | `schedule_id` | Required | String | The `schedule_id` to delete (obtained from the response to create schedule). |
 
   ### Parameters
@@ -299,9 +303,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Update Scheduled API Triggered Canvases
 
-  Use this endpoint to update scheduled API-Triggered Canvases, which are created on the dashboard and initiated via the API. You can pass in `trigger_properties` that will be templated into the message itself.
+  Use this endpoint to update scheduled API-triggered Canvases that were created in the dashboard. This allows you to decide what action should trigger the message to be sent. You can pass in `trigger_properties` that will be templated into the message itself.
 
-  This endpoint allows you to update scheduled Canvas messages via API-Triggered delivery, allowing you to decide what action should trigger the message to be sent. Please note that to send messages with this endpoint, you must have a Canvas ID, created when you build a Canvas.
+  Note that to send messages with this endpoint, you must have a Canvas ID, created when you build a [Canvas](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier).
 
   Any schedule will completely overwrite the one that you provided in the create schedule request or in previous update schedule requests. For example, if you originally provide `"schedule" : {"time" : "2015-02-20T13:14:47", "in_local_time" : true}` and then in your update you provide `"schedule" : {"time" : "2015-02-20T14:14:47"}`, your message will now be sent at the provided time in UTC, not in the user's local time. Scheduled triggers that are updated very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second changes could be applied to all, some, or none of your targeted users.
 
@@ -310,11 +314,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Request parameters
+
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  |`canvas_id`|Required|String| See [Canvas identifier](https://www.braze.com/docs/api/identifier_types/). |
+  | --- | --- | --- | --- |
+  | `canvas_id` | Required | String | See [Canvas identifier](https://www.braze.com/docs/api/identifier_types/). |
   | `schedule_id` | Optional | String | The `schedule_id` to update (obtained from the response to create schedule). |
-  |`schedule` | Required | Object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/). |
+  | `schedule` | Required | Object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/). |
 
   ### Parameters
 
@@ -354,9 +359,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Create Scheduled Messages
 
-  Use this endpoint to send messages directly from the API.
-
-  The create schedule endpoint allows you to schedule a Campaign, Canvas, or other message to be sent at a designated time (up to 90 days in the future) and provides you with an identifier to reference that message for updates. If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) after all scheduled messages have been sent.
+  Use this endpoint to schedule a campaign, Canvas, or other message to be sent at a designated time (up to 90 days in the future) and provides you with an identifier to reference that message for updates. If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/)  after all scheduled messages have been sent.
 
   ### Rate limit
 
@@ -364,9 +367,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   Braze endpoints support [batching API requests](https://www.braze.com/docs/api/api_limits/#batching-api-requests). A single request to the messaging endpoints can reach any of the following:
 
-  *   Up to 50 specific external_ids, each with individual message parameters
-  *   A segment of any size created in the Braze dashboard, specified by its `segment_id`
-  *   An ad-hoc audience segment of any size, defined in the request as a [Connected Audience](https://www.braze.com/docs/api/objects_filters/connected_audience/) object
+  - Up to 50 specific external_ids, each with individual message parameters
+  - A segment of any size created in the Braze dashboard, specified by its `segment_id`
+  - An ad-hoc audience segment of any size, defined in the request as a [Connected Audience](https://www.braze.com/docs/api/objects_filters/connected_audience/) object
     
 
   ### Request parameters
@@ -420,15 +423,16 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Delete Scheduled Messages
 
-  The delete scheduled messages endpoint allows you to cancel a message that you previously scheduled _before_ it has been sent.
+  Use this endpoint to cancel a message that you previously scheduled before it has been sent.
 
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Request parameters
+
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
+  | --- | --- | --- | --- |
   | `schedule_id` | Required | String | The schedule_id to delete (obtained from the response to create schedule). |
 
   ### Parameters
@@ -469,7 +473,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Update Scheduled Messages
 
-  The messages update schedule endpoint accepts updates to either the `schedule` or `messages` parameter or both. Your request must contain at least one of those two keys.
+  Use this endpoint to update scheduled messages. This endpoint accepts updates to either the `schedule` or `messages` parameter or both. Your request must contain at least one of those two keys.
 
   ### Rate limit
 
@@ -521,7 +525,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Get Upcoming Scheduled Campaigns and Canvases
 
-  You can view a JSON list of upcoming and scheduled Campaigns and Canvases using the following information and parameters. The endpoint will return information about scheduled Campaigns and entry Canvases between now and the designated end_time (ISO 8601 format) specified in the request. Daily, recurring messages will only appear once with their next occurrence. Results returned in this endpoint are only for Campaigns and Canvases created and scheduled in Braze.
+  Use this endpoint to return a JSON list of information about scheduled campaigns and entry Canvases between now and a designated `end_time` specified in the request. Daily, recurring messages will only appear once with their next occurrence. Results returned in this endpoint are only for campaigns and Canvases created and scheduled in Braze.
 
   ### Rate limit
 
@@ -529,7 +533,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Response
 
-  ```json
+  ``` json
   Content-Type: application/json
   Authorization: Bearer YOUR-REST-API-KEY
   {
@@ -554,6 +558,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
       },
     ]
   }
+
   ```
 
   ### Parameters

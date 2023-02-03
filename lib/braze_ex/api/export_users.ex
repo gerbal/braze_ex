@@ -13,7 +13,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## User Profile Export by Global Control Group
 
-  This endpoint allows you to export all the users within the Global Control Group. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
+  Use this endpoint to export all users within a Global Control Group. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
 
   > Warning: Individual custom attributes cannot be exported. However, all custom attributes can be exported by including custom_attributes in the fields_to_export array (e.g.,\[‘first_name’, ‘email’, ‘custom_attributes’\]).
 
@@ -30,40 +30,40 @@ defmodule BrazeEx.Api.ExportUsers do
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
   | `callback_endpoint` | Optional | String | Endpoint to post a download URL to when the export is available. |
-  | `fields_to_export` | Required* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>*Beginning April 2021, new accounts must specify specific fields to export. |
+  | `fields_to_export` | Required\* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>\*Beginning April 2021, new accounts must specify specific fields to export. |
   | `output_format` | Optional | String | When using your own S3 bucket, allows to specify file format as `zip` or `gzip`. Defaults to ZIP file format. |
 
   ## Fields to export
 
   The following is a list of valid fields_to_export. Using fields_to_export to minimize the data returned can improve response time of this API endpoint:
 
-  *   `apps`
-  *   `attributed_campaign`
-  *   `attributed_source`
-  *   `attributed_adgroup`
-  *   `attributed_ad`
-  *   `braze_id`
-  *   `country`
-  *   `created_at`
-  *   `custom_attributes`
-  *   `custom_events`
-  *   `devices`
-  *   `dob`
-  *   `email`
-  *   `external_id`
-  *   `first_name`
-  *   `gender`
-  *   `home_city`
-  *   `language`
-  *   `last_coordinates`
-  *   `last_name`
-  *   `phone`
-  *   `purchases`
-  *   `random_bucket`
-  *   `time_zone`
-  *   `total_revenue`
-  *   `uninstalled_at`
-  *   `user_aliases`
+  - `apps`
+  - `attributed_campaign`
+  - `attributed_source`
+  - `attributed_adgroup`
+  - `attributed_ad`
+  - `braze_id`
+  - `country`
+  - `created_at`
+  - `custom_attributes`
+  - `custom_events`
+  - `devices`
+  - `dob`
+  - `email`
+  - `external_id`
+  - `first_name`
+  - `gender`
+  - `home_city`
+  - `language`
+  - `last_coordinates`
+  - `last_name`
+  - `phone`
+  - `purchases`
+  - `random_bucket`
+  - `time_zone`
+  - `total_revenue`
+  - `uninstalled_at`
+  - `user_aliases`
     
 
   ## Response
@@ -197,7 +197,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## User Profile Export by Identifier
 
-  This endpoint allows you to export data from any user profile by specifying a form of user identifier. Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
+  Use this endpoint to export data from any user profile by specifying a user identifier. Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
 
   ## Rate limit
 
@@ -219,40 +219,39 @@ defmodule BrazeEx.Api.ExportUsers do
 
   The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
 
-  \*   `apps`
-  \*   `attributed_campaign`
-  \*   `attributed_source`
-  \*   `attributed_adgroup`
-  \*   `attributed_ad`
-  \*   `braze_id`
-  \*   `campaigns_received`
-  \*   `canvases_received`
-  \*   `cards_clicked`
-  \*   `country`
-  \*   `created_at`
-  \*   `custom_attributes`
-  \*   `custom_events`
-  \*   `devices`
-  \*   `dob`
-  \*   `email`
-  \*   `email_subscribe`
-  \*   `external_id`
-  \*   `first_name`
-  \*   `gender`
-  \*   `home_city`
-  \*   `language`
-  \*   `last_coordinates`
-  \*   `last_name`
-  \*   `phone`
-  \*   `purchases`
-  \*   `push_subscribe`
-  \*   `push_tokens`
-  \*   `random_bucket`
-  \*   `time_zone`
-  \*   `total_revenue`
-  \*   `uninstalled_at`
-  \*   `user_aliases`
-    
+  \* `apps`  
+  \* `attributed_campaign`  
+  \* `attributed_source`  
+  \* `attributed_adgroup`  
+  \* `attributed_ad`  
+  \* `braze_id`  
+  \* `campaigns_received`  
+  \* `canvases_received`  
+  \* `cards_clicked`  
+  \* `country`  
+  \* `created_at`  
+  \* `custom_attributes`  
+  \* `custom_events`  
+  \* `devices`  
+  \* `dob`  
+  \* `email`  
+  \* `email_subscribe`  
+  \* `external_id`  
+  \* `first_name`  
+  \* `gender`  
+  \* `home_city`  
+  \* `language`  
+  \* `last_coordinates`  
+  \* `last_name`  
+  \* `phone`  
+  \* `purchases`  
+  \* `push_subscribe`  
+  \* `push_tokens`  
+  \* `random_bucket`  
+  \* `time_zone`  
+  \* `total_revenue`  
+  \* `uninstalled_at`  
+  \* `user_aliases`
 
   Be aware that the `/users/export/ids` endpoint will pull together the entire user profile for this user, including data such as all campaigns and Canvases received, all custom events performed, all purchases made, and all custom attributes. As a result, this endpoint is slower than other REST API endpoints.
 
@@ -452,7 +451,9 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## User Profile Export by Segment
 
-  This endpoint allows you to export all the users within a segment. User data is exported as multiple files of user JSON objects separated by new lines (i.e. one JSON object per line). Data is exported to an automatically generated URL, or to an S3 bucket if this integration is already set up.
+  Use this endpoint to export all the users within a segment. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
+
+  Data is exported to an automatically generated URL, or to an S3 bucket if this integration is already set up.
 
   This endpoint is currently not supported by Google Cloud Storage.
 
@@ -479,53 +480,53 @@ defmodule BrazeEx.Api.ExportUsers do
   | --- | --- | --- | --- |
   | `segment_id` | Required | String | Identifier for the segment to be exported. See [segment identifier](https://www.braze.com/docs/api/identifier_types/).  <br>  <br>The segment_id for a given segment can be found in your **Developer Console** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/segments/get_segment/). |
   | `callback_endpoint` | Optional | String | Endpoint to post a download URL to when the export is available. |
-  | `fields_to_export` | Required* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>*Beginning April 2021, new accounts must specify specific fields to export. |
+  | `fields_to_export` | Required\* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>\*Beginning April 2021, new accounts must specify specific fields to export. |
   | `output_format` | Optional | String | When using your own S3 bucket, allows you to specify file format as `zip` or `gzip`. Defaults to ZIP file format. |
 
   ### Fields to export
 
   The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
 
-  *   `apps`
-  *   `attributed_campaign`
-  *   `attributed_source`
-  *   `attributed_adgroup`
-  *   `attributed_ad`
-  *   `braze_id`
-  *   `campaigns_received`
-  *   `canvases_received`
-  *   `cards_clicked`
-  *   `country`
-  *   `created_at`
-  *   `custom_attributes`
-  *   `custom_events`
-  *   `devices`
-  *   `dob`
-  *   `email`
-  *   `email_subscribe`
-  *   `external_id`
-  *   `first_name`
-  *   `gender`
-  *   `home_city`
-  *   `language`
-  *   `last_coordinates`
-  *   `last_name`
-  *   `phone`
-  *   `purchases`
-  *   `push_subscribe`
-  *   `push_tokens`
-  *   `random_bucket`
-  *   `time_zone`
-  *   `total_revenue`
-  *   `uninstalled_at`
-  *   `user_aliases`
+  - `apps`
+  - `attributed_campaign`
+  - `attributed_source`
+  - `attributed_adgroup`
+  - `attributed_ad`
+  - `braze_id`
+  - `campaigns_received`
+  - `canvases_received`
+  - `cards_clicked`
+  - `country`
+  - `created_at`
+  - `custom_attributes`
+  - `custom_events`
+  - `devices`
+  - `dob`
+  - `email`
+  - `email_subscribe`
+  - `external_id`
+  - `first_name`
+  - `gender`
+  - `home_city`
+  - `language`
+  - `last_coordinates`
+  - `last_name`
+  - `phone`
+  - `purchases`
+  - `push_subscribe`
+  - `push_tokens`
+  - `random_bucket`
+  - `time_zone`
+  - `total_revenue`
+  - `uninstalled_at`
+  - `user_aliases`
     
 
   ### Important reminders
 
-  *   The fields for `custom_events`, `purchases`, `campaigns_received`, and `canvases_received` will contain only contain data from the last 90 days.
-  *   Both `custom_events` and `purchases` contain fields for `first` and `count`. Both of these fields will reflect information from all time, and will not be limited to just data from the last 90 days. For example, if a particular user first did the event prior to 90 days ago, this will be accurately reflected in the `first` field, and the `count` field will take into account events that occurred prior to the last 90 days as well.
-  *   The number of concurrent segment exports a company can run at the endpoint level is capped at 100. Attempts that surpass this limit will result in an error.
+  - The fields for `custom_events`, `purchases`, `campaigns_received`, and `canvases_received` will contain only contain data from the last 90 days.
+  - Both `custom_events` and `purchases` contain fields for `first` and `count`. Both of these fields will reflect information from all time, and will not be limited to just data from the last 90 days. For example, if a particular user first did the event prior to 90 days ago, this will be accurately reflected in the `first` field, and the `count` field will take into account events that occurred prior to the last 90 days as well.
+  - The number of concurrent segment exports a company can run at the endpoint level is capped at 100. Attempts that surpass this limit will result in an error.
     
 
   ### Response

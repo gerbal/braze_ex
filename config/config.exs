@@ -7,7 +7,7 @@
 # General application configuration
 import Config
 
-config :braze_ex, base_url: "https://}"
+config :braze_ex, base_url: "https://rest.iad-01.braze.com"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

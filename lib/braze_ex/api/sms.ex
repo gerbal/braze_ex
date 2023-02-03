@@ -13,10 +13,10 @@ defmodule BrazeEx.Api.SMS do
 
   ## Query Invalid Phone Numbers
 
-  This endpoint allows you to pull a list of phone numbers that have been deemed “invalid” within a certain time frame.
+  Use this endpoint to pull a list of phone numbers that have been deemed “invalid” within a certain time frame.
 
-  *   If you provide a `start_date`, an `end_date`, and `phone_numbers`, we prioritize the given phone numbers and disregard the date range.
-  *   If your date range has more than the `limit` number of invalid phone numbers, you will need to make multiple API calls with increasing the `offset` each time until a call returns either fewer than `limit` or zero results.
+  - If you provide a `start_date`, an `end_date`, and `phone_numbers`, we prioritize the given phone numbers and disregard the date range.
+  - If your date range has more than the `limit` number of invalid phone numbers, you will need to make multiple API calls with increasing the `offset` each time until a call returns either fewer than `limit` or zero results.
     
 
   ## Rate limit
@@ -93,7 +93,7 @@ defmodule BrazeEx.Api.SMS do
 
   ## Remove Invalid Phone Numbers
 
-  This endpoint allows you to remove “invalid” phone numbers from Braze’s invalid list. This can be used to re-validate phone numbers after they have been marked as invalid.
+  Use this endpoint to remove “invalid” phone numbers from Braze’s invalid list. This can be used to re-validate phone numbers after they have been marked as invalid.
 
   ## Rate limit
 

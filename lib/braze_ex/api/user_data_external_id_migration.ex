@@ -15,7 +15,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   > **Note:** For security purposes, this feature is disabled by default. To enable this feature, reach out to your customer success manager.
 
-  Use this endpoint to remove your users' old deprecated external IDs. This endpoint completely removes the deprecated ID and cannot be undone.
+  Use this endpoint to remove your users’ old deprecated external IDs. This endpoint completely removes the deprecated ID and cannot be undone.
 
   > You can send up to 50 external IDs per request.
 
@@ -23,7 +23,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   ## Rate limit
 
-  We apply a rate limit of 1,000 requests per minute to this endpoint, as documented in [API rate limits](http://braze.com/docs/api/api_limits/).
+  We apply a rate limit of 1,000 requests per minute to this endpoint, as documented in [API rate limits](http://braze.com/docs/api/api_limits/).
 
   ### Request parameters
 
@@ -48,10 +48,10 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   The `message` field will return `success` for any valid request. More specific errors are captured in the `removal_errors` array. The `message` field returns an error in the case of:
 
-  *   Invalid API key
-  *   Empty `external_ids` array
-  *   `external_ids` array with more than 50 items
-  *   Rate limit hit (>1,000 requests/minute)
+  - Invalid API key
+  - Empty `external_ids` array
+  - `external_ids` array with more than 50 items
+  - Rate limit hit (>1,000 requests/minute)
 
   ### Parameters
 
@@ -93,7 +93,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   > **Note:** For security purposes, this feature is disabled by default. To enable this feature, reach out to your customer success manager.
 
-  Use this endpoint to “rename” your users’ external IDs. This endpoint sets a new (primary) `external_id` for the user and deprecates their existing `external_id`. This means that the user can be identified by either `external_id` until the deprecated one is removed. The deprecated ID can be removed using the [External ID remove](https://www.braze.com/docs/api/endpoints/user_data/external_id_migration/post_external_ids_remove) endpoint. Having multiple external IDs allows for a migration period whereby older versions of your apps still in the wild that use the previous external ID naming schema don’t break. We highly recommend removing deprecated external IDs once your old naming schema is no longer in use.
+  Use this endpoint to rename your users’ external IDs. This endpoint sets a new (primary) `external_id` for the user and deprecates their existing `external_id`. This means that the user can be identified by either `external_id` until the deprecated one is removed. Having multiple external IDs allows for a migration period so that older versions of your apps that use the previous external ID naming schema don’t break.
 
   > **Note:** You can send up to 50 external IDs per request.
 
@@ -101,7 +101,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   ## Rate limit
 
-  We apply a rate limit of 1,000 requests per minute to this endpoint, as documented in [API rate limits](http://braze.com/docs/api/api_limits/).
+  We apply a rate limit of 1,000 requests per minute to this endpoint, as documented in [API rate limits](http://braze.com/docs/api/api_limits/).
 
   ### Request parameters
 
@@ -109,9 +109,9 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
   | --- | --- | --- | --- |
   | `external_id_renames` | Required | Array of external ID rename objects | View request example and the following limitations for structure of external ID rename object |
 
-  *   The `current_external_id` must be the user’s primary ID, and cannot be a deprecated ID
-  *   The `new_external_id` must not already be in use as either a primary ID or a deprecated ID
-  *   The `current_external_id` and `new_external_id` cannot be the same
+  - The `current_external_id` must be the user’s primary ID, and cannot be a deprecated ID
+  - The `new_external_id` must not already be in use as either a primary ID or a deprecated ID
+  - The `current_external_id` and `new_external_id` cannot be the same
     
 
   ## Response
@@ -129,10 +129,10 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   The `message` field will return `success` for any valid request. More specific errors are captured in the `rename_errors` array. The `message` field returns an error in the case of:
 
-  *   Invalid API key
-  *   Empty `external_id_renames` array
-  *   `external_id_renames` array with more than 50 objects
-  *   Rate limit hit (>1,000 requests/minute)
+  - Invalid API key
+  - Empty `external_id_renames` array
+  - `external_id_renames` array with more than 50 objects
+  - Rate limit hit (>1,000 requests/minute)
     
 
   ## Frequently Asked Questions

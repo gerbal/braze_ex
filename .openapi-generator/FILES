@@ -3,6 +3,9 @@
 README.md
 config/config.exs
 config/runtime.exs
+lib/braze_ex/api/catalogs_catalog_items_asynchronous.ex
+lib/braze_ex/api/catalogs_catalog_items_synchronous.ex
+lib/braze_ex/api/catalogs_catalog_management_synchronous.ex
 lib/braze_ex/api/email_lists_addresses.ex
 lib/braze_ex/api/export_campaign.ex
 lib/braze_ex/api/export_canvas.ex
@@ -15,6 +18,7 @@ lib/braze_ex/api/export_session_analytics.ex
 lib/braze_ex/api/export_users.ex
 lib/braze_ex/api/messaging_schedule_mesages.ex
 lib/braze_ex/api/messaging_send_messages.ex
+lib/braze_ex/api/scim.ex
 lib/braze_ex/api/sms.ex
 lib/braze_ex/api/subscription_groups_sms.ex
 lib/braze_ex/api/templates_content_blocks.ex

@@ -13,9 +13,9 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   ## List User's  Subscription Group Status - SMS
 
-  Use this endpoint to get the subscription state of a user in a subscription group. These groups will be available on the **Subscription Group** page. The response from this endpoint will include the external ID and either subscribed, unsubscribed, or unknown for the specific subscription group requested in the API call. This can be used to update the subscription group state in subsequent API calls or to be displayed on a hosted web page.
+  Use this endpoint to get the subscription state of a user in a subscription group. These groups will be available on the **Subscription Group** page. The response from this endpoint will include the external ID and either subscribed, unsubscribed, or unknown for the specific subscription group requested in the API call. This can be used to update the subscription group state in subsequent API calls or to be displayed on a hosted web page.
 
-  > *Either `external_id` or `email` are required. When both are submitted, only the external_id is used for querying and the phone number is applied to that user.
+  > \*Either `external_id` or `email` are required. When both are submitted, only the external_id is used for querying and the phone number is applied to that user.
 
   ## Rate limit
 
@@ -77,9 +77,9 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   ## Update User's Subscription Group Status - SMS
 
-  Use this endpoint to update the subscription state of a user on the Braze dashboard. You can access a subscription groups `subscription_group_id` by navigating to it on the **Subscription Group** page.
+  Use this endpoint to batch update the subscription state of up to 50 users on the Braze dashboard. You can access a subscription group’s `subscription_group_id` by navigating to the **Subscription Group** page.
 
-  > *Only `external_id` or `phone` is accepted for SMS subscription groups.
+  > \*Only `external_id` or `phone` is accepted for SMS subscription groups.
   > 
   > This property should not be used for updating a user’s profile information. Use the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) property instead.
   > 
@@ -87,7 +87,7 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   ### Rate limit
 
-  For customers who onboarded with Braze on or after January 6, 2022, we apply a rate limit of 5,000 requests per minute to this endpoint as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after January 6, 2022, we apply a rate limit of 5,000 requests per minute shared across the `/subscription/status/set` and `/v2/subscription/status/set` endpoint as documented in [API rate limits](http://localhost:4000/docs/api/api_limits/).
 
   ### Request parameters
 
@@ -95,8 +95,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   | --- | --- | --- | --- |
   | `subscription_group_id` | Required | String | The `id` of your subscription group. |
   | `subscription_state` | Required | String | Available values are `unsubscribed` (not in subscription group) or `subscribed` (in subscription group). |
-  | `external_id` | Required* | Array of strings | The `external_id` of the user or users, may include up to 50 `id`s. |
-  | `phone` | Required* | String in [E.164](https://en.wikipedia.org/wiki/E.164) format | The phone number of the user, can be passed as an array of strings. Must include at least one phone number (with a max of 50). |
+  | `external_id` | Required\* | Array of strings | The `external_id` of the user or users, may include up to 50 `id`s. |
+  | `phone` | Required\* | String in [E.164](https://en.wikipedia.org/wiki/E.164) format | The phone number of the user, can be passed as an array of strings. Must include at least one phone number (with a max of 50). |
 
   ### Example successful response
 
@@ -186,6 +186,70 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
       |> method(:get)
       |> url("/subscription/user/status")
       |> add_optional_params(optional_params, opts)
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+  end
+
+  @doc """
+
+  ## Update User's Subscription Group Status V2
+
+  Use this endpoint to batch update the subscription state of up to 50 users on the Braze dashboard. You can access a subscription group’s `subscription_group_id` by navigating to the **Subscriptions Group** page.
+
+  ## Rate limit
+
+  For customers who onboarded with Braze on or after January 6, 2022, we apply a rate limit of 5,000 requests per minute shared across the `/subscription/status/set` and `/v2/subscription/status/set` endpoint as documented in [API rate limits](http://localhost:4000/docs/api/api_limits/).
+
+  ## Request parameters
+
+  | Parameter | Required | Data Type | Description |
+  | --- | --- | --- | --- |
+  | `subscription_group_id` | Required | String | The `id` of your subscription group. |
+  | `subscription_state` | Required | String | Available values are `unsubscribed` (not in subscription group) or `subscribed` (in subscription group). |
+  | `external_ids` | Required\* | Array of strings | The `external_id` of the user or users, may include up to 50 `id`s. |
+  | `phones` | Required\* | String in [E.164](https://en.wikipedia.org/wiki/E.164) format | The phone numbers of the user, can be passed as an array of strings. Must include at least one phone number (with a max of 50). |
+
+  ### Example successful response
+
+  Response: (status 201)
+
+  ``` json
+  {
+    "message": "success"
+  }
+
+  ```
+
+  ### Parameters
+
+  - `connection` (BrazeEx.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+    - `:content_type` (String.t): 
+    - `:authorization` (String.t): 
+    - `:body` (String.t): 
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec v2_subscription_status_set_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
+  def v2_subscription_status_set_post(connection, opts \\ []) do
+    optional_params = %{
+      :"Content-Type" => :headers,
+      :Authorization => :headers,
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/v2/subscription/status/set")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
       |> Enum.into([])
 
     connection

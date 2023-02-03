@@ -3,14 +3,23 @@ info:
   title: Braze Endpoints
   description: Braze HTTP API (generated from Braze Postman Collection)
   version: 1.0.5
+externalDocs:
+  url: https://www.braze.com/docs/developer_guide/rest_api/basics
+  description: API Overview
 servers:
-  - url: https://{{instance_url}}
   - url: https://rest.iad-01.braze.com
+  - url: https://rest.iad-02.braze.com
+  - url: https://rest.iad-03.braze.com
+  - url: https://rest.iad-04.braze.com
+  - url: https://rest.iad-06.braze.com
+  - url: https://rest.fra-01.braze.eu
 components:
   securitySchemes:
-    noauthAuth:
+    bearerAuth:
       type: http
-      scheme: noauth
+      scheme: bearer
+security:
+  - bearerAuth: []
 tags:
   - name: Catalogs
     description: |-
@@ -342,7 +351,10 @@ paths:
         | `reached-company-catalogs-limit` | Maximum number of catalogs reached. Contact your Braze account manager for more information. |
         | `description-too-long` | Character limit for description is 250. |
       requestBody:
-        content: {}
+        content:
+          '*/*':
+            schema:
+              type: string
       parameters:
         - name: Content-Type
           in: header
@@ -570,7 +582,10 @@ paths:
         | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
         | `unable-to-coerce-value` | Item types can't be converted. |
       requestBody:
-        content: {}
+        content:
+          '*/*':
+            schema:
+              type: string
       parameters:
         - name: Content-Type
           in: header
@@ -712,7 +727,10 @@ paths:
         | `fields-do-not-match` | Updated fields must match the fields in the catalog. |
         | `unable-to-coerce-value` | Item types can't be converted. |
       requestBody:
-        content: {}
+        content:
+          '*/*':
+            schema:
+              type: string
       parameters:
         - name: Content-Type
           in: header
@@ -1386,8 +1404,6 @@ paths:
         }
 
         ```
-      security:
-        - noauthAuth: []
       parameters:
         - name: Authorization
           in: header

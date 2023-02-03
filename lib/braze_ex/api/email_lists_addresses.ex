@@ -13,11 +13,14 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Blacklist Email Addresses
 
-  Blacklisting an email address will unsubscribe the user from email and mark them as hard bounced.
+  > Braze has released the [`/email/blocklist` endpoint](https://www.braze.com/docs/api/endpoints/email/post_blocklist/) with the same functionality as the `/email/blacklist` endpoint. It is recommended to use the `/email/blocklist` endpoint instead.
+
+
+  Use this endpoint to unsubscribe a user from email and mark them as hard bounced.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -61,13 +64,63 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   @doc """
 
-  ## Remove Hard Bounced Emails
+  ## Blocklist Email Addresses
 
-  This endpoint allows you to remove email addresses from your Braze bounce list. We will also remove them from the bounce list maintained by your email provider.
+  Use this endpoint to unsubscribe a user from email and mark them as hard bounced.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Request parameters
+
+  | Parameter | Required | Data Type | Description |
+  | --- | --- | --- | --- |
+  | `email` | Required | String or array | String email address to blacklist, or an array of up to 50 email addresses to blocklist. |
+
+  ### Parameters
+
+  - `connection` (BrazeEx.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+    - `:content_type` (String.t): 
+    - `:authorization` (String.t): 
+    - `:body` (String.t): 
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec email_blocklist_post(Tesla.Env.client(), keyword()) ::
+          {:ok, nil} | {:error, Tesla.Env.t()}
+  def email_blocklist_post(connection, opts \\ []) do
+    optional_params = %{
+      :"Content-Type" => :headers,
+      :Authorization => :headers,
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/email/blocklist")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+  end
+
+  @doc """
+
+  ## Remove Hard Bounced Emails
+
+  Use this endpoint to remove email addresses from your Braze bounce list. We will also remove them from the bounce list maintained by your email provider.
+
+  ## Rate limit
+
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -113,7 +166,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Query Hard Bounced Emails
 
-  This endpoint allows you to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame.
+  Use this endpoint to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame.
 
   > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. If you provide all three, `start_date`, `end_date`, and an `email`, we prioritize the emails given and disregard the date range.
 
@@ -193,11 +246,11 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Remove Email Addresses from Spam List
 
-  This endpoint allows you to remove email addresses from your Braze spam list. We will also remove them from the spam list maintained by your email provider.
+  Use this endpoint to remove email addresses from your Braze spam list. We will also remove them from the spam list maintained by your email provider.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -243,13 +296,13 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Change Email Subscription Status
 
-  This endpoint allows you to set the email subscription state for your users. Users can be `opted_in`, `unsubscribed`, or `subscribed` (not specifically opted in or out).
+  Use this endpoint to set the email subscription state for your users. Users can be `opted_in`, `unsubscribed`, or `subscribed` (not specifically opted in or out).
 
   You can set the email subscription state for an email address that is not yet associated with any of your users within Braze. When that email address is subsequently associated with a user, the email subscription state that you uploaded will be automatically set.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -295,7 +348,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Query List of Unsubscribed Email Addresses
 
-  Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`. You can use this endpoint to set up a bi-directional sync between Braze and other email systems or your own database.
+  Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`. You can use this endpoint to set up a bi-directional sync between Braze and other email systems or your own database.
 
   > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`.
 

@@ -13,11 +13,11 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   ## Product IDs List
 
-  This endpoint returns paginated lists of product IDs.
+  Use this endpoint to return a paginated lists of product IDs.
 
   ## Rate limit
 
-  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 1,000 requests per hour to this endpoint. This rate limit is shared with the `/events/list` endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 1,000 requests per hour to this endpoint. This rate limit is shared with the `/events/list` endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 

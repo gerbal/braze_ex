@@ -13,11 +13,11 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ## Canvas Data Series Analytics
 
-  This endpoint allows you to export time series data for a Canvas.
+  Use this endpoint to export time series data for a Canvas.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 
@@ -125,7 +125,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ## Canvas Data Analytics Summary
 
-  This endpoint allows you to export rollups of time series data for a Canvas, providing a concise summary of a Canvas' results.
+  Use this endpoint allows to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results.
 
   ## Rate limit
 
@@ -181,7 +181,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ```
 
-  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://desktop.postman.com/?desktopVersion=9.19.0&userId=16580579&teamId=409325).
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://desktop.postman.com/?desktopVersion=9.19.0&userId=16580579&teamId=409325).
 
   ### Parameters
 
@@ -230,7 +230,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ## Canvas Details
 
-  This endpoint allows you to export metadata about a Canvas, such as the name, time created, current status, and more.
+  Use this endpoint to export metadata about a Canvas, such as the name, time created, current status, and more.
 
   ## Rate limit
 
@@ -282,7 +282,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ```
 
-  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://desktop.postman.com/?desktopVersion=9.19.0&userId=16580579&teamId=409325).
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://desktop.postman.com/?desktopVersion=9.19.0&userId=16580579&teamId=409325).
 
   ### Parameters
 
@@ -318,9 +318,9 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ## Canvas List
 
-  This endpoint allows you to export a list of Canvases, including the name, Canvas API identifier and associated tags. Canvases are returned in groups of 100 sorted by time of creation (oldest to newest by default).
+  Use this endpoint to export a list of Canvases, including the name, Canvas API identifier and associated tags. Canvases are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
-  Archived Canvases will not be included in the API response unless the `include_archived` field is specified. Canvases that are stopped but not archived, however, will be returned by default.
+  Archived Canvases will not be included in the API response unless the `include_archived` field is specified. Canvases that are stopped but not archived, however, will be returned by default.
 
   ## Rate limit
 

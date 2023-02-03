@@ -67,7 +67,7 @@ defmodule BrazeEx.Api.UserData do
 
   ## User Delete
 
-  This endpoint allows you to delete any user profile by specifying a known user identifier. Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request.
+  Use this endpoint to delete any user profile by specifying a known user identifier. Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request.
 
   > **Important:** Deleting user profiles cannot be undone. It will permanently remove users which may cause discrepancies in your data. Learn more about what happens when you [delete a user profile via API](https://braze.com/docs/help/help_articles/api/delete_user/) in our Help documentation.
 
@@ -122,9 +122,13 @@ defmodule BrazeEx.Api.UserData do
 
   Use this endpoint to identify an unidentified (alias-only) user.
 
+  Calling `/users/identify` combines the alias-only profile with the identified profile and removes the alias-only profile. To prevent unexpected loss of data when identifying users, we highly recommend that you first refer to [data collection best practices](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/best_practices/#capturing-user-data-when-alias-only-user-info-is-already-present) to learn about capturing user data when alias-only user info is already present.
+
   > **Note:** You can add up to 50 user aliases per request.
 
-  Identifying a user requires an `external_id` to be included in the `aliases_to_identify` object. If there is no user with that `external_id`, the `external_id` will simply be added to the aliased user’s record, and the user will be considered identified.<br><br>You can associate multiple additional user aliases with a single `external_id`. When any of such associations are made, only the push tokens and message history associated with the user alias are retained; any attributes, events, or purchases will be “orphaned” and not available on the identified user. One workaround is to export the aliased user’s data before identification using the [/users/export/ids endpoint](https://www.braze.com/docs/api/endpoints/export/user_data/post_users_identifier/), then re-associate the attributes, events, and purchases with the identified user.
+  Identifying a user requires an `external_id` to be included in the `aliases_to_identify` object. If there is no user with that `external_id`, the `external_id` will simply be added to the aliased user’s record, and the user will be considered identified.  
+
+  You can associate multiple additional user aliases with a single `external_id`. When any of such associations are made, only the push tokens and message history associated with the user alias are retained; any attributes, events, or purchases will be “orphaned” and not available on the identified user. One workaround is to export the aliased user’s data before identification using the [/users/export/ids endpoint](https://www.braze.com/docs/api/endpoints/export/user_data/post_users_identifier/), then re-associate the attributes, events, and purchases with the identified user.
 
   > **Important:** Request fields and their values are case sensitive. Using different cases to reference an `external_id` will result in duplicate profiles. For example, “abc123” and “ABC123” are two different `external_ids`.
 
@@ -133,12 +137,14 @@ defmodule BrazeEx.Api.UserData do
   For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete` and `/users/alias/new` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Parameters
+
   | Parameter | Required | Data Type | Description |
-  | -----------|----------| --------|------- |
+  | --- | --- | --- | --- |
   | `aliases_to_identify` | Required | Array of aliases to identify object | See [alias to identify object](https://www.braze.com/docs/api/objects_filters/aliases_to_identify/) and [user alias object](https://www.braze.com/docs/api/objects_filters/user_alias_object/). |
 
   ### Aliases to Identify object specification
-  ```json
+
+  ``` json
   {
   "external_id" : (required, string) see External User ID below,
   // external_ids for users that do not exist will return a non-fatal error. 
@@ -148,6 +154,7 @@ defmodule BrazeEx.Api.UserData do
     "alias_label" : (required, string)
   }
   }
+
   ```
 
   ### Parameters
@@ -204,15 +211,16 @@ defmodule BrazeEx.Api.UserData do
   > **Note:** For each of the request components listed in the following table, one of `external_id`, `user_alias`, or `braze_id` is required.
 
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
+  | --- | --- | --- | --- |
   | `attributes` | Optional | Array of attributes objects | See [user attributes object](https://www.braze.com/docs/api/objects_filters/user_attributes_object/) |
   | `events` | Optional | Array of event objects | See [events object](https://www.braze.com/docs/api/objects_filters/event_object/) |
   | `purchases` | Optional | Array of purchase objects | See [purchases object](https://www.braze.com/docs/api/objects_filters/purchase_object/) |
 
   Keep the following nuances in mind when using the `/users/track` endpoint:
 
-  * When creating alias-only users through this endpoint, you must explicitly set the `_update_existing_only` flag to `false`.
-  * Updating the subscription status with this endpoint will both update the user specified by their `external_id` (such as User1) and update the subscription status of any users with the same email as that user (User1).
+  - When creating alias-only users through this endpoint, you must explicitly set the `_update_existing_only` flag to `false`.
+  - Updating the subscription status with this endpoint will both update the user specified by their `external_id` (such as User1) and update the subscription status of any users with the same email as that user (User1).
+    
 
   ## User track responses
 
@@ -222,43 +230,46 @@ defmodule BrazeEx.Api.UserData do
 
   Successful messages will be met with the following response:
 
-  ```json
+  ``` json
   {
   "message" : "success",
   "attributes_processed" : (optional, integer), if attributes are included in the request, this will return an integer of the number of external_ids with attributes that were queued to be processed,
   "events_processed" : (optional, integer), if events are included in the request, this will return an integer of the number of events that were queued to be processed,
   "purchases_processed" : (optional, integer), if purchases are included in the request, this will return an integer of the number of purchases that were queued to be processed,
   }
+
   ```
 
   #### Successful message with non-fatal errors
 
   If your message is successful but has non-fatal errors such as one invalid event object out of a long list of events, then you will receive the following response:
 
-  ```json
+  ``` json
   {
   "message" : "success",
   "errors" : [
     {
-      <minor error message>
+      
     }
   ]
   }
+
   ```
 
   #### Message with fatal errors
 
   In the case of a success, any data that was not affected by an error in the `errors` array will still be processed. If your message has a fatal error you will receive the following response:
 
-  ```json
+  ``` json
   {
-  "message" : <fatal error message>,
+  "message" : ,
   "errors" : [
     {
-      <fatal error message>
+      
     }
   ]
   }
+
   ```
 
   #### Fatal error response codes
@@ -266,7 +277,7 @@ defmodule BrazeEx.Api.UserData do
   The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.
 
   | Error Code | Reason / Cause |
-  | ---------------------| --------------- |
+  | --- | --- |
   | `400 Bad Request` | Bad Syntax. |
   | `401 Unauthorized` | Unknown or missing REST API Key. |
   | `404 Not Found` | Unknown REST API Key (if provided). |
@@ -275,7 +286,7 @@ defmodule BrazeEx.Api.UserData do
 
   If you receive the error “provided external_id is blacklisted and disallowed”, your request may have included a “dummy user”. For more information, refer to [Spam blocking](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/user_archival/#spam-blocking).
 
-  ###  Importing legacy user data
+  ### Importing legacy user data
 
   You may submit data through the Braze API for a user who has not yet used your mobile app in order to generate a user profile. If the user subsequently uses the application all information following their identification via the SDK will be merged with the existing user profile you created via the API call. Any user behavior that is recorded anonymously by the SDK prior to identification will be lost upon merging with the existing API-generated user profile.
 
@@ -287,12 +298,13 @@ defmodule BrazeEx.Api.UserData do
 
   Refer to the following sample request with the `X-Braze-Bulk` header:
 
-  ```json
+  ``` json
   curl --location --request POST 'https://rest.iad-01.braze.com/users/track' \
   --header 'Content-Type: application/json' \
   --header 'X-Braze-Bulk: true' \
   --header 'Authorization: Bearer YOUR-API-KEY-HERE' \
   --data-raw '{ "attributes": [ ], "events": [ ], "purchases": [ ] }'
+
   ```
 
   > **Warning:** When the `X-Braze-Bulk` header is present with any value, Braze will consider the request a bulk request. Set the value to `true`. Currently, setting the value to `false` does not disable the header—it will still be treated as if it were true.
@@ -301,8 +313,8 @@ defmodule BrazeEx.Api.UserData do
 
   Consider the following use cases where you may use the bulk update header:
 
-  * A daily job where multiple users’ custom attributes are updated via the `/users/track` endpoint.
-  * An ad-hoc user data backfill script which updates user information via the `/users/track` endpoint.
+  - A daily job where multiple users’ custom attributes are updated via the `/users/track` endpoint.
+  - An ad-hoc user data backfill script which updates user information via the `/users/track` endpoint.
 
   ### Parameters
 

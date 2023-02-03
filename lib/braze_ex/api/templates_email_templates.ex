@@ -13,11 +13,9 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   ## Create Email Template
 
-  Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
+  Use this endpoint to create email templates on the Braze dashboard. These templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.
 
-  Users' email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.
-
-  Use the endpoints below to create email templates on the Braze dashboard. These templates will be available on the Templates and Media page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.
+  Users’ email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.
 
   ### Rate limit
 
@@ -26,14 +24,14 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   ### Request parameters
 
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  |`template_name`|Required|String|Name of your email template.|
-  |`subject`|Required|String|Email template subject line.|
-  |`body`|Required|String|Email template body that may include HTML.|
-  |`plaintext_body`|Optional|String|A plaintext version of the email template body.|
-  |`preheader`|Optional|String|Email preheader used to generate previews in some clients.|
-  |`tags`|Optional|String|[Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist.|
-  |`should_inline_css`|Optional|Boolean|Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the app group. One of `true` or `false` is expected.|
+  | --- | --- | --- | --- |
+  | `template_name` | Required | String | Name of your email template. |
+  | `subject` | Required | String | Email template subject line. |
+  | `body` | Required | String | Email template body that may include HTML. |
+  | `plaintext_body` | Optional | String | A plaintext version of the email template body. |
+  | `preheader` | Optional | String | Email preheader used to generate previews in some clients. |
+  | `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |
+  | `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the app group. One of `true` or `false` is expected. |
 
   ### Possible errors
 
@@ -41,7 +39,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Template name is required |
+  | Template name is required | Enter a template name. |
   | Tags must be an array | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
   | All tags must be strings | Make sure your tags are encapsulated in quotes (`""`). |
   | Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |
@@ -86,9 +84,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   ## See Email Template Information
 
-  Use to get information on your email templates.
-
-  Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
+  Use this endpoint to get information on your email templates.
 
   > **Important:** Templates built using the Drag & Drop Editor are not accepted.
 
@@ -98,7 +94,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   ### Response
 
-  ```json
+  ``` json
   Content-Type: application/json
   Authorization: Bearer YOUR-REST-API-KEY
   {
@@ -114,6 +110,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   "created_at": (string, in ISO 8601),
   "updated_at": (string, in ISO 8601)
   }
+
   ```
 
   Images in this response will show in the `body` variable as HTML.
@@ -155,8 +152,6 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   Use this endpoint to get a list of available templates in your Braze account.
 
-  Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
-
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -165,7 +160,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   > **Important:** Templates built using the Drag & Drop Editor are not provided in this response.
 
-  ```json
+  ``` json
   {
   "count": number of templates returned
   "templates": [template with the following properties]:
@@ -175,6 +170,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
     "updated_at": (string, in ISO 8601),
     "tags": (array of strings) tags appended to the template
   }
+
   ```
 
   ### Parameters
@@ -218,25 +214,28 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   ## Update Email Template
 
-  Use the Template REST APIs to programmatically manage the email templates that you have stored on the Braze dashboard, on the Templates & Media page. Braze provides two endpoints for creating and updating your email templates.
+  Use this endpoint to update email templates on the Braze dashboard. You can access an email template’s email_template_id by navigating to it on the Templates & Media page. The Create email template endpoint will also return an email_template_id reference.
 
-  > Use the endpoints below to update email templates on the Braze dashboard. You can access an email template's `email_template_id` by navigating to it on the Templates and Media page. The email template creation API endpoint will also return an `email_template_id` reference.<br><br>All fields other than the `email_template_id` are optional, but you must specify at least one field to update.
+  > Use the endpoints below to update email templates on the Braze dashboard. You can access an email template's `email_template_id` by navigating to it on the Templates and Media page. The email template creation API endpoint will also return an `email_template_id` reference.  
+  >   
+  > All fields other than the `email_template_id` are optional, but you must specify at least one field to update.
 
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Request parameters
+
   | Parameter | Required | Data Type | Description |
-  | --------- | ---------| --------- | ----------- |
-  |`email_template_id`| Required |String|Your [email template's API identifier](https://www.braze.com/docs/api/identifier_types/).|
-  |`template_name`|Optional|String|Name of your email template.|
-  |`subject`|Optional|String|Email template subject line.|
-  |`body`|Optional|String|Email template body that may include HTML.|
-  |`plaintext_body`|Optional|String|A plaintext version of the email template body.|
-  |`preheader`|Optional|String|Email preheader used to generate previews in some clients.|
-  |`tags`|Optional|String|[Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist.|
-  |`should_inline_css`|Optional|Boolean|Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the AppGroup. One of `true` or `false` is expected.|
+  | --- | --- | --- | --- |
+  | `email_template_id` | Required | String | Your [email template's API identifier](https://www.braze.com/docs/api/identifier_types/). |
+  | `template_name` | Optional | String | Name of your email template. |
+  | `subject` | Optional | String | Email template subject line. |
+  | `body` | Optional | String | Email template body that may include HTML. |
+  | `plaintext_body` | Optional | String | A plaintext version of the email template body. |
+  | `preheader` | Optional | String | Email preheader used to generate previews in some clients. |
+  | `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |
+  | `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the AppGroup. One of `true` or `false` is expected. |
 
   ### Possible errors
 
@@ -244,7 +243,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Template name is required |
+  | Template name is required |  |
   | Tags must be an array | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
   | All tags must be strings | Make sure your tags are encapsulated in quotes (`""`). |
   | Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |

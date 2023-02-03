@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:braze_ex, "~> 1.0.4"}]
+  [{:braze_ex, "~> 1.0.5"}]
 end
 ```
 
@@ -31,14 +31,14 @@ You can override the URL of your server (e.g. if you have a separate development
 configuration files).
 
 ```elixir
-config :braze_ex, base_url: "https://}"
+config :braze_ex, base_url: "https://rest.iad-01.braze.com"
 ```
 
 Multiple clients for the same API with different URLs can be created passing different `base_url`s when calling
 `BrazeEx.Connection.new/1`:
 
 ```elixir
-client = BrazeEx.Connection.new(base_url: "https://}")
+client = BrazeEx.Connection.new(base_url: "https://rest.iad-01.braze.com")
 ```
 
 [exdoc]: https://github.com/elixir-lang/ex_doc

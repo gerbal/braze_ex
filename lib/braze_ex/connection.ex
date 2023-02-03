@@ -8,19 +8,19 @@ defmodule BrazeEx.Connection do
   Additional middleware can be set in the compile-time or runtime configuration:
 
       config :tesla, BrazeEx.Connection,
-        base_url: "https://}",
+        base_url: "https://rest.iad-01.braze.com",
         adapter: Tesla.Adapter.Hackney
 
   The default base URL can also be set as:
 
       config :braze_ex,
-        :base_url, "https://}"
+        :base_url, "https://rest.iad-01.braze.com"
   """
 
   @default_base_url Application.compile_env(
                       :braze_ex,
                       :base_url,
-                      "https://}"
+                      "https://rest.iad-01.braze.com"
                     )
 
   @typedoc """
@@ -92,7 +92,7 @@ defmodule BrazeEx.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - BrazeEx 1.0.4 - elixir"
+          "openapi-generator - BrazeEx 1.0.5 - elixir"
         )
       )
 

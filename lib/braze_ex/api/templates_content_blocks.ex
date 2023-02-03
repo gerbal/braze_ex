@@ -13,7 +13,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## Create Content Block
 
-  This endpoint will create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
+  Use this endpoint to create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
 
@@ -22,7 +22,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   ### Request parameters
 
   | Parameter | Required | Data Type | Description |
-  |---|---|---|---|
+  | --- | --- | --- | --- |
   | `name` | Required | String | Name of the content block. Must be less than 100 characters. |
   | `description` | Optional | String | Description of the content block. Must be less than 250 characters. |
   | `content` | Required | String | HTML or text content within the Content Block. |
@@ -31,13 +31,14 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ### Response
 
-  ```json
+  ``` json
   {
   "content_block_id": "newly-generated-block-id",
   "liquid_tag": "generated-block-tag-from-name",
   "created_at": "time-created-in-iso",
   "message": success
   }
+
   ```
 
   ### Possible errors
@@ -46,19 +47,19 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Content cannot be blank |
+  | Content cannot be blank |  |
   | Content must be a string | Make sure your content is encapsulated in quotes (`""`). |
   | Content must be smaller than 50kb | The content in your Content Block must be less than 50kb total. |
   | Content contains malformed liquid | The Liquid provided is not valid or parsable. Try again with valid Liquid or reach out to support. |
-  | Content Block cannot be referenced within itself |
-  | Content Block description cannot be blank |
+  | Content Block cannot be referenced within itself |  |
+  | Content Block description cannot be blank |  |
   | Content Block description must be a string | Make sure your Content Block description is encapsulated in quotes (`""`). |
-  | Content Block description must be shorter than 250 characters |
-  | Content Block name cannot be blank |
-  | Content Block name must be shorter than 100 characters |
+  | Content Block description must be shorter than 250 characters |  |
+  | Content Block name cannot be blank |  |
+  | Content Block name must be shorter than 100 characters |  |
   | Content Block name can only contain alphanumeric characters | Content Block names can include any of the following characters: the letters (capitalized or lowercase) `A` through `Z`, the numbers `0` through `9`, dashes `-`, and underscores `_`. It cannot contain non-alphanumeric characters like emojis, `!`, `@`, `~`, `&`, and other "special" characters. |
   | Content Block with this name already exists | Try a different name. |
-  | Content Block state must be either active or draft |
+  | Content Block state must be either active or draft |  |
   | Tags must be an array | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
   | All tags must be strings | Make sure your tags are encapsulated in quotes (`""`). |
   | Some tags could not be found | To add a tag when creating a Content Block, the tag must already exist in Braze. |
@@ -101,14 +102,15 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## See Content Block Information
 
-  This endpoint will call information for an existing [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
+  Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Response
-  ```json
+
+  ``` json
   Content-Type: application/json
   Authorization: Bearer YOUR_REST_API_KEY
   {
@@ -123,6 +125,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   "inclusion_count" : "integer",
   "message": "success"
   }
+
   ```
 
   ### Possible errors
@@ -173,14 +176,15 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## List Available Content Blocks
 
-  This endpoint will list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information.
+  Use this endpoint to list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information.
 
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Response
-  ```json
+
+  ``` json
   Content-Type: application/json
   Authorization: Bearer YOUR_REST_API_KEY
   {
@@ -198,6 +202,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
     }
   ]
   }
+
   ```
 
   ### Possible errors
@@ -256,31 +261,33 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## Update Content Block
 
-  This endpoint will update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
+  Use this endpoint to update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/)
 
   ### Request parameters
+
   | Parameter | Required | Data Type | Description |
-  |---|---|---|---|
-  | `content_block_id`|	Required |	String | Your content block's API identifier.|
+  | --- | --- | --- | --- |
+  | `content_block_id` | Required | String | Your content block's API identifier. |
   | `name` | Required | String | Name of the content block. Must be less than 100 characters. |
   | `description` | Optional | String | Description of the content block. Must be less than 250 characters. |
-  | `content` | Required | String | HTML or text content within content blocks.
+  | `content` | Required | String | HTML or text content within content blocks. |
   | `state` | Optional | String | Choose `active` or `draft`. Defaults to `active` if not specified. |
   | `tags` | Optional | Array of strings | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |
 
   ### Response
 
-  ```json
+  ``` json
   {
   "content_block_id": "newly-generated-block-id",
   "liquid_tag": "generated-block-tag-from-content_block_name",
   "created_at": "time-created-in-iso",
   "message": "success"
   }
+
   ```
 
   ### Possible errors
@@ -289,21 +296,21 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Content cannot be blank |
+  | Content cannot be blank |  |
   | Content must be a string | Make sure your content is encapsulated in quotes (`""`). |
   | Content must be smaller than 50kb | The content in your Content Block must be less than 50kb total. |
   | Content contains malformed liquid | The Liquid provided is not valid or parsable. Try again with valid Liquid or reach out to support. |
-  | Content Block cannot be referenced within itself |
-  | Content Block description cannot be blank |
+  | Content Block cannot be referenced within itself |  |
+  | Content Block description cannot be blank |  |
   | Content Block description must be a string | Make sure your Content Block description is encapsulated in quotes (`""`). |
-  | Content Block description must be shorter than 250 characters |
-  | Content Block name cannot be blank |
-  | Content Block name must be shorter than 100 characters |
+  | Content Block description must be shorter than 250 characters |  |
+  | Content Block name cannot be blank |  |
+  | Content Block name must be shorter than 100 characters |  |
   | Content Block name can only contain alphanumeric characters | Content Block names can include any of the following characters: the letters (capitalized or lowercase) `A` through `Z`, the numbers `0` through `9`, dashes `-`, and underscores `_`. It cannot contain non-alphanumeric characters like emojis, `!`, `@`, `~`, `&`, and other "special" characters. |
   | Content Block with this name already exists | Try a different name. |
-  | Content Block name cannot be updated for active Content Blocks |
-  | Content Block state must be either active or draft |
-  | Active Content Block can not be updated to Draft. Create a new Content Block |
+  | Content Block name cannot be updated for active Content Blocks |  |
+  | Content Block state must be either active or draft |  |
+  | Active Content Block can not be updated to Draft. Create a new Content Block |  |
   | Tags must be an array | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
   | All tags must be strings | Make sure your tags are encapsulated in quotes (`""`). |
   | Some tags could not be found | To add a tag when creating a Content Block, the tag must already exist in Braze. |

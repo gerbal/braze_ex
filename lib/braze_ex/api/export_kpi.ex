@@ -13,7 +13,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   ## Daily Active Users by Date
 
-  This endpoint allows you to retrieve a daily series of the total number of unique active users on each date.
+  Use this endpoint to retrieve a daily series of the total number of unique active users on each date.
 
   ## Rate limit
 
@@ -78,11 +78,11 @@ defmodule BrazeEx.Api.ExportKPI do
 
   ## Monthly Active Users for Last 30 Days
 
-  This endpoint allows you to retrieve a daily series of the total number of unique active users over a 30-day rolling window.
+  Use this endpoint to retrieve a daily series of the total number of unique active users over a 30-day rolling window.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 
@@ -143,7 +143,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   ## Daily New Users by Date
 
-  This endpoint allows you to retrieve a daily series of the total number of new users on each date.
+  Use this endpoint to retrieve a daily series of the total number of new users on each date.
 
   ## Rate limit
 
@@ -208,7 +208,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   ## KPIs for Daily App Uninstalls by Date
 
-  This endpoint allows you to retrieve a daily series of the total number of uninstalls on each date.
+  Use this endpoint to retrieve a daily series of the total number of uninstalls on each date.
 
   ## Rate limit
 

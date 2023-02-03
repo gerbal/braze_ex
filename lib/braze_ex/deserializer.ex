@@ -12,12 +12,12 @@ defmodule BrazeEx.Deserializer do
   @spec deserialize(struct(), :atom, :atom, struct(), keyword()) :: struct()
   def deserialize(model, field, :list, mod, options) do
     model
-    |> Map.update!(field, &Poison.Decode.decode(&1, Keyword.merge(options, as: [struct(mod)])))
+    |> Map.update!(field, &Poison.Decoder.decode(&1, Keyword.merge(options, as: [struct(mod)])))
   end
 
   def deserialize(model, field, :struct, mod, options) do
     model
-    |> Map.update!(field, &Poison.Decode.decode(&1, Keyword.merge(options, as: struct(mod))))
+    |> Map.update!(field, &Poison.Decoder.decode(&1, Keyword.merge(options, as: struct(mod))))
   end
 
   def deserialize(model, field, :map, mod, options) do
@@ -25,7 +25,7 @@ defmodule BrazeEx.Deserializer do
     |> Map.update!(
       field,
       &Map.new(&1, fn {key, val} ->
-        {key, Poison.Decode.decode(val, Keyword.merge(options, as: struct(mod)))}
+        {key, Poison.Decoder.decode(val, Keyword.merge(options, as: struct(mod)))}
       end)
     )
   end

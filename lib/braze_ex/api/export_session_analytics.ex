@@ -13,11 +13,11 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
   ## App Sessions by Time
 
-  This endpoint allows you to retrieve a series of the number of sessions for your app over a designated time period.
+  Use this endpoint to retrieve a series of the number of sessions for your app over a designated time period.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 

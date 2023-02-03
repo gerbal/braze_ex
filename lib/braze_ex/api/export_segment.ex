@@ -13,7 +13,7 @@ defmodule BrazeEx.Api.ExportSegment do
 
   ## Segment Analytics
 
-  This endpoint allows you to retrieve a daily series of the size of a segment over time for a segment.
+  Use this endpoint to retrieve a daily series of the estimated size of a segment over time.
 
   ### Rate limit
 
@@ -76,11 +76,11 @@ defmodule BrazeEx.Api.ExportSegment do
 
   ## Segment Details
 
-  This endpoint allows you to retrieve relevant information on the segment, which can be identified by the `segment_id`.
+  Use this endpoint to retrieve relevant information on a segment, which can be identified by the `segment_id`.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 
@@ -134,11 +134,11 @@ defmodule BrazeEx.Api.ExportSegment do
 
   ## Segment List
 
-  This endpoint allows you to export a list of segments, each of which will include its name, Segment API Identifier, and whether it has analytics tracking enabled. The segments are returned in groups of 100 sorted by time of creation (oldest to newest by default). Archived segments are not included.
+  Use this endpoint to export a list of segments, each of which will include its name, Segment API identifier, and whether it has analytics tracking enabled. The segments are returned in groups of 100 sorted by time of creation (oldest to newest by default). Archived segments are not included.
 
   ### Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 

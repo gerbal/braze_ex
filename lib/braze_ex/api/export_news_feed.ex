@@ -13,11 +13,11 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ## News Feed Card Analytics
 
-  This endpoint allows you to retrieve a daily series of engagement stats for a card over time.
+  Use this endpoint to retrieve a daily series of engagement stats for a card over time.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 
@@ -81,11 +81,11 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ## News Feed Cards Details
 
-  This endpoint allows you to retrieve relevant information on the card, which can be identified by the `card_id`.
+  Use this endpoint to retrieve relevant information on a card, which can be identified by the `card_id`.
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 
@@ -144,11 +144,11 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ## News Feed Cards List
 
-  This endpoint allows you to export a list of News Feed cards, each of which will include its name and Card API Identifier. The cards are returned in groups of 100 sorted by time of creation (oldest to newest by default).
+  Use this endpoint to export a list of News Feed cards, each of which will include its name and card API identifier. The cards are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
   ## Rate limit
 
-  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Response
 
