@@ -59,10 +59,11 @@ bump-version:
 
 regenerate:
     npx "@openapitools/openapi-generator-cli" generate \
-        --input-spec={{postman_api_spec_path}} \
+        --input-spec={{api_spec_path}} \
         --generator-name=elixir \
         --skip-validate-spec \
         --config=priv/openapi_config.yaml 
+    just elixir
     mix format
     
 prepare-readme:
@@ -71,11 +72,9 @@ prepare-readme:
     printf "\n" >> README.md
     cat DEVELOPMENT.md >> README.md
 
-
 elixir:
     mix local.hex --force
     mix deps.get
-
 
 publish:elixir
     #!/usr/bin/env bash
