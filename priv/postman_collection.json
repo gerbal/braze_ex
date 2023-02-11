@@ -3404,6 +3404,36 @@
           "_postman_id": "5b1f6212-e748-47dd-b7aa-fab010712c23"
         },
         {
+          "name": "Update User Alias",
+          "id": "a084b843-b3cd-43f0-bfb1-ef7bada839c5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{api_key}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"alias_updates\" :[\n    {\n      \"alias_label\": \"example_alias_label\",\n      \"old_alias_name\" : \"example_old_alias_name\",\n      \"new_alias_name\" : \"example_new_alias_name\"\n    }\n  ]\n}"
+            },
+            "url": "https://{{instance_url}}/users/alias/update",
+            "description": "Use this endpoint to update existing user aliases.\n\n> You can update up to 50 user aliases per request.\n> This endpoint does not guarantee the sequence of `alias_updates` objects being updated.\n\nUpdating a user alias requires `alias_label`, `old_alias_name`, and `new_alias_name` to be included in the update user alias object. If there is no user alias associated with the `alias_label` and `old_alias_name`, no alias will be updated. If the given `alias_label` and `old_alias_name` is found, then the `old_alias_name` will be updated to the `new_alias_name`.\n\n## Rate limit\n\nFor customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete`, `/users/identify`, `/users/merge`, and `/users/alias/update` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n### Request parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `alias_updates` | Required | Array of update user alias objects | See [user alias object]({{site.baseurl}}/api/objects_filters/user_alias_object/).  <br>  <br>For more information on `old_alias_name`, `new_alias_name`, and `alias_label`, refer to [User aliases]({{site.baseurl}}/user_guide/data_and_analytics/user_data_collection/user_profile_lifecycle/#user-aliases). |\n\n### Endpoint request body with update user alias object specification\n\n``` json\n{\n  \"alias_label\" : (required, string),\n  \"old_alias_name\" : (required, string),\n  \"new_alias_name\" : (required, string)\n}\n\n```"
+          },
+          "response": [],
+          "_postman_id": "a084b843-b3cd-43f0-bfb1-ef7bada839c5"
+        },
+        {
           "name": "Create New User Aliases",
           "id": "5cf18e64-fd02-452f-8c90-9a0f7c4d0487",
           "protocolProfileBehavior": {
