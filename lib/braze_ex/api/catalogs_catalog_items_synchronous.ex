@@ -33,10 +33,6 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   | --- | --- | --- | --- |
   | `cursor` | Optional | String | Determines the pagination of the catalog items. |
 
-  ## Request parameters
-
-  There is no request body for this endpoint.
-
   ## Example requests
 
   ### Without cursor
@@ -184,16 +180,16 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints.
 
-  ## Request parameters
-
-  There is no request body for this endpoint.
-
   ## Path parameters
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
   | `catalog_name` | Required | String | Name of the catalog. |
   | `item_id` | Required | String | The ID of the catalog item. |
+
+  ## Request parameters
+
+  There is no request body for this endpoint.
 
   ## Example request
 

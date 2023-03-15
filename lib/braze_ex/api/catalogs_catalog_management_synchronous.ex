@@ -107,15 +107,11 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   ## List Catalogs in App Group
 
-  Use this endpoint to return a list of catalogs in an app group.  
+  Use this endpoint to return a list of catalogs in an app group.
 
-  ## Path parameters
+  ## Path and request parameters
 
-  There are no path parameters for this endpoint.
-
-  ## Request parameters
-
-  There is no request body for this endpoint.
+  There are no path or request parameters for this endpoint.
 
   ## Response
 
