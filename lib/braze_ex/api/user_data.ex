@@ -131,7 +131,7 @@ defmodule BrazeEx.Api.UserData do
 
   @doc """
 
-  ## User Delete
+  ## Delete Users
 
   Use this endpoint to delete any user profile by specifying a known user identifier. Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request.
 
@@ -258,7 +258,171 @@ defmodule BrazeEx.Api.UserData do
 
   @doc """
 
-  ## User Track
+  ## Merge Users
+
+  ## Rate limit
+
+  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete`, `/users/alias/new`, `/users/identify`, and `/users/alias/update` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Request parameters
+
+  | Parameter | Required | Data Type | Description |
+  | --- | --- | --- | --- |
+  | `merge_updates` | Required | Array | An object array. Each object should contain an `identifier_to_merge` object and an `identifier_to_keep` object, which should each reference a user either by `external_id` or `user_alias`. Both users being merged must be identified using the same method. |
+
+  ### Merge_updates behavior
+
+  This endpoint will merge any of the following fields found exclusively on the original user to the target user.
+
+  - First name
+  - Last name
+  - Email
+  - Gender
+  - Date of birth
+  - Phone number
+  - Time zone
+  - Home city
+  - Country
+  - Language
+  - Session count (the sum of sessions from both profiles)
+  - Date of first session (Braze will pick the earlier date of the two dates)
+  - Date of last session (Braze will pick the later date of the two dates)
+  - Custom attributes
+  - Custom event and purchase event data (excluding event properties)
+  - Custom event and purchase event properties for "X times in Y days" segmentation (where X<=50 and Y<=30)
+  - Segmentable custom events summary
+    - Event count (the sum from both profiles)
+    - Event first occurred (Braze will pick the earlier date of the two dates)
+    - Event last occurred (Braze will pick the later date of the two dates)
+  - In-app purchase total in cents (the sum from both profiles)
+  - Total number of purchases (the sum from both profiles)
+  - Date of first purchase (Braze will pick the earlier date of the two dates)
+  - Date of last purchase (Braze will pick the later date of the two dates)
+  - App summaries
+  - Last_X_at fields (Braze will update the fields if the orphaned profile fields are more recent)
+  - Campaign summaries (Braze will pick the most recent date fields)
+  - Workflow summaries (Braze will pick the most recent date fields)
+    
+
+  Any of the following fields found on one user to the other user:
+
+  - Custom event and purchase event count and first date and last date timestamps
+    - These merged fields will update "for X events in Y days" filters. For purchase events, these filters include "number of purchases in Y days" and "money spent in last Y days".
+
+  Session data will only be merged if the app exists on both user profiles. For example, if our target user doesn't have an app summary for "ABCApp" but our original user does, the target user will have the "ABCApp" app summary on their profile after the merge. Note that message and message engagement history aren't retained after both user profiles are merged.
+
+
+  > The endpoint does not guarantee the sequence of `merge_updates` objects being updated.
+
+  ## Example request
+
+  ```
+  curl --location --request POST 'https://rest.iad-03.braze.com/users/merge' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer YOUR-REST-API-KEY' \
+  --data-raw '{
+  "merge_updates": [
+    {
+      "identifier_to_merge": {
+        "external_id": "old-user1"
+      },
+      "identifier_to_keep": {
+        "external_id": "current-user1"
+      }
+    },
+    {
+      "identifier_to_merge": {
+        "user_alias": {
+          "alias_name": "old-user2@example.com",
+          "alias_label": "email"
+        }
+      },
+      "identifier_to_keep": {
+        "user_alias": {
+          "alias_name": "current-user2@example.com",
+          "alias_label": "email"
+        }
+      }
+    }
+  ]
+  }'
+
+  ```
+
+  ## Response
+
+  There are two status code responses for this endpoint: `202` and `400`.
+
+  ### Example success response
+
+  The status code `202` could return the following response body.
+
+  ``` json
+  {
+  "message": "success"
+  }
+
+  ```
+
+  ### Example error response
+
+  The status code `400` could return the following response body. Refer to [Troubleshooting](#troubleshooting) for more information about errors you may encounter.
+
+  ``` json
+  {
+  "message": "'merge_updates' must be an array of objects"
+  }
+
+  ```
+
+  ## Troubleshooting
+
+  The following table lists possible error messages that may occur.
+
+  | Error | Troubleshooting |  
+  | --- |  
+  | `'merge_updates' must be an array of objects` | Ensure that `merge_updates` is an array of objects. |  
+  | `a single request may not contain more than 50 merge updates` | You can only specify up to 50 merge updates in a single request. |  
+  | `identifiers must be objects with an 'external_id' property that is a string, or 'user_alias' property that is an object` | Check the identifiers in your request. |  
+  | `identifiers must be objects of the same type` | Ensure that the identifier object types match. |  
+  | `'merge_updates' must only have 'identifier_to_merge' and 'identifier_to_keep'` | Ensure that `merge_updates` only contains the two objects `identifier_to_merge` and `identifier_to_keep`. |
+
+  ### Parameters
+
+  - `connection` (BrazeEx.Connection): Connection to server
+  - `opts` (keyword): Optional parameters
+    - `:content_type` (String.t): 
+    - `:authorization` (String.t): 
+    - `:body` (String.t): 
+
+  ### Returns
+
+  - `{:ok, nil}` on success
+  - `{:error, Tesla.Env.t}` on failure
+  """
+  @spec users_merge_post(Tesla.Env.client(), keyword()) :: {:ok, nil} | {:error, Tesla.Env.t()}
+  def users_merge_post(connection, opts \\ []) do
+    optional_params = %{
+      :"Content-Type" => :headers,
+      :Authorization => :headers,
+      :body => :body
+    }
+
+    request =
+      %{}
+      |> method(:post)
+      |> url("/users/merge")
+      |> add_optional_params(optional_params, opts)
+      |> ensure_body()
+      |> Enum.into([])
+
+    connection
+    |> Connection.request(request)
+  end
+
+  @doc """
+
+  ## Track Users
 
   Use this endpoint to record custom events, purchases, and update user profile attributes.
 
@@ -315,7 +479,6 @@ defmodule BrazeEx.Api.UserData do
   "message" : "success",
   "errors" : [
     {
-      
     }
   ]
   }
@@ -331,24 +494,15 @@ defmodule BrazeEx.Api.UserData do
   "message" : ,
   "errors" : [
     {
-      
     }
   ]
   }
 
   ```
 
-  #### Fatal error response codes
+  ### Fatal error response codes
 
-  The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.
-
-  | Error Code | Reason / Cause |
-  | --- | --- |
-  | `400 Bad Request` | Bad Syntax. |
-  | `401 Unauthorized` | Unknown or missing REST API Key. |
-  | `404 Not Found` | Unknown REST API Key (if provided). |
-  | `429 Rate Limited` | Over rate limit. |
-  | `5XX` | Internal server error, you should retry with exponential backoff. |
+  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors & responses]({{site.baseurl}}/api/errors/#fatal-errors).
 
   If you receive the error “provided external_id is blacklisted and disallowed”, your request may have included a “dummy user”. For more information, refer to [Spam blocking](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/user_archival/#spam-blocking).
 

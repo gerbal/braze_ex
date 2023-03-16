@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportSegment do
 
   @doc """
 
-  ## Segment Analytics
+  ## Export Segment Analytics
 
   Use this endpoint to retrieve a daily series of the estimated size of a segment over time.
 
@@ -74,7 +74,7 @@ defmodule BrazeEx.Api.ExportSegment do
 
   @doc """
 
-  ## Segment Details
+  ## Export Segment Details
 
   Use this endpoint to retrieve relevant information on a segment, which can be identified by the `segment_id`.
 
@@ -132,7 +132,7 @@ defmodule BrazeEx.Api.ExportSegment do
 
   @doc """
 
-  ## Segment List
+  ## Export Segment List
 
   Use this endpoint to export a list of segments, each of which will include its name, Segment API identifier, and whether it has analytics tracking enabled. The segments are returned in groups of 100 sorted by time of creation (oldest to newest by default). Archived segments are not included.
 

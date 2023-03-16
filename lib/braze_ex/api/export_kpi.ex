@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   @doc """
 
-  ## Daily Active Users by Date
+  ## Export Daily Active Users by Date
 
   Use this endpoint to retrieve a daily series of the total number of unique active users on each date.
 
@@ -76,7 +76,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   @doc """
 
-  ## Monthly Active Users for Last 30 Days
+  ## Export Monthly Active Users for Last 30 Days
 
   Use this endpoint to retrieve a daily series of the total number of unique active users over a 30-day rolling window.
 
@@ -141,7 +141,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   @doc """
 
-  ## Daily New Users by Date
+  ## Export Daily New Users by Date
 
   Use this endpoint to retrieve a daily series of the total number of new users on each date.
 
@@ -206,7 +206,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   @doc """
 
-  ## KPIs for Daily App Uninstalls by Date
+  ## Export KPIs for Daily App Uninstalls by Date
 
   Use this endpoint to retrieve a daily series of the total number of uninstalls on each date.
 

@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   @doc """
 
-  ## Custom Events Analytics
+  ## Export Custom Events Analytics
 
   Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period.
 
@@ -39,14 +39,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   ### Fatal error response codes
 
-  The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.
-
-  | Error Code | Reason / Cause |
-  | --- | --- |
-  | 400 Bad Request | Bad Syntax |
-  | 401 Unauthorized | Unknown or missing REST API Key |
-  | 429 Rate Limited | Over rate limit |
-  | 5XX | Internal server error, you should retry with exponential backoff |
+  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors & responses](https://www.braze.com/docs/api/errors/#fatal-errors).
 
   > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
@@ -93,7 +86,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   @doc """
 
-  ## Custom Events List
+  ## Export Custom Events List
 
   Use this endpoint to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically.
 
@@ -120,14 +113,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   ### Fatal error response codes
 
-  The following status codes and associated error messages will be returned if your request encounters a fatal error. Any of these error codes indicate that no data will be processed.
-
-  | Error Code | Reason / Cause |
-  | --- | --- |
-  | 400 Bad Request | Bad Syntax |
-  | 401 Unauthorized | Unknown or missing REST API Key |
-  | 429 Rate Limited | Over rate limit |
-  | 5XX | Internal server error, you should retry with exponential backoff |
+  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors & responses](https://www.braze.com/docs/api/errors/#fatal-errors).
 
   > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 

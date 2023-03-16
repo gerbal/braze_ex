@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   @doc """
 
-  ## External ID Remove
+  ## Remove External ID
 
   > **Note:** For security purposes, this feature is disabled by default. To enable this feature, reach out to your customer success manager.
 
@@ -89,7 +89,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   @doc """
 
-  ## External ID Rename
+  ## Rename External ID
 
   > **Note:** For security purposes, this feature is disabled by default. To enable this feature, reach out to your customer success manager.
 

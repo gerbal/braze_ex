@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   @doc """
 
-  ## User Profile Export by Global Control Group
+  ## Export User Profile by Global Control Group
 
   Use this endpoint to export all users within a Global Control Group. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
 
@@ -195,7 +195,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   @doc """
 
-  ## User Profile Export by Identifier
+  ## Export User Profile by Identifier
 
   Use this endpoint to export data from any user profile by specifying a user identifier. Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
 
@@ -449,7 +449,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   @doc """
 
-  ## User Profile Export by Segment
+  ## Export User Profile by Segment
 
   Use this endpoint to export all the users within a segment. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
 

@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   @doc """
 
-  ## Product IDs List
+  ## Export Product IDs
 
   Use this endpoint to return a paginated lists of product IDs.
 

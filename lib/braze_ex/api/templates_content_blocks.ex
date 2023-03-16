@@ -13,7 +13,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## Create Content Block
 
-  Use this endpoint to create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
+  Use this endpoint to create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
 
@@ -41,28 +41,28 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ```
 
-  ### Possible errors
+  ## Troubleshooting
 
-  The following table lists possible returned errors and their associated troubleshooting steps, if applicable.
+  The following table lists possible returned errors and their associated troubleshooting steps.
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Content cannot be blank |  |
-  | Content must be a string | Make sure your content is encapsulated in quotes (`""`). |
-  | Content must be smaller than 50kb | The content in your Content Block must be less than 50kb total. |
-  | Content contains malformed liquid | The Liquid provided is not valid or parsable. Try again with valid Liquid or reach out to support. |
-  | Content Block cannot be referenced within itself |  |
-  | Content Block description cannot be blank |  |
-  | Content Block description must be a string | Make sure your Content Block description is encapsulated in quotes (`""`). |
-  | Content Block description must be shorter than 250 characters |  |
-  | Content Block name cannot be blank |  |
-  | Content Block name must be shorter than 100 characters |  |
-  | Content Block name can only contain alphanumeric characters | Content Block names can include any of the following characters: the letters (capitalized or lowercase) `A` through `Z`, the numbers `0` through `9`, dashes `-`, and underscores `_`. It cannot contain non-alphanumeric characters like emojis, `!`, `@`, `~`, `&`, and other "special" characters. |
-  | Content Block with this name already exists | Try a different name. |
-  | Content Block state must be either active or draft |  |
-  | Tags must be an array | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
-  | All tags must be strings | Make sure your tags are encapsulated in quotes (`""`). |
-  | Some tags could not be found | To add a tag when creating a Content Block, the tag must already exist in Braze. |
+  | `Content cannot be blank` | |
+  | `Content must be a string` | Make sure your content is encapsulated in quotes (`""`). |
+  | `Content must be smaller than 50kb` | The content in your Content Block must be less than 50kb total. |
+  | `Content contains malformed liquid` | The Liquid provided is not valid or parsable. Try again with valid Liquid or reach out to support. |
+  | `Content Block cannot be referenced within itself` | |
+  | `Content Block description cannot be blank` | |
+  | `Content Block description must be a string` | Make sure your Content Block description is encapsulated in quotes (`""`). |
+  | `Content Block description must be shorter than 250 characters` | |
+  | `Content Block name cannot be blank` | |
+  | `Content Block name must be shorter than 100 characters` | |
+  | `Content Block name can only contain alphanumeric characters` | Content Block names can include any of the following characters: the letters (capitalized or lowercase) `A` through `Z`, the numbers `0` through `9`, dashes `-`, and underscores `_`. It cannot contain non-alphanumeric characters like emojis, `!`, `@`, `~`, `&`, and other "special" characters. |
+  | `Content Block with this name already exists` | Try a different name. |
+  | `Content Block state must be either active or draft` | |
+  | `Tags must be an array` | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. | |
+  | `All tags must be strings` | Make sure your tags are encapsulated in quotes (`""`). |
+  | `Some tags could not be found` | To add a tag when creating a Content Block, the tag must already exist in Braze. |
 
   ### Parameters
 
@@ -102,7 +102,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## See Content Block Information
 
-  Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
+  Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
 
@@ -128,16 +128,16 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ```
 
-  ### Possible errors
+  ## Troubleshooting
 
   The following table lists possible returned errors and their associated troubleshooting steps.
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Content Block ID cannot be blank | Make sure that a Content Block is listed in your request and is encapsulated in quotes (`""`). |
-  | Content Block ID is invalid for this App Group | This Content Block doesn't exist or is in a different company account or app group. |
-  | Content Block has been deleted—content not available | This Content Block, though it may have existed earlier, has been deleted. |
-  | Include Inclusion Data—error | This parameter only accepts boolean values (true or false). Make sure the value for `include_inclusion_data` is not encapsulated in quotes (`""`), which causes the value to be sent as a string instead. See request parameters for details. |
+  | `Content Block ID cannot be blank` | Make sure that a Content Block is listed in your request and is encapsulated in quotes (`""`). |
+  | `Content Block ID is invalid for this App Group` | This Content Block doesn't exist or is in a different company account or app group. |
+  | `Content Block has been deleted—content not available` | This Content Block, though it may have existed earlier, has been deleted. |
+  | `Include Inclusion Data—error` | This parameter only accepts boolean values (true or false). Make sure the value for `include_inclusion_data` is not encapsulated in quotes (`""`), which causes the value to be sent as a string instead. See [request parameters](#request-parameters) for details. |
 
   ### Parameters
 
@@ -176,7 +176,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## List Available Content Blocks
 
-  Use this endpoint to list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information.
+  Use this endpoint to list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information.
 
   ### Rate limit
 
@@ -204,20 +204,19 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   }
 
   ```
-
-  ### Possible errors
+  ## Troubleshooting
 
   The following table lists possible returned errors and their associated troubleshooting steps.
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Modified after time is invalid | The provided date is not a valid or parsable date. Reformat this value as a string in ISO 8601 format (`yyyy-mm-ddThh:mm:ss.ffffff`). |
-  | Modified before time is invalid | The provided date is not a valid or parsable date. Reformat this value as a string in ISO 8601 format (`yyyy-mm-ddThh:mm:ss.ffffff`). |
-  | Modified after time must be earlier than or the same as modified before time. | Change the `modified_after` value to a time that is earlier than the `modified_before` time. |
-  | Content Block number limit is invalid | The `limit` parameter must be an integer (positive number) greater than 0. |
-  | Content Block number limit must be greater than 0 | Change the `limit` parameter to an integer greater than 0. |
-  | Content Block number limit exceeds maximum of 1000 | Change the `limit` parameter to an integer less than 1000. |
-  | Offset is invalid | The `offset` parameter must be an integer greater than 0. |
+  | `Modified after time is invalid` | The provided date is not a valid or parsable date. Reformat this value as a string in ISO 8601 format (`yyyy-mm-ddThh:mm:ss.ffffff`). |
+  | `Modified before time is invalid` | The provided date is not a valid or parsable date. Reformat this value as a string in ISO 8601 format (`yyyy-mm-ddThh:mm:ss.ffffff`). |
+  | `Modified after time must be earlier than or the same as modified before time.` | Change the `modified_after` value to a time that is earlier than the `modified_before` time. |
+  | `Content Block number limit is invalid` | The `limit` parameter must be an integer (positive number) greater than 0. |
+  | `Content Block number limit must be greater than 0` | Change the `limit` parameter to an integer greater than 0. |
+  | `Content Block number limit exceeds maximum of 1000` | Change the `limit` parameter to an integer less than 1000. |
+  | `Offset is invalid` | The `offset` parameter must be an integer greater than 0. |
   | Offset must be greater than 0 | Change the `offset` parameter to an integer greater than 0. |
 
   ### Parameters
@@ -261,7 +260,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## Update Content Block
 
-  Use this endpoint to update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
+  Use this endpoint to update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).
 
   ### Rate limit
 
@@ -290,30 +289,30 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ```
 
-  ### Possible errors
+  ## Troubleshooting
 
-  The following table lists possible returned errors and their associated troubleshooting steps, if applicable.
+  The following table lists possible returned errors and their associated troubleshooting steps.
 
   | Error | Troubleshooting |
   | --- | --- |
-  | Content cannot be blank |  |
-  | Content must be a string | Make sure your content is encapsulated in quotes (`""`). |
-  | Content must be smaller than 50kb | The content in your Content Block must be less than 50kb total. |
-  | Content contains malformed liquid | The Liquid provided is not valid or parsable. Try again with valid Liquid or reach out to support. |
-  | Content Block cannot be referenced within itself |  |
-  | Content Block description cannot be blank |  |
-  | Content Block description must be a string | Make sure your Content Block description is encapsulated in quotes (`""`). |
-  | Content Block description must be shorter than 250 characters |  |
-  | Content Block name cannot be blank |  |
-  | Content Block name must be shorter than 100 characters |  |
-  | Content Block name can only contain alphanumeric characters | Content Block names can include any of the following characters: the letters (capitalized or lowercase) `A` through `Z`, the numbers `0` through `9`, dashes `-`, and underscores `_`. It cannot contain non-alphanumeric characters like emojis, `!`, `@`, `~`, `&`, and other "special" characters. |
-  | Content Block with this name already exists | Try a different name. |
-  | Content Block name cannot be updated for active Content Blocks |  |
-  | Content Block state must be either active or draft |  |
-  | Active Content Block can not be updated to Draft. Create a new Content Block |  |
-  | Tags must be an array | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
-  | All tags must be strings | Make sure your tags are encapsulated in quotes (`""`). |
-  | Some tags could not be found | To add a tag when creating a Content Block, the tag must already exist in Braze. |
+  | `Content cannot be blank` |
+  | `Content must be a string` | Make sure your content is encapsulated in quotes (`""`). |
+  | `Content must be smaller than 50kb` | The content in your Content Block must be less than 50kb total. |
+  | `Content contains malformed liquid` | The Liquid provided is not valid or parsable. Try again with valid Liquid or reach out to support. |
+  | `Content Block cannot be referenced within itself` |
+  | `Content Block description cannot be blank` |
+  | `Content Block description must be a string` | Make sure your Content Block description is encapsulated in quotes (`""`). |
+  | `Content Block description must be shorter than 250 characters` |
+  | `Content Block name cannot be blank` |
+  | `Content Block name must be shorter than 100 characters` |
+  | `Content Block name can only contain alphanumeric characters` | Content Block names can include any of the following characters: the letters (capitalized or lowercase) `A` through `Z`, the numbers `0` through `9`, dashes `-`, and underscores `_`. It cannot contain non-alphanumeric characters like emojis, `!`, `@`, `~`, `&`, and other "special" characters. |
+  | `Content Block with this name already exists` | Try a different name. |
+  | `Content Block name cannot be updated for active Content Blocks` |
+  | `Content Block state must be either active or draft` |
+  | `Active Content Block can not be updated to Draft. Create a new Content Block.` |
+  | `Tags must be an array` | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
+  | `All tags must be strings` | Make sure your tags are encapsulated in quotes (`""`). |
+  | `Some tags could not be found` | To add a tag when creating a Content Block, the tag must already exist in Braze. |
 
   ### Parameters
 

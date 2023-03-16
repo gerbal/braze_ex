@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   @doc """
 
-  ## News Feed Card Analytics
+  ## Export News Feed Card Analytics
 
   Use this endpoint to retrieve a daily series of engagement stats for a card over time.
 
@@ -79,7 +79,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   @doc """
 
-  ## News Feed Cards Details
+  ## Export News Feed Cards Details
 
   Use this endpoint to retrieve relevant information on a card, which can be identified by the `card_id`.
 
@@ -142,7 +142,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   @doc """
 
-  ## News Feed Cards List
+  ## Export News Feed Cards List
 
   Use this endpoint to export a list of News Feed cards, each of which will include its name and card API identifier. The cards are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
