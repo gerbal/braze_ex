@@ -15,7 +15,7 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   Use this endpoint to send immediate, ad-hoc messages to designated users via API-triggered delivery. API-triggered delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
 
-  If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) . Note that to send messages with this endpoint, you must have a Campaign ID created when you build an [API-triggered campaign](https://www.braze.com/docs/api/api_campaigns/).
+  If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) . Note that to send messages with this endpoint, you must have a [Campaign ID](https://www.braze.com/docs/api/identifier_types/) created when you build an [API-triggered campaign](https://www.braze.com/docs/api/api_campaigns/).
 
   ## Rate limit
 
@@ -97,7 +97,7 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   Use this endpoint to send Canvas messages via API-triggered delivery. API-triggered Delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
 
-  Note that to send messages with this endpoint, you must have a Canvas ID, created when you build a [Canvas](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier).
+  Note that to send messages with this endpoint, you must have a [Canvas ID](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier) created when you build a Canvas.
 
   ## Rate limit
 
@@ -260,14 +260,15 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ## Response
 
-  ``` json
+  ### Example success response
+
+  ```json
   Content-Type: application/json
   Authorization: Bearer YOUR-REST-API-KEY
   {
   "message": "success",
-  "send_id" : "example_send_id"
+  "send_id" : (string) the send identifier
   }
-
   ```
 
   ### Parameters
@@ -308,7 +309,7 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ## Sending Transactional Email via API Triggered Delivery
 
-  Use this endpoint to send immediate, ad-hoc transactional messages to a designated user. This endpoint is used alongside the creation of a [Transactional Email campaign](https://www.braze.com/docs/api/api_campaigns/transactional_campaigns) and corresponding campaign ID.
+  Use this endpoint to send immediate, ad-hoc transactional messages to a designated user. This endpoint is used alongside the creation of a [Transactional Email campaign](https://www.braze.com/docs/api/api_campaigns/transactional_campaigns) and corresponding campaign ID.
 
   > **Important:** Transactional Email is currently available as part of select Braze packages. Reach out to your Braze customer success manager for more details.
 
@@ -317,6 +318,12 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   ## Rate limit
 
   Transactional Emails are not subject to a rate limit. Depending on your chosen package, a set number of Transactional Emails is covered per hour by SLA. Requests that exceed that rate will still send, but are not covered by SLA. 99.9% of emails will send in less than one minute.
+
+  ## Path parameters
+
+  | Parameter | Required | Data Type | Description |
+  |---|---|---|---|
+  | `campaign_id` | Required | String | ID of the campaign |
 
   ## Request Parameters
 
@@ -341,7 +348,25 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ```
 
-  ### Transactional HTTP Event Postback
+  ## Troubleshooting
+
+  The endpoint may also return an error code and a human-readable message in some cases, most of which are validation errors. Here are some common errors you may get when making invalid requests.
+
+  | Error | Troubleshooting |
+  | --- | --- |
+  | `The campaign is not a transactional campaign. Only transactional campaigns may use this endpoint` | The campaign ID provided is not for a transactional campaign. |
+  | `The external reference has been queued. Please retry to obtain send_id.` | The external_send_id has been created recently, try a new external_send_id if you are intending to send a new message. |
+  | `Campaign does not exist` | The campaign ID provided does not correspond to an existing campaign. |
+  | `The campaign is archived. Unarchive the campaign to ensure trigger requests will take effect.` | The campaign ID provided corresponds to an archived campaign. |
+  | `The campaign is paused. Resume the campaign to ensure trigger requests will take effect.` | The campaign ID provided corresponds to a paused campaign. |
+  | `campaign_id must be a string of the campaign api identifier` | The campaign ID provided is not a valid format. |
+  | `Error authenticating credentials` | The API key provided is invalid |
+  | `Invalid whitelisted IPs` | The IP address sending the request is not on the IP whitelist (if it is being utilized) |
+  | `You do not have permission to access this resource` | The API key used does not have permission to take this action |
+
+  Most endpoints at Braze have a rate limit implementation that will return a 429 response code if you have made too many requests. The transactional sending endpoint works differently -- if you exceed your allotted rate limit, our system will continue to ingest the API calls, return success codes, and send the messages, however those messages may not be subject to the contractual SLA for the feature. Please reach out if you need more information about this functionality.
+
+  ## Transactional HTTP Event Postback
 
   All transactional emails are complemented with event status postbacks sent as an HTTP request back to your specified URL. This will allow you to evaluate the message status in real-time and take action to reach the user on another channel if the message goes undelivered, or fallback to an internal system if Braze is experiencing latency.
 
@@ -484,6 +509,7 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   ### Parameters
 
   - `connection` (BrazeEx.Connection): Connection to server
+  - `campaign_id` (String.t): 
   - `opts` (keyword): Optional parameters
     - `:content_type` (String.t): 
     - `:authorization` (String.t): 
@@ -494,9 +520,12 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   - `{:ok, nil}` on success
   - `{:error, Tesla.Env.t}` on failure
   """
-  @spec transactional_v1_campaigns_yourcampaignidhere_send_post(Tesla.Env.client(), keyword()) ::
-          {:ok, nil} | {:error, Tesla.Env.t()}
-  def transactional_v1_campaigns_yourcampaignidhere_send_post(connection, opts \\ []) do
+  @spec transactional_v1_campaigns_campaign_id_send_post(
+          Tesla.Env.client(),
+          String.t(),
+          keyword()
+        ) :: {:ok, nil} | {:error, Tesla.Env.t()}
+  def transactional_v1_campaigns_campaign_id_send_post(connection, campaign_id, opts \\ []) do
     optional_params = %{
       :"Content-Type" => :headers,
       :Authorization => :headers,
@@ -506,7 +535,7 @@ defmodule BrazeEx.Api.MessagingSendMessages do
     request =
       %{}
       |> method(:post)
-      |> url("/transactional/v1/campaigns/YOUR_CAMPAIGN_ID_HERE/send")
+      |> url("/transactional/v1/campaigns/#{campaign_id}/send")
       |> add_optional_params(optional_params, opts)
       |> ensure_body()
       |> Enum.into([])

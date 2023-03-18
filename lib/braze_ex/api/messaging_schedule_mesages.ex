@@ -13,9 +13,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Schedule API Triggered Campaigns
 
-  Use this endpoint to send dashboard created campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. You can pass in `trigger_properties` that will be templated into the message itself.
+  Use this endpoint to send dashboard created campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. You can pass in `trigger_properties` that will be templated into the message itself.
 
-  Note that to send messages with this endpoint, you must have a Campaign ID, created when you build an [API-Triggered Campaign](https://www.braze.com/docs/api/api_campaigns/).
+  Note that to send messages with this endpoint, you must have a [Campaign ID](https://www.braze.com/docs/api/identifier_types/), created when you build an [API-Triggered Campaign](https://www.braze.com/docs/api/api_campaigns/).
 
   ### Rate limit
 
@@ -39,6 +39,22 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   | `broadcast` | Optional | Boolean | See [broadcast](https://www.braze.com/docs/api/parameters/#broadcast). This parameter defaults to false (as of August 31, 2017).  <br>  <br>If `recipients` is omitted, `broadcast` must be set to true. However, use caution when setting `broadcast: true`, as unintentionally setting this flag may cause you to send your message to a larger than expected audience. |
   | `trigger_properties` | Optional | Object | Personalization key-value pairs for all users in this send. See [trigger properties](https://www.braze.com/docs/api/objects_filters/trigger_properties_object/). |
   | `schedule` | Required | Schedule object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/). |
+
+  ## Response
+
+  ### Example success response
+
+  ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR-API-KEY-HERE
+  {
+  {
+    "dispatch_id": "dispatch_identifier",
+    "schedule_id": "schedule_identifier",
+    "message": "success"
+  }
+
+  ```
 
   ### Parameters
 
@@ -187,9 +203,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Schedule API Triggered Canvases
 
-  Use this endpoint to schedule Canvas messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. You can pass in `canvas_entry_properties` that will be templated into the messages sent by the first steps of the Canvas.
+  Use this endpoint to schedule Canvas messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. You can pass in `canvas_entry_properties` that will be templated into the messages sent by the first steps of the Canvas.
 
-  Note that to send messages with this endpoint, you must have a Canvas ID, created when you build a [Canvas](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier).
+  Note that to send messages with this endpoint, you must have a [Canvas ID](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier) created when you build a Canvas.
 
   ### Rate limit
 
@@ -359,7 +375,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Create Scheduled Messages
 
-  Use this endpoint to schedule a campaign, Canvas, or other message to be sent at a designated time (up to 90 days in the future) and provides you with an identifier to reference that message for updates. If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/)  after all scheduled messages have been sent.
+  Use this endpoint to schedule a campaign, Canvas, or other message to be sent at a designated time (up to 90 days in the future) and provides you with an identifier to reference that message for updates. If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) after all scheduled messages have been sent.
 
   ### Rate limit
 
@@ -388,6 +404,18 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   | `recipient_subscription_state` | Optional | String | Use this to send messages to only users who have opted in (`opted_in`), only users who have subscribed or are opted in (`subscribed`) or to all users, including unsubscribed users (`all`).  <br>  <br>Using `all` users is useful for transactional email messaging. Defaults to `subscribed`. |
   | `schedule` | Required | Schedule object | See [schedule object](https://www.braze.com/docs/api/objects_filters/schedule_object/) |
   | `messages` | Optional | Messaging object | See available [messaging objects](https://www.braze.com/docs/api/objects_filters/#messaging-objects). |
+
+  ## Response
+
+  ### Example success response
+
+  ```json
+  {
+    "dispatch_id": (string) the dispatch identifier,
+    "schedule_id": (string) the schedule identifier,
+    "message": "success"
+  }
+  ```
 
   ### Parameters
 
@@ -523,7 +551,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   @doc """
 
-  ## Get Upcoming Scheduled Campaigns and Canvases
+  ## List Upcoming Scheduled Campaigns and Canvases
 
   Use this endpoint to return a JSON list of information about scheduled campaigns and entry Canvases between now and a designated `end_time` specified in the request. Daily, recurring messages will only appear once with their next occurrence. Results returned in this endpoint are only for campaigns and Canvases created and scheduled in Braze.
 
