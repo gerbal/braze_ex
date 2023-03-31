@@ -1741,7 +1741,7 @@ paths:
     get:
       tags:
         - Export > Campaign
-      summary: Campaign Analytics
+      summary: Export Campaign Analytics
       description: |-
         Use this endpoint to retrieve a daily series of various stats for a campaign over time. Data returned includes how many messages were sent, opened, clicked, or converted by messaging channel.
 
@@ -1962,7 +1962,7 @@ paths:
     get:
       tags:
         - Export > Campaign
-      summary: Campaign Details
+      summary: Export Campaign Details
       description: "Use this endpoint to retrieve relevant information on a specified campaign, which can be identified by the `campaign_id`. If you want to retrieve Canvas data, refer to the [Canvas Details](https://www.braze.com/docs/api/endpoints/export/canvas/get_canvas_details/) endpoint.\n\n## Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n## Responses\n\n### Campaign details endpoint API response\n\n``` json\nContent-Type: application/json\nAuthorization: Bearer YOUR-REST-API-KEY\n{\n    \"message\": (required, string) the status of the export, returns 'success' when completed without errors,\n    \"created_at\" : (string) date created as ISO 8601 date,\n    \"updated_at\" : (string) date last updated as ISO 8601 date,\n    \"archived\": (boolean) whether this Campaign is archived,\n    \"draft\": (boolean) whether this Campaign is a draft,\n    \"name\" : (string) campaign name,\n    \"description\" : (string) campaign description,\n    \"schedule_type\" : (string) type of scheduling action,\n    \"channels\" : (array) list of channels to send via,\n    \"first_sent\" : (string) date and hour of first sent as ISO 8601 date,\n    \"last_sent\" : (string) date and hour of last sent as ISO 8601 date,\n    \"tags\" : (array) tag names associated with the campaign,\n    \"messages\": {\n        \"message_variation_id\": (string) { // <=This is the actual id\n            \"channel\": (string) channel type of the message (as in, \"email\", \"ios_push\", \"webhook\", \"content_card\", \"in-app_message\", \"sms\"),\n            \"name\": (string) name of the message in the Dashboard (eg., \"Variation 1\")\n            ... channel-specific fields for this message, see below ...\n        }\n    },\n    \"conversion_behaviors\": (array) conversion event behaviors assigned to the campaign (see below)\n}\n\n```\n\n### Messages\n\nThe `messages` response will contain information about each message. The following includes example message responses for each channel:\n\n#### Push channels\n\n``` json\n{\n    \"channel\": (string) description of the channel, such as \"ios_push\" or \"android_push\"\n    \"alert\": (string) alert body text,\n    \"extras\": (hash) any key value pairs provided\n}\n\n```\n\n#### Email channel\n\n``` json\n{\n    \"channel\": \"email\",\n    \"subject\": (string) subject,\n    \"body\": (string) HTML body,\n    \"from\": (string) from address and display name,\n    \"reply_to\": (string) reply-to for message, if different than \"from\" address,\n    \"title\": (string) name of the email,\n    \"extras\": (hash) any key value pairs provided\n}\n\n```\n\n#### In-app message channel\n\n``` json\n{\n    \"type\": (string) description of in-app message type, such as \"survey\",\n    \"data\": {\n        \"pages\": [\n            {\n                \"header\": \n                    {\n                         \"text\":(string) display text for the header of the survey,\n                    }\n                \"choices\": [\n                    {\n                       \"choice_id\": (string) choice identifier,\n                       \"text\": (string) display text, \n                       \"custom_attribute_key\": (string) custom attribute key, \n                       \"custom_attribute_value\": (sting) custom attribute value,\n                       \"deleted\": (boolean) deleted from live campaign, \n                    },\n                    ...\n                ]\n            }\n        ]\n    }\n}\n\n```\n\n#### Content Card channel\n\n``` json\n{\n    \"channel\": \"content_cards\",\n    \"name\": (string) name of variant,\n    \"extras\": (hash) any key value pairs provided; only present if at least one key-value pair has been set\n}\n\n```\n\n#### Webhook channel\n\n``` json\n{\n    \"channel\": \"webhook\",\n    \"url\": (string) url for webhook,\n    \"body\": (string) payload body,\n    \"type\": (string) body content type,\n    \"headers\": (hash) specified request headers,\n    \"method\": (string) HTTP method (e.g., \"POST\" or \"GET\"),\n}\n\n```\n\n#### SMS channel\n\n``` json\n{\n  \"channel\": \"sms\",\n  \"body\": (string) payload body,\n  \"from\": (string) list of numbers associated with the subscription group,\n  \"subscription_group_id\": (string) API id of the subscription group targeted in the SMS message\n}\n\n```\n\n#### Control Messages\n\n``` json\n{\n    \"channel\": (string) description of the channel that the control is for,\n    \"type\": \"control\"\n}\n\n```\n\n### Conversion Behaviors\n\nThe `conversion_behaviors` array will contain information about each conversion event behavior set for the campaign. These behaviors are in order as set by the campaign. For example, Conversion Event A will be the first item in the array, Conversion Event B will be second, etc. The following lists example conversion event behavior responses:\n\n#### Clicks email\n\n``` json\n{\n    \"type\": \"Clicks Email\",\n    \"window\": (integer) number of seconds during which the user can convert on this event, i.e. - 86400, which is 24 hours\n}\n\n```\n\n#### Opens email\n\n``` json\n{\n    \"type\": \"Opens Email\",\n    \"window\": (integer) number of seconds during which the user can convert on this event, i.e. - 86400, which is 24 hours\n}\n\n```\n\n#### Makes purchase (any purchase)\n\n``` json\n{\n    \"type\": \"Makes Any Purchase\",\n    \"window\": (integer) number of seconds during which the user can convert on this event, i.e. - 86400, which is 24 hours\n}\n\n```\n\n#### Makes purchase (specific product)\n\n``` json\n{\n    \"type\": \"Makes Specific Purchase\",\n    \"window\": (integer) number of seconds during which the user can convert on this event, i.e. - 86400, which is 24 hours,\n    \"product\": (string) name of the product, i.e. - \"Feline Body Armor\"\n}\n\n```\n\n#### Performs custom event\n\n``` json\n{\n    \"type\": \"Performs Custom Event\",\n    \"window\": (integer) number of seconds during which the user can convert on this event, i.e. - 86400, which is 24 hours,\n    \"custom_event_name\": (string) name of the event, i.e. - \"Used Feline Body Armor\"\n}\n\n```\n\n#### Upgrades app\n\n``` json\n{\n    \"type\": \"Upgrades App\",\n    \"window\": (integer) number of seconds during which the user can convert on this event, i.e. - 86400, which is 24 hours,\n    \"app_ids\": (array|null) array of app ids, i.e. - [\"12345\", \"67890\"], or `null` if \"Track sessions for any app\" is selected in the UI\n}\n\n```\n\n#### Uses app\n\n``` json\n{\n    \"type\": \"Starts Session\",\n    \"window\": (integer) number of seconds during which the user can convert on this event, i.e. - 86400, which is 24 hours,\n    \"app_ids\": (array|null) array of app ids, i.e. - [\"12345\", \"67890\"], or `null` if \"Track sessions for any app\" is selected in the UI\n}\n\n```\n\n> **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/)."
       parameters:
         - name: Authorization
@@ -1990,7 +1990,7 @@ paths:
     get:
       tags:
         - Export > Campaign
-      summary: Campaign List
+      summary: Export Campaign List
       description: "Use this endpoint to export a list of campaigns, each of which will include its name, campaign API identifier, whether it is an API campaign, and tags associated with the campaign. The campaigns are returned in groups of 100 sorted by time of creation (oldest to newest by default).\n\n## Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n## Campaign list endpoint API response\n\n``` json\nContent-Type: application/json\nAuthorization: Bearer YOUR-REST-API-KEY\n{\n    \"message\": (required, string) the status of the export, returns 'success' when completed without errors,\n    \"campaigns\" : [\n        {\n            \"id\" : (string) Campaign API Identifier,\n            \"last_edited\": (ISO 8601 string) the last edited time for the message \n            \"name\" : (string) campaign name,\n            \"is_api_campaign\" : (boolean) whether the campaign is an API Campaign,\n            \"tags\" : (array) tag names associated with the campaign\n        },\n        ...\n    ]\n}\n\n```\n\n> **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/)."
       parameters:
         - name: Authorization
@@ -2046,7 +2046,7 @@ paths:
     get:
       tags:
         - Export > Campaign
-      summary: Send Analytics
+      summary: Export Send Analytics
       description: |-
         Use this endpoint to retrieve a daily series of various stats for a tracked `send_id`. Braze stores send analytics for 14 days after the send.
 
@@ -2155,7 +2155,7 @@ paths:
     get:
       tags:
         - Export > Canvas
-      summary: Canvas Data Series Analytics
+      summary: Export Canvas Data Series Analytics
       description: |-
         Use this endpoint to export time series data for a Canvas.
 
@@ -2293,7 +2293,7 @@ paths:
     get:
       tags:
         - Export > Canvas
-      summary: Canvas Data Analytics Summary
+      summary: Export Canvas Data Analytics Summary
       description: |-
         Use this endpoint allows to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results.
 
@@ -2430,7 +2430,7 @@ paths:
     get:
       tags:
         - Export > Canvas
-      summary: Canvas Details
+      summary: Export Canvas Details
       description: |-
         Use this endpoint to export metadata about a Canvas, such as the name, time created, current status, and more.
 
@@ -2506,7 +2506,7 @@ paths:
     get:
       tags:
         - Export > Canvas
-      summary: Canvas List
+      summary: Export Canvas List
       description: |-
         Use this endpoint to export a list of Canvases, including the name, Canvas API identifier and associated tags. Canvases are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
@@ -4796,14 +4796,7 @@ paths:
       tags:
         - Subscription Groups > SMS
       summary: List User's Subscription Group - SMS
-      description: |-
-        Use this endpoint to list and get the subscription groups of a certain user.
-
-        > If there are multiple users (multiple external ids) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group).
-
-        ## Rate limit
-
-        We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+      description: "Use this endpoint to list and get the subscription groups of a certain user.\n\n> If there are multiple users (multiple external IDs) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group). \n  \n\n## Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/)."
       parameters:
         - name: Authorization
           in: header
@@ -5391,7 +5384,9 @@ paths:
         - Templates > Email Templates
       summary: Create Email Template
       description: |-
-        Use this endpoint to create email templates on the Braze dashboard. These templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.
+        Use this endpoint to create email templates on the Braze dashboard.
+
+        These templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.
 
         Users’ email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.
 
@@ -5450,7 +5445,39 @@ paths:
       tags:
         - Templates > Email Templates
       summary: Update Email Template
-      description: "Use this endpoint to update email templates on the Braze dashboard. You can access an email template’s email_template_id by navigating to it on the Templates & Media page. The Create email template endpoint will also return an email_template_id reference.\n\n> Use the endpoints below to update email templates on the Braze dashboard. You can access an email template's `email_template_id` by navigating to it on the Templates and Media page. The email template creation API endpoint will also return an `email_template_id` reference.  \n>   \n> All fields other than the `email_template_id` are optional, but you must specify at least one field to update.\n\n### Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n### Request parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `email_template_id` | Required | String | Your [email template's API identifier](https://www.braze.com/docs/api/identifier_types/). |\n| `template_name` | Optional | String | Name of your email template. |\n| `subject` | Optional | String | Email template subject line. |\n| `body` | Optional | String | Email template body that may include HTML. |\n| `plaintext_body` | Optional | String | A plaintext version of the email template body. |\n| `preheader` | Optional | String | Email preheader used to generate previews in some clients. |\n| `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |\n| `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the AppGroup. One of `true` or `false` is expected. |\n\n### Possible errors\n\nThe following table lists possible returned errors and their associated troubleshooting steps, if applicable.\n\n| Error | Troubleshooting |\n| --- | --- |\n| Template name is required |  |\n| Tags must be an array | Tags must be formatted as an array of strings, for example `[\"marketing\", \"promotional\", \"transactional\"]`. |\n| All tags must be strings | Make sure your tags are encapsulated in quotes (`\"\"`). |\n| Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |\n| Invalid value for `should_inline_css`. One of `true` or `false` was expected | This parameter only accepts boolean values (true or false). Make sure the value for `should_inline_css` is not encapsulated in quotes (`\"\"`), which causes the value to be sent as a string instead. |"
+      description: |-
+        Use this endpoint to update email templates on the Braze dashboard.
+
+        You can access an email template’s `email_template_id` by navigating to it on the **Templates & Media** page. The Create email template endpoint will also return an `email_template_id` reference.
+
+        ### Rate limit
+
+        We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+        ### Request parameters
+
+        | Parameter | Required | Data Type | Description |
+        | --- | --- | --- | --- |
+        | `email_template_id` | Required | String | Your [email template's API identifier](https://www.braze.com/docs/api/identifier_types/). |
+        | `template_name` | Optional | String | Name of your email template. |
+        | `subject` | Optional | String | Email template subject line. |
+        | `body` | Optional | String | Email template body that may include HTML. |
+        | `plaintext_body` | Optional | String | A plaintext version of the email template body. |
+        | `preheader` | Optional | String | Email preheader used to generate previews in some clients. |
+        | `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |
+        | `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the AppGroup. One of `true` or `false` is expected. |
+
+        ### Possible errors
+
+        The following table lists possible returned errors and their associated troubleshooting steps, if applicable.
+
+        | Error | Troubleshooting |
+        | --- | --- |
+        | Template name is required |  |
+        | Tags must be an array | Tags must be formatted as an array of strings, for example `["marketing", "promotional", "transactional"]`. |
+        | All tags must be strings | Make sure your tags are encapsulated in quotes (`""`). |
+        | Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |
+        | Invalid value for `should_inline_css`. One of `true` or `false` was expected | This parameter only accepts boolean values (true or false). Make sure the value for `should_inline_css` is not encapsulated in quotes (`""`), which causes the value to be sent as a string instead. |
       requestBody:
         content:
           '*/*':

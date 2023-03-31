@@ -149,7 +149,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   Use this endpoint to list and get the subscription groups of a certain user.
 
-  > If there are multiple users (multiple external ids) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group).
+  > If there are multiple users (multiple external IDs) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group). 
+
 
   ## Rate limit
 

@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   @doc """
 
-  ## Campaign Analytics
+  ## Export Campaign Analytics
 
   Use this endpoint to retrieve a daily series of various stats for a campaign over time. Data returned includes how many messages were sent, opened, clicked, or converted by messaging channel.
 
@@ -226,7 +226,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   @doc """
 
-  ## Campaign Details
+  ## Export Campaign Details
 
   Use this endpoint to retrieve relevant information on a specified campaign, which can be identified by the `campaign_id`. If you want to retrieve Canvas data, refer to the [Canvas Details](https://www.braze.com/docs/api/endpoints/export/canvas/get_canvas_details/) endpoint.
 
@@ -485,7 +485,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   @doc """
 
-  ## Campaign List
+  ## Export Campaign List
 
   Use this endpoint to export a list of campaigns, each of which will include its name, campaign API identifier, whether it is an API campaign, and tags associated with the campaign. The campaigns are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
@@ -554,7 +554,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   @doc """
 
-  ## Send Analytics
+  ## Export Send Analytics
 
   Use this endpoint to retrieve a daily series of various stats for a tracked `send_id`. Braze stores send analytics for 14 days after the send.
 

@@ -629,7 +629,7 @@
           "name": "Campaign",
           "item": [
             {
-              "name": "Campaign Analytics",
+              "name": "Export Campaign Analytics",
               "id": "c07b5ebd-0246-471e-b154-416d63ae28a1",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -677,7 +677,7 @@
               "_postman_id": "c07b5ebd-0246-471e-b154-416d63ae28a1"
             },
             {
-              "name": "Campaign Details",
+              "name": "Export Campaign Details",
               "id": "aad2a811-7237-43b1-9d64-32042eabecd9",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -715,7 +715,7 @@
               "_postman_id": "aad2a811-7237-43b1-9d64-32042eabecd9"
             },
             {
-              "name": "Campaign List",
+              "name": "Export Campaign List",
               "id": "f3b0b3ef-04fb-4a31-8570-e6ad88dacb18",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -768,7 +768,7 @@
               "_postman_id": "f3b0b3ef-04fb-4a31-8570-e6ad88dacb18"
             },
             {
-              "name": "Send Analytics",
+              "name": "Export Send Analytics",
               "id": "76f822a8-a13b-4bfb-b20e-72b5013dfe86",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -828,7 +828,7 @@
           "name": "Canvas",
           "item": [
             {
-              "name": "Canvas Data Series Analytics",
+              "name": "Export Canvas Data Series Analytics",
               "id": "0fd61e93-7edf-4d87-a8dc-052420aefb73",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -896,7 +896,7 @@
               "_postman_id": "0fd61e93-7edf-4d87-a8dc-052420aefb73"
             },
             {
-              "name": "Canvas Data Analytics Summary",
+              "name": "Export Canvas Data Analytics Summary",
               "id": "1eb1b760-6b00-4c03-bcfb-12646f2ba6da",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -964,7 +964,7 @@
               "_postman_id": "1eb1b760-6b00-4c03-bcfb-12646f2ba6da"
             },
             {
-              "name": "Canvas Details",
+              "name": "Export Canvas Details",
               "id": "5188873c-13a3-4aaf-a54b-9fa1daeac5f8",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -1002,7 +1002,7 @@
               "_postman_id": "5188873c-13a3-4aaf-a54b-9fa1daeac5f8"
             },
             {
-              "name": "Canvas List",
+              "name": "Export Canvas List",
               "id": "e6c150d7-fceb-4b10-91e2-a9ca4d5806d1",
               "protocolProfileBehavior": {
                 "disableBodyPruning": true
@@ -2915,7 +2915,7 @@
                     }
                   ]
                 },
-                "description": "Use this endpoint to list and get the subscription groups of a certain user.\n\n> If there are multiple users (multiple external ids) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group).\n\n## Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/)."
+                "description": "Use this endpoint to list and get the subscription groups of a certain user.\n\n> If there are multiple users (multiple external IDs) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group). \n  \n\n## Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/)."
               },
               "response": [],
               "_postman_id": "54bd7ca8-60d9-4654-aff5-406479f3c666"
@@ -3289,7 +3289,7 @@
                   "raw": "{\n  \"template_name\": \"email_template_name\",\n  \"subject\": \"Welcome to my email template!\",\n  \"body\": \"This is the text within my email body and https://www.braze.com/ here is a link to Braze.com.\",\n  \"plaintext_body\": \"This is the text within my email body and here is a link to https://www.braze.com/.\",\n  \"preheader\": \"My preheader is pretty cool.\",\n  \"tags\": [\"Tag1\", \"Tag2\"]\n}"
                 },
                 "url": "https://{{instance_url}}/templates/email/create",
-                "description": "Use this endpoint to create email templates on the Braze dashboard. These templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.\n\nUsers’ email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.\n\n### Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n### Request parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `template_name` | Required | String | Name of your email template. |\n| `subject` | Required | String | Email template subject line. |\n| `body` | Required | String | Email template body that may include HTML. |\n| `plaintext_body` | Optional | String | A plaintext version of the email template body. |\n| `preheader` | Optional | String | Email preheader used to generate previews in some clients. |\n| `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |\n| `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the app group. One of `true` or `false` is expected. |\n\n### Possible errors\n\nThe following table lists possible returned errors and their associated troubleshooting steps, if applicable.\n\n| Error | Troubleshooting |\n| --- | --- |\n| Template name is required | Enter a template name. |\n| Tags must be an array | Tags must be formatted as an array of strings, for example `[\"marketing\", \"promotional\", \"transactional\"]`. |\n| All tags must be strings | Make sure your tags are encapsulated in quotes (`\"\"`). |\n| Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |\n| Email must have valid Content Block names | The email contains Content Blocks that don't exist in this environment. |\n| Invalid value for `should_inline_css`. One of `true` or `false` was expected | This parameter only accepts boolean values (true or false). Make sure the value for `should_inline_css` is not encapsulated in quotes (`\"\"`), which causes the value to be sent as a string instead. |"
+                "description": "Use this endpoint to create email templates on the Braze dashboard.\n\nThese templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.\n\nUsers’ email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.\n\n### Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n### Request parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `template_name` | Required | String | Name of your email template. |\n| `subject` | Required | String | Email template subject line. |\n| `body` | Required | String | Email template body that may include HTML. |\n| `plaintext_body` | Optional | String | A plaintext version of the email template body. |\n| `preheader` | Optional | String | Email preheader used to generate previews in some clients. |\n| `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |\n| `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the app group. One of `true` or `false` is expected. |\n\n### Possible errors\n\nThe following table lists possible returned errors and their associated troubleshooting steps, if applicable.\n\n| Error | Troubleshooting |\n| --- | --- |\n| Template name is required | Enter a template name. |\n| Tags must be an array | Tags must be formatted as an array of strings, for example `[\"marketing\", \"promotional\", \"transactional\"]`. |\n| All tags must be strings | Make sure your tags are encapsulated in quotes (`\"\"`). |\n| Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |\n| Email must have valid Content Block names | The email contains Content Blocks that don't exist in this environment. |\n| Invalid value for `should_inline_css`. One of `true` or `false` was expected | This parameter only accepts boolean values (true or false). Make sure the value for `should_inline_css` is not encapsulated in quotes (`\"\"`), which causes the value to be sent as a string instead. |"
               },
               "response": [],
               "_postman_id": "5eb1fe0d-2795-474d-aaf2-c4e2977dc94b"
@@ -3319,7 +3319,7 @@
                   "raw": "{\n  \"email_template_id\": \"email_template_id\",\n  \"template_name\": \"Weekly Newsletter\",\n  \"subject\": \"This Week's Styles\",\n  \"body\": \"Check out this week's digital lookbook to inspire your outfits. Take a look at https://www.braze.com/\",\n  \"plaintext_body\": \"This is the updated text within my email body and here is a link to https://www.braze.com/.\",\n  \"preheader\": \"We want you to have the best looks this Summer\",\n  \"tags\": [\"Tag1\", \"Tag2\"]\n}"
                 },
                 "url": "https://rest.iad-01.braze.com/templates/email/update",
-                "description": "Use this endpoint to update email templates on the Braze dashboard. You can access an email template’s email_template_id by navigating to it on the Templates & Media page. The Create email template endpoint will also return an email_template_id reference.\n\n> Use the endpoints below to update email templates on the Braze dashboard. You can access an email template's `email_template_id` by navigating to it on the Templates and Media page. The email template creation API endpoint will also return an `email_template_id` reference.  \n>   \n> All fields other than the `email_template_id` are optional, but you must specify at least one field to update.\n\n### Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n### Request parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `email_template_id` | Required | String | Your [email template's API identifier](https://www.braze.com/docs/api/identifier_types/). |\n| `template_name` | Optional | String | Name of your email template. |\n| `subject` | Optional | String | Email template subject line. |\n| `body` | Optional | String | Email template body that may include HTML. |\n| `plaintext_body` | Optional | String | A plaintext version of the email template body. |\n| `preheader` | Optional | String | Email preheader used to generate previews in some clients. |\n| `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |\n| `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the AppGroup. One of `true` or `false` is expected. |\n\n### Possible errors\n\nThe following table lists possible returned errors and their associated troubleshooting steps, if applicable.\n\n| Error | Troubleshooting |\n| --- | --- |\n| Template name is required |  |\n| Tags must be an array | Tags must be formatted as an array of strings, for example `[\"marketing\", \"promotional\", \"transactional\"]`. |\n| All tags must be strings | Make sure your tags are encapsulated in quotes (`\"\"`). |\n| Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |\n| Invalid value for `should_inline_css`. One of `true` or `false` was expected | This parameter only accepts boolean values (true or false). Make sure the value for `should_inline_css` is not encapsulated in quotes (`\"\"`), which causes the value to be sent as a string instead. |"
+                "description": "Use this endpoint to update email templates on the Braze dashboard.\n\nYou can access an email template’s `email_template_id` by navigating to it on the **Templates & Media** page. The Create email template endpoint will also return an `email_template_id` reference.\n\n### Rate limit\n\nWe apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).\n\n### Request parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `email_template_id` | Required | String | Your [email template's API identifier](https://www.braze.com/docs/api/identifier_types/). |\n| `template_name` | Optional | String | Name of your email template. |\n| `subject` | Optional | String | Email template subject line. |\n| `body` | Optional | String | Email template body that may include HTML. |\n| `plaintext_body` | Optional | String | A plaintext version of the email template body. |\n| `preheader` | Optional | String | Email preheader used to generate previews in some clients. |\n| `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |\n| `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the AppGroup. One of `true` or `false` is expected. |\n\n### Possible errors\n\nThe following table lists possible returned errors and their associated troubleshooting steps, if applicable.\n\n| Error | Troubleshooting |\n| --- | --- |\n| Template name is required |  |\n| Tags must be an array | Tags must be formatted as an array of strings, for example `[\"marketing\", \"promotional\", \"transactional\"]`. |\n| All tags must be strings | Make sure your tags are encapsulated in quotes (`\"\"`). |\n| Some tags could not be found | To add a tag when creating an email template, the tag must already exist in Braze. |\n| Invalid value for `should_inline_css`. One of `true` or `false` was expected | This parameter only accepts boolean values (true or false). Make sure the value for `should_inline_css` is not encapsulated in quotes (`\"\"`), which causes the value to be sent as a string instead. |"
               },
               "response": [],
               "_postman_id": "afb25494-3350-458d-932d-5bf4220049fa"

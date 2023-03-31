@@ -11,7 +11,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   @doc """
 
-  ## Canvas Data Series Analytics
+  ## Export Canvas Data Series Analytics
 
   Use this endpoint to export time series data for a Canvas.
 
@@ -123,7 +123,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   @doc """
 
-  ## Canvas Data Analytics Summary
+  ## Export Canvas Data Analytics Summary
 
   Use this endpoint allows to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results.
 
@@ -228,7 +228,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   @doc """
 
-  ## Canvas Details
+  ## Export Canvas Details
 
   Use this endpoint to export metadata about a Canvas, such as the name, time created, current status, and more.
 
@@ -316,7 +316,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   @doc """
 
-  ## Canvas List
+  ## Export Canvas List
 
   Use this endpoint to export a list of Canvases, including the name, Canvas API identifier and associated tags. Canvases are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
