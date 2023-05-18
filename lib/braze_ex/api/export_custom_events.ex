@@ -13,7 +13,11 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   ## Export Custom Events Analytics
 
-  Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period.
+  > Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period.  
+
+
+
+  Note: If you are using our [updated navigation](https://desktop.postman.com/?desktopVersion=10.13.0&webVersion=10.13.5-ui-230424-1413&userId=9421735&teamId=409325), **API Settings** is now **API Keys** and can be found at **Settings** > **Setup and Testing** > **API Keys**.
 
   ## Rate limit
 
@@ -52,7 +56,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
     - `:length` (integer()): (Required) Integer  Maximum number of units (days or hours) before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points - can be `day` or `hour`, defaults to `day`.
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the **Developer Console** to limit analytics to a specific app.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Developer Console > API Settings** to limit analytics to a specific app.
     - `:segment_id` (String.t): (Optional) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/). Segment ID indicating the analytics-enabled segment for which event analytics should be returned.
 
   ### Returns
@@ -88,7 +92,8 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   ## Export Custom Events List
 
-  Use this endpoint to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically.
+  > Use this endpoint to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically. 
+
 
   ## Rate limit
 
@@ -102,9 +107,9 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   {
     "message": (required, string) the status of the export, returns 'success' when completed without errors,
     "events" : [
-        "Event A",
-        "Event B",
-        "Event C",
+        "Event A", (string) the event name,
+        "Event B", (string) the event name,
+        "Event C", (string) the event name,
         ...
     ]
   }

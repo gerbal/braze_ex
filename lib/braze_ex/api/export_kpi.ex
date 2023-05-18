@@ -143,7 +143,11 @@ defmodule BrazeEx.Api.ExportKPI do
 
   ## Export Daily New Users by Date
 
-  Use this endpoint to retrieve a daily series of the total number of new users on each date.
+  > Use this endpoint to retrieve a daily series of the total number of new users on each date.  
+
+
+
+  Note: If you are using our [updated navigation](https://www.braze.com/docs/navigation), **API Settings** is now **API Keys** and can be found at **Settings** > **Setup and Testing** > **API Keys**.
 
   ## Rate limit
 
@@ -158,8 +162,8 @@ defmodule BrazeEx.Api.ExportKPI do
     "message": (required, string) the status of the export, returns 'success' when completed without errors,
     "data" : [
         {
-            "time" : (string) date as ISO 8601 date,
-            "new_users" : (int)
+            "time" : (string) the date as ISO 8601 date,
+            "new_users" : (int) the number of daily new users
         },
         ...
     ]
@@ -176,7 +180,7 @@ defmodule BrazeEx.Api.ExportKPI do
     - `:authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the **Developer Console**. if excluded, results for all apps in app group will be returned.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Developer Console > API Settings**. If excluded, results for all apps in workspace will be returned.
 
   ### Returns
 
