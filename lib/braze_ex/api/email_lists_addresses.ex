@@ -66,7 +66,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Blocklist Email Addresses
 
-  Use this endpoint to unsubscribe a user from email and mark them as hard bounced.
+  > Use this endpoint to unsubscribe a user from email and mark them as hard bounced. 
+
 
   ## Rate limit
 
@@ -116,7 +117,10 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Remove Hard Bounced Emails
 
-  Use this endpoint to remove email addresses from your Braze bounce list. We will also remove them from the bounce list maintained by your email provider.
+  > Use this endpoint to remove email addresses from your Braze bounce list. 
+
+
+  We will also remove them from the bounce list maintained by your email provider.
 
   ## Rate limit
 
@@ -166,15 +170,24 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Query Hard Bounced Emails
 
-  Use this endpoint to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame.
+  > Use this endpoint to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame. 
 
-  > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. If you provide all three, `start_date`, `end_date`, and an `email`, we prioritize the emails given and disregard the date range.
+
+  **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. If you provide all three, `start_date`, `end_date`, and an `email`, we prioritize the emails given and disregard the date range.
 
   If your date range has more than `limit` number of hard bounces, you will need to make multiple API calls, each time increasing the `offset` until a call returns either fewer than `limit` or zero results.
 
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Example request
+
+  ```
+  curl --location --request GET 'https://rest.iad-01.braze.com/email/hard_bounces?start_date=2019-01-01&end_date=2019-02-01&limit=100&offset=1&email=example@braze.com' \
+  --header 'Authorization: Bearer YOUR-API-KEY-HERE'
+
+  ```
 
   ## Response
 
@@ -246,7 +259,10 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Remove Email Addresses from Spam List
 
-  Use this endpoint to remove email addresses from your Braze spam list. We will also remove them from the spam list maintained by your email provider.
+  > Use this endpoint to remove email addresses from your Braze spam list. 
+
+
+  We will also remove them from the spam list maintained by your email provider.
 
   ## Rate limit
 
@@ -296,7 +312,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Change Email Subscription Status
 
-  Use this endpoint to set the email subscription state for your users. Users can be `opted_in`, `unsubscribed`, or `subscribed` (not specifically opted in or out).
+  > Use this endpoint to set the email subscription state for your users. Users can be `opted_in`, `unsubscribed`, or `subscribed` (not specifically opted in or out). 
+
 
   You can set the email subscription state for an email address that is not yet associated with any of your users within Braze. When that email address is subsequently associated with a user, the email subscription state that you uploaded will be automatically set.
 
@@ -348,15 +365,27 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Query List of Unsubscribed Email Addresses
 
-  Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`. You can use this endpoint to set up a bi-directional sync between Braze and other email systems or your own database.
+  > Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`.  
 
-  > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`.
+
+
+  You can use this endpoint to set up a bi-directional sync between Braze and other email systems or your own database.
+
+  **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`.
 
   If your date range has more than `limit` number of unsubscribes, you will need to make multiple API calls, each time increasing the `offset` until a call returns either fewer than `limit` or zero results.
 
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+
+  ## Example request
+
+  ```
+  curl --location --request GET 'https://rest.iad-01.braze.com/email/unsubscribes?start_date=2020-01-01&end_date=2020-02-01&limit=1&offset=1&sort_direction=desc&email=example@braze.com' \
+  --header 'Authorization: Bearer YOUR-API-KEY-HERE'
+
+  ```
 
   ## Response
 

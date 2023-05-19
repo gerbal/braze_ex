@@ -13,7 +13,11 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
   ## Export App Sessions by Time
 
-  Use this endpoint to retrieve a series of the number of sessions for your app over a designated time period.
+  > Use this endpoint to retrieve a series of the number of sessions for your app over a designated time period.  
+
+
+
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `segment_id` can be found at **Developer Console > API Settings**.
 
   ## Rate limit
 
@@ -37,6 +41,8 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
   ```
 
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
   ### Parameters
 
   - `connection` (BrazeEx.Connection): Connection to server
@@ -45,8 +51,8 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series - must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points. Can be `day` or `hour`, defaults to `day`. 
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the **Developer Console** to limit analytics to a specific app.
-    - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/).  The `segment_id` for a given segment can be found in your **Developer Console** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/get_segment/).
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the **Settings > Setup and Testing > API Keys** to limit analytics to a specific app.
+    - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/). Segment ID indicating the analytics-enabled segment for which sessions should be returned.
 
   ### Returns
 

@@ -18,7 +18,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   Data returned includes how many messages were sent, opened, clicked, or converted by messaging channel.
 
-  Note: If you are using our [updated navigation](https://www.braze.com/docs/navigation), **API Settings** is now **API Keys** and can be found at **Settings** > **Setup and Testing** > **API Keys**.
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `campaign_id` can be found at **Developer Console > API Settings**.
 
   ## Rate limit
 
@@ -199,7 +199,7 @@ defmodule BrazeEx.Api.ExportCampaign do
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:authorization` (String.t): 
-    - `:campaign_id` (String.t): (Required) String  See [campaign API identifier](https://www.braze.com/docs/api/identifier_types/).  The `campaign_id` for API campaigns can be found at **Developer Console** > **API Settings** and the **Campaign Details** page within your dashboard, or you can use the [List campaigns endpoint](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaigns/).
+    - `:campaign_id` (String.t): (Required) String  See [campaign API identifier](https://www.braze.com/docs/api/identifier_types/).  The `campaign_id` for API campaigns can be found at **Settings > Setup and Testing > API Keys** and the **Campaign Details** page within your dashboard, or you can use the [List campaigns endpoint](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaigns/).
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
 
@@ -233,13 +233,12 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   ## Export Campaign Details
 
-  > Use this endpoint to retrieve relevant information on a specified campaign, which can be identified by the `campaign_id`.  
-
+  > Use this endpoint to retrieve relevant information on a specified campaign, which can be identified by the `campaign_id`. 
 
 
   If you want to retrieve Canvas data, refer to the [Canvas Details](https://www.braze.com/docs/api/endpoints/export/canvas/get_canvas_details/) endpoint.
 
-  Note: If you are using our [updated navigation](https://www.braze.com/docs/navigation), **API Settings** is now **API Keys** and can be found at **Settings** > **Setup and Testing** > **API Keys**.
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `campaign_id` can be found at **Developer Console** > **API Settings**
 
   ## Rate limit
 
@@ -466,7 +465,7 @@ defmodule BrazeEx.Api.ExportCampaign do
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:authorization` (String.t): 
-    - `:campaign_id` (String.t): (Required) String  See [campaign API identifier](https://www.braze.com/docs/api/identifier_types/).  The `campaign_id` for API campaigns can be found on the **Developer Console** and the campaign details page within your dashboard, or you can use the [Campaign List Endpoint](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaign_analytics/#campaign-list-endpoint).
+    - `:campaign_id` (String.t): (Required) String  See [campaign API identifier](https://www.braze.com/docs/api/identifier_types/).  The `campaign_id` for API campaigns can be found on the **Settings > Setup and Testing > API Keys** and the campaign details page within your dashboard, or you can use the [Campaign List Endpoint](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaign_analytics/#campaign-list-endpoint).
 
   ### Returns
 

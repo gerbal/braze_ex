@@ -13,7 +13,11 @@ defmodule BrazeEx.Api.ExportSegment do
 
   ## Export Segment Analytics
 
-  Use this endpoint to retrieve a daily series of the estimated size of a segment over time.
+  > Use this endpoint to retrieve a daily series of the estimated size of a segment over time.  
+
+
+
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `segment_id` can be found at **Developer Console > API Settings**.
 
   ### Rate limit
 
@@ -36,13 +40,14 @@ defmodule BrazeEx.Api.ExportSegment do
   }
 
   ```
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:authorization` (String.t): 
-    - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/).  The `segment_id` for a given segment can be found in your **Developer Console** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/get_segment/).
+    - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/).  The `segment_id` for a given segment can be found in your **Settings > Setup and Testing > API Keys.** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/get_segment/).
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series - must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
 
@@ -76,7 +81,11 @@ defmodule BrazeEx.Api.ExportSegment do
 
   ## Export Segment Details
 
-  Use this endpoint to retrieve relevant information on a segment, which can be identified by the `segment_id`.
+  > Use this endpoint to retrieve relevant information on a segment, which can be identified by the `segment_id`.  
+
+
+
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `segment_id` can be found at **Developer Console > API Settings**.
 
   ## Rate limit
 
@@ -98,13 +107,14 @@ defmodule BrazeEx.Api.ExportSegment do
   }
 
   ```
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:authorization` (String.t): 
-    - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/).  The `segment_id` for a given segment can be found in your **Developer Console** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/get_segment/).
+    - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/).  The `segment_id` for a given segment can be found in your **Settings > Setup and Testing > API Keys** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/get_segment/).
 
   ### Returns
 
@@ -134,7 +144,11 @@ defmodule BrazeEx.Api.ExportSegment do
 
   ## Export Segment List
 
-  Use this endpoint to export a list of segments, each of which will include its name, Segment API identifier, and whether it has analytics tracking enabled. The segments are returned in groups of 100 sorted by time of creation (oldest to newest by default). Archived segments are not included.
+  > Use this endpoint to export a list of segments, each of which will include its name, Segment API identifier, and whether it has analytics tracking enabled.  
+
+
+
+  The segments are returned in groups of 100 sorted by time of creation (oldest to newest by default). Archived segments are not included.
 
   ### Rate limit
 
@@ -159,6 +173,7 @@ defmodule BrazeEx.Api.ExportSegment do
   }
 
   ```
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 

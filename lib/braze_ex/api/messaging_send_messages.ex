@@ -13,7 +13,11 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ## Sending Campaign Messages via API Triggered Delivery
 
-  Use this endpoint to send immediate, ad-hoc messages to designated users via API-triggered delivery. API-triggered delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
+  > Use this endpoint to send immediate, ad-hoc messages to designated users via API-triggered delivery.  
+
+
+
+  API-triggered delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
 
   If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) . Note that to send messages with this endpoint, you must have a [Campaign ID](https://www.braze.com/docs/api/identifier_types/) created when you build an [API-triggered campaign](https://www.braze.com/docs/api/api_campaigns/).
 
@@ -43,7 +47,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   When `send_to_existing_only` is `true`, Braze will only send the message to existing users. When `send_to_existing_only` is `false` and a user with the given `id` does not exist, Braze will create a user with that id and attributes before sending the message.
 
-  For more information on the "broadcast" flag, check out [Broadcast](https://www.braze.com/docs/api/parameters/#broadcast) within our [API Parameters](https://www.braze.com/docs/api/parameters) documentation.
+  > Important: A user’s subscription group status can be updated via the inclusion of a subscription_groups parameter within the attributes object. This is currently in early access. Contact your Braze customer success manager if you’re interested in participating in the early access. More details can be found in the [User attributes object](https://www.braze.com/docs/api/objects_filters/user_attributes_object).
+
 
   ## Response details
 
@@ -95,7 +100,11 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ## Sending Canvas Messages via API Triggered Delivery
 
-  Use this endpoint to send Canvas messages via API-triggered delivery. API-triggered Delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
+  > Use this endpoint to send Canvas messages via API-triggered delivery.  
+
+
+
+  API-triggered Delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
 
   Note that to send messages with this endpoint, you must have a [Canvas ID](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier) created when you build a Canvas.
 
@@ -116,13 +125,14 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   | --- | --- | --- | --- |
   | `canvas_id` | Required | String | See [Canvas identifier](https://www.braze.com/docs/api/identifier_types/). |
   | `canvas_entry_properties` | Optional | Object | See [Canvas entry properties](https://www.braze.com/docs/api/objects_filters/canvas_entry_properties_object/). Personalization key-value pairs that will apply to all users in this request. The Canvas entry properties object has a maximum size limit of 50 KB. |
-  | `broadcast` | Optional | Boolean | See [Broadcast](https://braze.com/docs/api/parameters/#broadcast). This parameter defaults to false (as of August 31, 2017).  <br>  <br>If `recipients` is omitted, `broadcast` must be set to true. However, use caution when setting `broadcast: true`, as unintentionally setting this flag may cause you to send your Canvas to a larger than expected audience. |
+  | `broadcast` | Optional | Boolean | You must set `broadcast` to true when sending a message to an entire segment that a campaign or Canvas targets. This parameter defaults to false (as of August 31, 2017).  <br>  <br>If `broadcast` is set to true, a recipients list cannot be included. However, use caution when setting `broadcast: true`, as unintentionally setting this flag may cause you to send your message to a larger than expected audience. |
   | `audience` | Optional | Connected audience object | See [Connected audience](https://braze.com/docs/api/objects_filters/connected_audience/). |
   | `recipients` | Optional | Array | See [Recipients object](https://www.braze.com/docs/api/objects_filters/recipient_object/). If not provided and `broadcast` is set to true, the message will send to the entire segment targeted by the Canvas.  <br>  <br>The `recipients` array may contain up to 50 objects, with each object containing a single `external_user_id` string and `canvas_entry_properties` object. Either `external_user_id` or user_alias is required for this call. Requests must specify only one.  <br>  <br>When `send_to_existing_only` is true, Braze will only send the message to existing users—however this flag can’t be used with user aliases. When `send_to_existing_only` is `false` and a user with the given `id` does not exist, Braze will create a user with that ID and attributes before sending the message. |
 
   Customers using the API for server-to-server calls may need to whitelist the appropriate API URL if they’re behind a firewall.
 
-  > **Note:** If you include both specific users in your API call and a target segment in the dashboard, the message will send to specifically the user profiles that are in the API call and qualify for the segment filters.
+  > **Note:** If you include both specific users in your API call and a target segment in the dashboard, the message will send to specifically the user profiles that are in the API call and qualify for the segment filters. 
+
 
   ## Response details
 
@@ -174,9 +184,13 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ## Sending Messages Immediately via API Only
 
-  Use this endpoint to send immediate, ad-hoc messages to designated users via the Braze API. Be sure to include Messaging Objects in your body to complete your requests.
+  > Use this endpoint to send immediate, ad-hoc messages to designated users via the Braze API.  
 
-  If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) .
+
+
+  Be sure to include Messaging Objects in your body to complete your requests.
+
+  If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/).
 
   ## Rate limit
 
@@ -245,7 +259,11 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ## Create Send IDs For Message Send Tracking
 
-  Use this endpoint to create send IDs that can be used to send messages and track message performance programatically, without campaign creation for each send. Using the Send Identifier to track and send messages is useful if you are planning to programmatically generate and send content.
+  > Use this endpoint to create send IDs that can be used to send messages and track message performance programatically, without campaign creation for each send.  
+
+
+
+  Using the Send Identifier to track and send messages is useful if you are planning to programmatically generate and send content.
 
   ## Rate limit
 
@@ -262,13 +280,14 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ### Example success response
 
-  ```json
+  ``` json
   Content-Type: application/json
   Authorization: Bearer YOUR-REST-API-KEY
   {
   "message": "success",
   "send_id" : (string) the send identifier
   }
+
   ```
 
   ### Parameters
@@ -309,9 +328,14 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   ## Sending Transactional Email via API Triggered Delivery
 
-  Use this endpoint to send immediate, ad-hoc transactional messages to a designated user. This endpoint is used alongside the creation of a [Transactional Email campaign](https://www.braze.com/docs/api/api_campaigns/transactional_campaigns) and corresponding campaign ID.
+  > Use this endpoint to send immediate, ad-hoc transactional messages to a designated user.  
 
-  > **Important:** Transactional Email is currently available as part of select Braze packages. Reach out to your Braze customer success manager for more details.
+
+
+  This endpoint is used alongside the creation of a [Transactional Email campaign](https://www.braze.com/docs/api/api_campaigns/transactional_campaigns) and corresponding campaign ID.
+
+  > **Important:** Transactional Email is currently available as part of select Braze packages. Reach out to your Braze customer success manager for more details. 
+
 
   Similar to the [Send Triggered Campaign endpoint](https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_triggered_campaigns/), this campaign type allows you to house message content inside of the Braze dashboard while dictating when and to whom a message is sent via your API. Unlike the Send Triggered Campaign endpoint, which accepts an audience or segment to send messages to, a request to this endpoint must specify a single user either by `external_user_id` or `user_alias`, as this campaign type is purpose-built for 1:1 messaging of alerts like order confirmations or password resets.
 
@@ -322,7 +346,7 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   ## Path parameters
 
   | Parameter | Required | Data Type | Description |
-  |---|---|---|---|
+  | --- | --- | --- | --- |
   | `campaign_id` | Required | String | ID of the campaign |
 
   ## Request Parameters
@@ -372,7 +396,9 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   In order to associate the incoming events to a particular instance of send, you can choose to either capture and store the Braze `dispatch_id` returned in the [API response](https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_transactional_message/#example-response), or pass your own identifier to the `external_send_id` field. An example of a value you may choose to pass to that field may be an order ID, where after completing order 1234, an order confirmation message is triggered to the user through Braze, and `external_send_id : 1234` is included in the request. All following event postbacks such as `Sent` and `Delivered` will include `external_send_id : 1234` in the payload allowing you to confirm that user successfully received their order confirmation email.
 
-  To get started using the Transactional HTTP Event Postback, navigate to **Manage Settings** > **Email Settings** > **Transactional Webpush URL** in your Braze dashboard and input your desired URL to receive postbacks.
+  To get started using the Transactional HTTP Event Postback, navigate to **Settings** > **Workspace Settings** > **Email Preferences**. in your Braze dashboard and input your desired URL to receive postbacks.  
+
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), **Email Preferences** can be found at ****Manage Settings** > **Email Settings****.
 
   ### Postback body
 

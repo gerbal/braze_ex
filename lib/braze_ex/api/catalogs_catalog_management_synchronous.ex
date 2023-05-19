@@ -13,11 +13,12 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   ## Delete Catalog
 
-  Use this endpoint to delete a catalog.
+  > Use this endpoint to delete a catalog. 
+
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 5 requests per minute between all synchronous catalog endpoints.
+  This endpoint has a shared rate limit of 5 requests per minute between all synchronous catalog endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -105,13 +106,27 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   @doc """
 
-  ## List Catalogs in App Group
+  ## List Catalogs
 
-  Use this endpoint to return a list of catalogs in an app group.
+  > Use this endpoint to return a list of catalogs in a workspace. 
+
+
+  ## Rate limit
+
+  This endpoint has a shared rate limit of 5 requests per minute between all synchronous catalog endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path and request parameters
 
   There are no path or request parameters for this endpoint.
+
+  ## Example request
+
+  ```
+  curl --location --request GET 'https://rest.iad-03.braze.com/catalogs' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer YOUR-REST-API-KEY'
+
+  ```
 
   ## Response
 
@@ -226,11 +241,12 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   ## Create Catalog
 
-  Use this endpoint to create a catalog.
+  > Use this endpoint to create a catalog. 
+
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 5 requests per minute between all synchronous catalog endpoints.
+  This endpoint has a shared rate limit of 5 requests per minute between all synchronous catalog endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -246,7 +262,7 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   | `description` | Required | String | The description of the catalog that you want to create. |
   | `fields` | Required | Array | An array of objects where the object contains keys `name` and `type`. |
 
-  ## Example Request
+  ## Example request
 
   ```
   curl --location --request POST 'https://rest.iad-03.braze.com/catalogs' \

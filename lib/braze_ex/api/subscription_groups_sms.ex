@@ -13,9 +13,14 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   ## List User's  Subscription Group Status - SMS
 
-  Use this endpoint to get the subscription state of a user in a subscription group. These groups will be available on the **Subscription Group** page. The response from this endpoint will include the external ID and either subscribed, unsubscribed, or unknown for the specific subscription group requested in the API call. This can be used to update the subscription group state in subsequent API calls or to be displayed on a hosted web page.
+  > Use this endpoint to get the subscription state of a user in a subscription group.  
 
-  > \*Either `external_id` or `email` are required. When both are submitted, only the external_id is used for querying and the phone number is applied to that user.
+
+
+  These groups will be available on the **Subscription Group** page. The response from this endpoint will include the external ID and either subscribed, unsubscribed, or unknown for the specific subscription group requested in the API call. This can be used to update the subscription group state in subsequent API calls or to be displayed on a hosted web page.
+
+  > \*Either `external_id` or `phone` are required. When both are submitted, only the external_id is used for querying and the phone number is applied to that user. 
+
 
   ## Rate limit
 
@@ -77,17 +82,19 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   ## Update User's Subscription Group Status - SMS
 
-  Use this endpoint to batch update the subscription state of up to 50 users on the Braze dashboard. You can access a subscription group’s `subscription_group_id` by navigating to the **Subscription Group** page.
+  > Use this endpoint to batch update the subscription state of up to 50 users on the Braze dashboard.  
 
-  > \*Only `external_id` or `phone` is accepted for SMS subscription groups.
-  > 
-  > This property should not be used for updating a user’s profile information. Use the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) property instead.
-  > 
-  > When creating new users via the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) endpoint, you should leave a delay of around 2 minutes before adding users to the relevant Subscription Group to allow Braze time to fully create the user profile.
+
+
+  You can access a subscription group’s `subscription_group_id` by navigating to the **Subscription Group** page.
+
+  Tip: When creating new users via the [/users/track](https://www.braze.com/docs/api/endpoints/user_data/post_user_track/) endpoint, you can set subscription groups within the user attributes object, which allows you to create a user and set the subscription group state in one API call.
+
+  \*Only `external_id` or `phone` is accepted for SMS subscription groups.
 
   ### Rate limit
 
-  For customers who onboarded with Braze on or after January 6, 2022, we apply a rate limit of 5,000 requests per minute shared across the `/subscription/status/set` and `/v2/subscription/status/set` endpoint as documented in [API rate limits](http://localhost:4000/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after January 6, 2022, we apply a rate limit of 5,000 requests per minute shared across the `/subscription/status/set` and `/v2/subscription/status/set` endpoint as documented in [API rate limits](http://localhost:4000/docs/api/api_limits/).
 
   ### Request parameters
 
@@ -100,7 +107,7 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   ### Example successful response
 
-  Response: (status 201)
+  The status code `201` could return the following response body.
 
   ``` json
   {
@@ -108,6 +115,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
   }
 
   ```
+
+  Important: The endpoint only accepts the `email` or `phone` value, not both. If given both, you will receive this response: `{"message":"Either an email address or a phone number should be provided, but not both."}`
 
   ### Parameters
 
@@ -147,10 +156,10 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMS do
 
   ## List User's Subscription Group - SMS
 
-  Use this endpoint to list and get the subscription groups of a certain user.
+  > Use this endpoint to list and get the subscription groups of a certain user. 
 
-  > If there are multiple users (multiple external IDs) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group). 
 
+  If there are multiple users (multiple external IDs) who share the same email address, all users will be returned as a separate user (even if they have the same email address or subscription group).
 
   ## Rate limit
 

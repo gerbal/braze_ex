@@ -13,11 +13,10 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   ## Export Custom Events Analytics
 
-  > Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period.  
+  > Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period. 
 
 
-
-  Note: If you are using our [updated navigation](https://desktop.postman.com/?desktopVersion=10.13.0&webVersion=10.13.5-ui-230424-1413&userId=9421735&teamId=409325), **API Settings** is now **API Keys** and can be found at **Settings** > **Setup and Testing** > **API Keys**.
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `app_id` can be found at**Developer Console** > **API Settings**
 
   ## Rate limit
 
@@ -56,7 +55,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
     - `:length` (integer()): (Required) Integer  Maximum number of units (days or hours) before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points - can be `day` or `hour`, defaults to `day`.
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Developer Console > API Settings** to limit analytics to a specific app.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys** to limit analytics to a specific app.
     - `:segment_id` (String.t): (Optional) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/). Segment ID indicating the analytics-enabled segment for which event analytics should be returned.
 
   ### Returns

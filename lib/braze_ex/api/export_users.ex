@@ -13,9 +13,14 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## Export User Profile by Global Control Group
 
-  Use this endpoint to export all users within a Global Control Group. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
+  > Use this endpoint to export all users within a Global Control Group.  
 
-  > Warning: Individual custom attributes cannot be exported. However, all custom attributes can be exported by including custom_attributes in the fields_to_export array (e.g.,\[‘first_name’, ‘email’, ‘custom_attributes’\]).
+
+
+  User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
+
+  > Warning: Individual custom attributes cannot be exported. However, all custom attributes can be exported by including custom_attributes in the fields_to_export array (e.g.,\[‘first_name’, ‘email’, ‘custom_attributes’\]). 
+
 
   ## Rate limit
 
@@ -35,36 +40,37 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## Fields to export
 
-  The following is a list of valid fields_to_export. Using fields_to_export to minimize the data returned can improve response time of this API endpoint:
+  The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
 
-  - `apps`
-  - `attributed_campaign`
-  - `attributed_source`
-  - `attributed_adgroup`
-  - `attributed_ad`
-  - `braze_id`
-  - `country`
-  - `created_at`
-  - `custom_attributes`
-  - `custom_events`
-  - `devices`
-  - `dob`
-  - `email`
-  - `external_id`
-  - `first_name`
-  - `gender`
-  - `home_city`
-  - `language`
-  - `last_coordinates`
-  - `last_name`
-  - `phone`
-  - `purchases`
-  - `random_bucket`
-  - `time_zone`
-  - `total_revenue`
-  - `uninstalled_at`
-  - `user_aliases`
-    
+  | Field to export | Data type | Description |
+  | --- | --- | --- |
+  | `apps` | Array | Apps this user has logged sessions for, which includes the fields:  <br>  <br>\- `name`: app name  <br>\- `platform`: app platform, such as iOS, Android, or Web  <br>\- `version`: app version number or name  <br>\- `sessions`: total number of sessions for this app  <br>\- `first_used`: date of first session  <br>\- `last_used`: date of last session  <br>  <br>All fields are strings. |
+  | `attributed_campaign` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for a particular ad campaign. |
+  | `attributed_source` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for the platform the ad was on. |
+  | `attributed_adgroup` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for an optional sub-grouping below campaign. |
+  | `attributed_ad` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for an optional sub-grouping below campaign and adgroup. |
+  | `braze_id` | String | Device-specific unique user identifier set by Braze for this user. |
+  | `country` | String | User's country using [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) standard. |
+  | `created_at` | String | Date and time for when the user profile was created, in ISO 8601 format. |
+  | `custom_attributes` | Object | Custom attribute key-value pairs for this user. |
+  | `custom_events` | Array | Custom events attributed to this user in the last 90 days. |
+  | `devices` | Array | Information about the user's device, which could include the following depending on platform:  <br>  <br>\- `model`: Device's model name  <br>\- `os`: Device's operating system  <br>\- `carrier`: Device's service carrier, if available  <br>\- `idfv`: (iOS) Braze's device identifier, the Apple Identifier for Vendor, if exists  <br>\- `idfa`: (iOS) Identifier for Advertising, if exists  <br>\- `device_id`: (Android) Braze's device identifier  <br>\- `google_ad_id`: (Android) Google Play Advertising Identifier, if exists  <br>\- `roku_ad_id`: (Roku) Roku Advertising Identifier  <br>\- `ad_tracking_enabled`: If ad tracking is enabled on the device, can be true or false |
+  | `dob` | String | User's date of birth in the format `YYYY-MM-DD`. |
+  | `email` | String | User's email address. |
+  | `external_id` | String | Unique user identifier for identified users. |
+  | `first_name` | String | User's first name. |
+  | `gender` | String | User's gender. Possible values are:  <br>  <br>\- `M`: male  <br>\- `F`: female  <br>\- `O`: other  <br>\- `N`: not applicable  <br>\- `P`: prefer not to say  <br>\- `nil`: unknown |
+  | `home_city` | String | User's home city. |
+  | `language` | String | User's language in ISO-639-1 standard. |
+  | `last_coordinates` | Array of floats | User's most recent device location, formatted as `[longitude, latitude]`. |
+  | `last_name` | String | User's last name. |
+  | `phone` | String | User's telephone number in E.164 format. |
+  | `purchase`s | Array | Purchases this user has made in the last 90 days. |
+  | `random_bucket` | Integer | User's [random bucket number](https:/www.braze.com/docs/user_guide/data_and_analytics/braze_currents/event_glossary/customer_behavior_events#random-bucket-number-event), used to create uniformly distributed segments of random users. |
+  | `time_zone` | String | User's time zone in the same format as the IANA Time Zone Database. |
+  | `total_revenue` | Float | Total revenue attributed to this user. Total revenue is calculated based on purchases the user made during conversion windows for the campaigns and Canvases they received. |
+  | `uninstalled_at` | Timestamp | Date and time the user uninstalls the app. Omitted if the app has not been uninstalled. |
+  | `user_aliases` | Object | [User aliases object](https:/www.braze.com/docs/api/objects_filters/user_alias_object#user-alias-object-specification) containing the `alias_name` and `alias_label`, if exists. |
 
   ## Response
 
@@ -158,6 +164,83 @@ defmodule BrazeEx.Api.ExportUsers do
   }
 
   ```
+  ### Sample output
+
+  ```json
+  {
+    "created_at" : "2020-07-10 15:00:00.000 UTC",
+    "external_id" : "A8i3mkd99",
+    "user_aliases" : [
+      {
+        "alias_name" : "user_123",
+        "alias_label" : "amplitude_id"
+      }
+    ],
+    "braze_id": "5fbd99bac125ca40511f2cb1",
+    "random_bucket" : 2365,
+    "first_name" : "Jane",
+    "last_name" : "Doe",
+    "email" : "example@braze.com",
+    "dob" : "1980-12-21",
+    "home_city" : "Chicago",
+    "country" : "US",
+    "phone" : "+442071838750",
+    "language" : "en",
+    "time_zone" : "Eastern Time (US & Canada)",
+    "last_coordinates" : [41.84157636433568, -87.83520818508256],
+    "gender" : "F",
+    "total_revenue" : 65,
+    "attributed_campaign" : "braze_test_campaign_072219",
+    "attributed_source" : "braze_test_source_072219",
+    "attributed_adgroup" : "braze_test_adgroup_072219",
+    "attributed_ad" : "braze_test_ad_072219",
+    "custom_attributes": 
+      {
+        "loyaltyId": "37c98b9d-9a7f-4b2f-a125-d873c5152856",
+        "loyaltyPoints": "321",
+        "loyaltyPointsNumber": 107
+      },
+    "custom_events": [
+      {
+          "name": "Loyalty Acknowledgement",
+          "first": "2021-06-28T17:02:43.032Z",
+          "last": "2021-06-28T17:02:43.032Z",
+          "count": 1
+      },
+      ...
+    ],
+    "purchases": [
+      {
+        "name": "item_40834",
+        "first": "2021-09-05T03:45:50.540Z",
+        "last": "2022-06-03T17:30:41.201Z",
+        "count": 10
+      },
+      ...
+    ],
+    "devices": [
+      {
+        "model": "Pixel XL",
+        "os": "Android (Q)",
+        "carrier": null,
+        "device_id": "312ef2c1-83db-4789-967-554545a1bf7a",
+        "ad_tracking_enabled": true
+      },
+      ...
+    ],
+    "apps": [
+      {
+        "name": "MovieCannon",
+        "platform": "Android",
+        "version": "3.29.0",
+        "sessions": 1129,
+        "first_used": "2020-02-02T19:56:19.142Z",
+        "last_used": "2021-11-11T00:25:19.201Z"
+      },
+      ...
+    ],
+  }
+  ```
 
   ### Parameters
 
@@ -197,11 +280,15 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## Export User Profile by Identifier
 
-  Use this endpoint to export data from any user profile by specifying a user identifier. Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
+  > Use this endpoint to export data from any user profile by specifying a user identifier.  
+
+
+
+  Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
 
   ## Rate limit
 
-  We apply a rate limit of 2,500 requests per minute to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after August 16, 2021, we apply a rate limit of 2,500 requests per minute to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -215,47 +302,39 @@ defmodule BrazeEx.Api.ExportUsers do
   | `phone` | Optional | String in [E.164](https://en.wikipedia.org/wiki/E.164) format | Phone number of user. |
   | `fields_to_export` | Optional | Array of strings | Name of user data fields to export. Defaults to all if not provided. |
 
-  ### Fields to export
+  ## Fields to export
 
   The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
 
-  \* `apps`  
-  \* `attributed_campaign`  
-  \* `attributed_source`  
-  \* `attributed_adgroup`  
-  \* `attributed_ad`  
-  \* `braze_id`  
-  \* `campaigns_received`  
-  \* `canvases_received`  
-  \* `cards_clicked`  
-  \* `country`  
-  \* `created_at`  
-  \* `custom_attributes`  
-  \* `custom_events`  
-  \* `devices`  
-  \* `dob`  
-  \* `email`  
-  \* `email_subscribe`  
-  \* `external_id`  
-  \* `first_name`  
-  \* `gender`  
-  \* `home_city`  
-  \* `language`  
-  \* `last_coordinates`  
-  \* `last_name`  
-  \* `phone`  
-  \* `purchases`  
-  \* `push_subscribe`  
-  \* `push_tokens`  
-  \* `random_bucket`  
-  \* `time_zone`  
-  \* `total_revenue`  
-  \* `uninstalled_at`  
-  \* `user_aliases`
-
-  Be aware that the `/users/export/ids` endpoint will pull together the entire user profile for this user, including data such as all campaigns and Canvases received, all custom events performed, all purchases made, and all custom attributes. As a result, this endpoint is slower than other REST API endpoints.
-
-  Depending on the data requested, this API endpoint may not be sufficient to meet your needs due to the 2,500 requests per minute rate limit. If you anticipate using this endpoint regularly to export users, instead consider exporting users by segment, which is asynchronous and more optimized for larger data pulls.
+  | Field to export | Data type | Description |
+  |---|---|---|
+  | `apps` | Array | Apps this user has logged sessions for, which includes the fields:<br><br>- `name`: app name<br>- `platform`: app platform, such as iOS, Android, or Web<br>- `version`: app version number or name <br>- `sessions`: total number of sessions for this app<br>- `first_used`: date of first session<br>- `last_used`: date of last session<br><br>All fields are strings. |
+  | `attributed_campaign` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for a particular ad campaign. |
+  | `attributed_source` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for the platform the ad was on. |
+  | `attributed_adgroup` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for an optional sub-grouping below campaign. |
+  | `attributed_ad` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for an optional sub-grouping below campaign and adgroup. |
+  | `braze_id` | String | Device-specific unique user identifier set by Braze for this user. |
+  | `country` | String | User's country using [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) standard. |
+  | `created_at` | String | Date and time for when the user profile was created, in ISO 8601 format. |
+  | `custom_attributes` | Object | Custom attribute key-value pairs for this user. |
+  | `custom_events` | Array | Custom events attributed to this user in the last 90 days. |
+  | `devices` | Array | Information about the user's device, which could include the following depending on platform:<br><br>- `model`: Device's model name<br>- `os`: Device's operating system<br>- `carrier`: Device's service carrier, if available<br>- `idfv`: (iOS) Braze's device identifier, the Apple Identifier for Vendor, if exists<br>- `idfa`: (iOS) Identifier for Advertising, if exists<br>- `device_id`: (Android) Braze's device identifier<br>- `google_ad_id`: (Android) Google Play Advertising Identifier, if exists<br>- `roku_ad_id`: (Roku) Roku Advertising Identifier<br>- `ad_tracking_enabled`: If ad tracking is enabled on the device, can be true or false |
+  | `dob` | String | User's date of birth in the format `YYYY-MM-DD`. |
+  | `email` | String | User's email address. |
+  | `external_id` | String | Unique user identifier for identified users. |
+  | `first_name` | String | User's first name. |
+  | `gender` | String | User's gender. Possible values are:<br><br>- `M`: male<br>- `F`: female<br>- `O`: other<br>- `N`: not applicable<br>- `P`: prefer not to say<br>- `nil`: unknown |
+  | `home_city` | String | User's home city. |
+  | `language` | String | User's language in ISO-639-1 standard. |
+  | `last_coordinates` | Array of floats | User's most recent device location, formatted as `[longitude, latitude]`. |
+  | `last_name` | String | User's last name. |
+  | `phone` | String | User's telephone number in E.164 format. |
+  | `purchase`s | Array | Purchases this user has made in the last 90 days. |
+  | `random_bucket` | Integer | User's [random bucket number](https:/www.braze.com/docs/user_guide/data_and_analytics/braze_currents/event_glossary/customer_behavior_events#random-bucket-number-event), used to create uniformly distributed segments of random users. |
+  | `time_zone` | String | User's time zone in the same format as the IANA Time Zone Database. |
+  | `total_revenue` | Float | Total revenue attributed to this user. Total revenue is calculated based on purchases the user made during conversion windows for the campaigns and Canvases they received. |
+  | `uninstalled_at` | Timestamp | Date and time the user uninstalls the app. Omitted if the app has not been uninstalled. |
+  | `user_aliases` | Object | [User aliases object](https:/www.braze.com/docs/api/objects_filters/user_alias_object#user-alias-object-specification) containing the `alias_name` and `alias_label`, if exists. |
 
   ### Response
 
@@ -412,6 +491,143 @@ defmodule BrazeEx.Api.ExportUsers do
   }
 
   ```
+  #### Sample output
+  ``` json
+  {
+    "created_at" : "2020-07-10 15:00:00.000 UTC",
+    "external_id" : "A8i3mkd99",
+    "user_aliases" : [
+      {
+        "alias_name" : "user_123",
+        "alias_label" : "amplitude_id"
+      }
+    ],
+    "braze_id": "5fbd99bac125ca40511f2cb1",
+    "random_bucket" : 2365,
+    "first_name" : "Jane",
+    "last_name" : "Doe",
+    "email" : "example@braze.com",
+    "dob" : "1980-12-21",
+    "home_city" : "Chicago",
+    "country" : "US",
+    "phone" : "+442071838750",
+    "language" : "en",
+    "time_zone" : "Eastern Time (US & Canada)",
+    "last_coordinates" : [41.84157636433568, -87.83520818508256],
+    "gender" : "F",
+    "total_revenue" : 65,
+    "attributed_campaign" : "braze_test_campaign_072219",
+    "attributed_source" : "braze_test_source_072219",
+    "attributed_adgroup" : "braze_test_adgroup_072219",
+    "attributed_ad" : "braze_test_ad_072219",
+    "push_subscribe" : "opted_in", 
+    "push_opted_in_at": "2020-01-26T22:45:53.953Z",
+    "email_subscribe" : "subscribed",
+    "custom_attributes": 
+    {
+      "loyaltyId": "37c98b9d-9a7f-4b2f-a125-d873c5152856",
+      "loyaltyPoints": "321",
+       "loyaltyPointsNumber": 107
+    },
+    "custom_events": [
+      {
+        "name": "Loyalty Acknowledgement",
+        "first": "2021-06-28T17:02:43.032Z",
+        "last": "2021-06-28T17:02:43.032Z",
+        "count": 1
+      },
+      ...
+    ],
+    "purchases": [
+      {
+        "name": "item_40834",
+        "first": "2021-09-05T03:45:50.540Z",
+        "last": "2022-06-03T17:30:41.201Z",
+        "count": 10
+      },
+      ...
+    ],
+    "devices": [
+      {
+        "model": "Pixel XL",
+        "os": "Android (Q)",
+        "carrier": null,
+        "device_id": "312ef2c1-83db-4789-967-554545a1bf7a",
+        "ad_tracking_enabled": true
+      },
+      ...
+    ],
+    "push_tokens": [
+      {
+        "app": "MovieCanon",
+        "platform": "Android",
+        "token": "12345abcd",
+        "device_id": "312ef2c1-83db-4789-967-554545a1bf7a",
+        "notifications_enabled": true
+      },
+      ...
+    ],
+    "apps": [
+      {
+        "name": "MovieCannon",
+        "platform": "Android",
+        "version": "3.29.0",
+        "sessions": 1129,
+        "first_used": "2020-02-02T19:56:19.142Z",
+        "last_used": "2021-11-11T00:25:19.201Z"
+      },
+      ...
+    ],
+    "campaigns_received": [
+      {
+        "name": "Email Unsubscribe",
+        "api_campaign_id": "d72fdc84-ddda-44f1-a0d5-0e79f47ef942",
+        "last_received": "2022-06-02T03:07:38.105Z",
+        "engaged": 
+        {
+           "opened_email": true
+        },
+        "converted": true,
+        "multiple_converted": 
+        {
+          "Primary Conversion Event - A": true
+        },
+        "in_control": false,
+        "variation_name": "Variant 1",
+        "variation_api_id": "1bddc73a-a134-4784-9134-5b5574a9e0b8"
+      },
+      ...
+    ],
+    "canvases_received": [
+      {
+        "name": "Non Global  Holdout Group 4/21/21",
+        "api_canvas_id": "46972a9d-dc81-473f-aa03-e3473b4ed781",
+        "last_received_message": "2021-07-07T20:46:24.136Z",
+        "last_entered": "2021-07-07T20:45:24.000+00:00",
+        "variation_name": "Variant 1",
+        "in_control": false,
+        "last_entered_control_at": null,
+        "last_exited": "2021-07-07T20:46:24.136Z",
+        "steps_received": [
+          {
+            "name": "Step",
+            "api_canvas_step_id": "43d1a349-c3c8-4be1-9fbe-ce708e4d1c39",
+            "last_received": "2021-07-07T20:46:24.136Z"
+          },
+          ...
+        ]
+      }
+      ...
+    ],    
+    "cards_clicked" : [
+      {
+        "name" : "Loyalty Promo"
+      },
+      ...
+    ]
+  }
+  ```
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
@@ -451,7 +667,10 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## Export User Profile by Segment
 
-  Use this endpoint to export all the users within a segment. User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
+  > Use this endpoint to export all the users within a segment. 
+
+
+  User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
 
   Data is exported to an automatically generated URL, or to an S3 bucket if this integration is already set up.
 
@@ -459,12 +678,14 @@ defmodule BrazeEx.Api.ExportUsers do
 
   Note that a company may run at most one export per segment using this endpoint at a given time. Wait for your export to complete before retrying.
 
-  > Beginning December 2021, the following changed for this API:
-  > 
-  > 1\. The fields_to_export field in this API request is required. The option to default to all fields has been removed.  
-  > 2\. The fields for custom_events, purchases, campaigns_received, and canvases_received only contain data from the last 90 days.
+  > Beginning December 2021, the following changed for this API: 
 
-  > Warning: Individual custom attributes cannot be exported. However, all custom attributes can be exported by including `custom_attributes` in the `fields_to_export` array (e.g., \[‘first_name’, ‘email’, ‘custom_attributes’\]).
+  > 1\. The fields_to_export field in this API request is required. The option to default to all fields has been removed.  
+  2\. The fields for custom_events, purchases, campaigns_received, and canvases_received only contain data from the last 90 days.  
+
+
+
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `segment_id` can be found at **Developer Console > API Settings**.
 
   ## Rate limit
 
@@ -478,7 +699,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
-  | `segment_id` | Required | String | Identifier for the segment to be exported. See [segment identifier](https://www.braze.com/docs/api/identifier_types/).  <br>  <br>The segment_id for a given segment can be found in your **Developer Console** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/segments/get_segment/). |
+  | `segment_id` | Required | String | Identifier for the segment to be exported. See [segment identifier](https://www.braze.com/docs/api/identifier_types/).  <br>  <br>The segment_id for a given segment can be found in your **Settings > Setup and Testing > API Keys** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/segments/get_segment/). |
   | `callback_endpoint` | Optional | String | Endpoint to post a download URL to when the export is available. |
   | `fields_to_export` | Required\* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>\*Beginning April 2021, new accounts must specify specific fields to export. |
   | `output_format` | Optional | String | When using your own S3 bucket, allows you to specify file format as `zip` or `gzip`. Defaults to ZIP file format. |
@@ -487,40 +708,35 @@ defmodule BrazeEx.Api.ExportUsers do
 
   The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
 
-  - `apps`
-  - `attributed_campaign`
-  - `attributed_source`
-  - `attributed_adgroup`
-  - `attributed_ad`
-  - `braze_id`
-  - `campaigns_received`
-  - `canvases_received`
-  - `cards_clicked`
-  - `country`
-  - `created_at`
-  - `custom_attributes`
-  - `custom_events`
-  - `devices`
-  - `dob`
-  - `email`
-  - `email_subscribe`
-  - `external_id`
-  - `first_name`
-  - `gender`
-  - `home_city`
-  - `language`
-  - `last_coordinates`
-  - `last_name`
-  - `phone`
-  - `purchases`
-  - `push_subscribe`
-  - `push_tokens`
-  - `random_bucket`
-  - `time_zone`
-  - `total_revenue`
-  - `uninstalled_at`
-  - `user_aliases`
-    
+  | Field to export | Data type | Description |
+  | --- | --- | --- |
+  | `apps` | Array | Apps this user has logged sessions for, which includes the fields:  <br>  <br>\- `name`: app name  <br>\- `platform`: app platform, such as iOS, Android, or Web  <br>\- `version`: app version number or name  <br>\- `sessions`: total number of sessions for this app  <br>\- `first_used`: date of first session  <br>\- `last_used`: date of last session  <br>  <br>All fields are strings. |
+  | `attributed_campaign` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for a particular ad campaign. |
+  | `attributed_source` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for the platform the ad was on. |
+  | `attributed_adgroup` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for an optional sub-grouping below campaign. |
+  | `attributed_ad` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for an optional sub-grouping below campaign and adgroup. |
+  | `braze_id` | String | Device-specific unique user identifier set by Braze for this user. |
+  | `country` | String | User's country using [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) standard. |
+  | `created_at` | String | Date and time for when the user profile was created, in ISO 8601 format. |
+  | `custom_attributes` | Object | Custom attribute key-value pairs for this user. |
+  | `custom_events` | Array | Custom events attributed to this user in the last 90 days. |
+  | `devices` | Array | Information about the user's device, which could include the following depending on platform:  <br>  <br>\- `model`: Device's model name  <br>\- `os`: Device's operating system  <br>\- `carrier`: Device's service carrier, if available  <br>\- `idfv`: (iOS) Braze's device identifier, the Apple Identifier for Vendor, if exists  <br>\- `idfa`: (iOS) Identifier for Advertising, if exists  <br>\- `device_id`: (Android) Braze's device identifier  <br>\- `google_ad_id`: (Android) Google Play Advertising Identifier, if exists  <br>\- `roku_ad_id`: (Roku) Roku Advertising Identifier  <br>\- `ad_tracking_enabled`: If ad tracking is enabled on the device, can be true or false |
+  | `dob` | String | User's date of birth in the format `YYYY-MM-DD`. |
+  | `email` | String | User's email address. |
+  | `external_id` | String | Unique user identifier for identified users. |
+  | `first_name` | String | User's first name. |
+  | `gender` | String | User's gender. Possible values are:  <br>  <br>\- `M`: male  <br>\- `F`: female  <br>\- `O`: other  <br>\- `N`: not applicable  <br>\- `P`: prefer not to say  <br>\- `nil`: unknown |
+  | `home_city` | String | User's home city. |
+  | `language` | String | User's language in ISO-639-1 standard. |
+  | `last_coordinates` | Array of floats | User's most recent device location, formatted as `[longitude, latitude]`. |
+  | `last_name` | String | User's last name. |
+  | `phone` | String | User's telephone number in E.164 format. |
+  | `purchase`s | Array | Purchases this user has made in the last 90 days. |
+  | `random_bucket` | Integer | User's [random bucket number](https:/www.braze.com/docs/user_guide/data_and_analytics/braze_currents/event_glossary/customer_behavior_events#random-bucket-number-event), used to create uniformly distributed segments of random users. |
+  | `time_zone` | String | User's time zone in the same format as the IANA Time Zone Database. |
+  | `total_revenue` | Float | Total revenue attributed to this user. Total revenue is calculated based on purchases the user made during conversion windows for the campaigns and Canvases they received. |
+  | `uninstalled_at` | Timestamp | Date and time the user uninstalls the app. Omitted if the app has not been uninstalled. |
+  | `user_aliases` | Object | [User aliases object](https:/www.braze.com/docs/api/objects_filters/user_alias_object#user-alias-object-specification) containing the `alias_name` and `alias_label`, if exists. |
 
   ### Important reminders
 
@@ -684,6 +900,147 @@ defmodule BrazeEx.Api.ExportUsers do
   }
 
   ```
+
+  Sample output
+
+  ``` json
+  {
+    "created_at" : "2020-07-10 15:00:00.000 UTC",
+    "external_id" : "A8i3mkd99",
+    "user_aliases" : [
+      {
+        "alias_name" : "user_123",
+        "alias_label" : "amplitude_id"
+      }
+    ],
+    "braze_id": "5fbd99bac125ca40511f2cb1",
+    "random_bucket" : 2365,
+    "first_name" : "Jane",
+    "last_name" : "Doe",
+    "email" : "example@braze.com",
+    "dob" : "1980-12-21",
+    "home_city" : "Chicago",
+    "country" : "US",
+    "phone" : "+442071838750",
+    "language" : "en",
+    "time_zone" : "Eastern Time (US & Canada)",
+    "last_coordinates" : [41.84157636433568, -87.83520818508256],
+    "gender" : "F",
+    "total_revenue" : 65,
+    "attributed_campaign" : "braze_test_campaign_072219",
+    "attributed_source" : "braze_test_source_072219",
+    "attributed_adgroup" : "braze_test_adgroup_072219",
+    "attributed_ad" : "braze_test_ad_072219",
+    "push_subscribe" : "opted_in",
+    "push_opted_in_at": "2020-01-26T22:45:53.953Z",
+    "email_subscribe" : "subscribed",
+    "custom_attributes":
+    {
+      "loyaltyId": "37c98b9d-9a7f-4b2f-a125-d873c5152856",
+      "loyaltyPoints": "321",
+       "loyaltyPointsNumber": 107
+    },
+    "custom_events": [
+      {
+        "name": "Loyalty Acknowledgement",
+        "first": "2021-06-28T17:02:43.032Z",
+        "last": "2021-06-28T17:02:43.032Z",
+        "count": 1
+      },
+      ...
+    ],
+    "purchases": [
+      {
+        "name": "item_40834",
+        "first": "2021-09-05T03:45:50.540Z",
+        "last": "2022-06-03T17:30:41.201Z",
+        "count": 10
+      },
+      ...
+    ],
+    "devices": [
+      {
+        "model": "Pixel XL",
+        "os": "Android (Q)",
+        "carrier": null,
+        "device_id": "312ef2c1-83db-4789-967-554545a1bf7a",
+        "ad_tracking_enabled": true
+      },
+      ...
+    ],
+    "push_tokens": [
+      {
+        "app": "MovieCanon",
+        "platform": "Android",
+        "token": "12345abcd",
+        "device_id": "312ef2c1-83db-4789-967-554545a1bf7a",
+        "notifications_enabled": true
+      },
+      ...
+    ],
+    "apps": [
+      {
+        "name": "MovieCannon",
+        "platform": "Android",
+        "version": "3.29.0",
+        "sessions": 1129,
+        "first_used": "2020-02-02T19:56:19.142Z",
+        "last_used": "2021-11-11T00:25:19.201Z"
+      },
+      ...
+    ],
+    "campaigns_received": [
+      {
+        "name": "Email Unsubscribe",
+        "api_campaign_id": "d72fdc84-ddda-44f1-a0d5-0e79f47ef942",
+        "last_received": "2022-06-02T03:07:38.105Z",
+        "engaged":
+        {
+           "opened_email": true
+        },
+        "converted": true,
+        "multiple_converted":
+        {
+          "Primary Conversion Event - A": true
+        },
+        "in_control": false,
+        "variation_name": "Variant 1",
+        "variation_api_id": "1bddc73a-a134-4784-9134-5b5574a9e0b8"
+      },
+      ...
+    ],
+    "canvases_received": [
+      {
+        "name": "Non Global  Holdout Group 4/21/21",
+        "api_canvas_id": "46972a9d-dc81-473f-aa03-e3473b4ed781",
+        "last_received_message": "2021-07-07T20:46:24.136Z",
+        "last_entered": "2021-07-07T20:45:24.000+00:00",
+        "variation_name": "Variant 1",
+        "in_control": false,
+        "last_entered_control_at": null,
+        "last_exited": "2021-07-07T20:46:24.136Z",
+        "steps_received": [
+          {
+            "name": "Step",
+            "api_canvas_step_id": "43d1a349-c3c8-4be1-9fbe-ce708e4d1c39",
+            "last_received": "2021-07-07T20:46:24.136Z"
+          },
+          ...
+        ]
+      }
+      ...
+    ],
+    "cards_clicked" : [
+      {
+        "name" : "Loyalty Promo"
+      },
+      ...
+    ]
+  }
+
+  ```
+
+  > Tip: For help with CSV and API exports, visit Export troubleshooting.
 
   ### Parameters
 

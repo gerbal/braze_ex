@@ -13,7 +13,8 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   ## Export Product IDs
 
-  Use this endpoint to return a paginated lists of product IDs.
+  > Use this endpoint to return a paginated lists of product IDs. 
+
 
   ## Rate limit
 
@@ -26,19 +27,13 @@ defmodule BrazeEx.Api.ExportPurchases do
   Authorization: Bearer YOUR-REST-API-KEY
   {
   "products": [
-    "5499334426779",
-    "5499334819995",
-    "5499335442587",
-    "5499335835803",
-    "Calendula Face Mask Peel",
-    "Dior Lip Gloss",
-    "Rice Bowl",
-    "product_name"
+    "product_name" (string), the name of the product
   ],
   "message": "success"
   }
 
   ```
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 

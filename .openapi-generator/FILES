@@ -16,6 +16,7 @@ lib/braze_ex/api/export_purchases.ex
 lib/braze_ex/api/export_segment.ex
 lib/braze_ex/api/export_session_analytics.ex
 lib/braze_ex/api/export_users.ex
+lib/braze_ex/api/messaging_live_activities.ex
 lib/braze_ex/api/messaging_schedule_mesages.ex
 lib/braze_ex/api/messaging_send_messages.ex
 lib/braze_ex/api/scim.ex

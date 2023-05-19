@@ -13,7 +13,11 @@ defmodule BrazeEx.Api.SCIM do
 
   ## Search Existing Dashboard User by Email
 
-  This endpoint allows you to look up an existing dashboard user account by specifying their email in the filter query parameter. Note that when the query parameter is URL encoded it will read like this:
+  > This endpoint allows you to look up an existing dashboard user account by specifying their email in the filter query parameter.  
+
+
+
+  Note that when the query parameter is URL encoded it will read like this:
 
   `/scim/v2/Users?filter=userName eq "user@test.com"`
 
@@ -26,7 +30,7 @@ defmodule BrazeEx.Api.SCIM do
   ## Path parameters
 
   | Parameter | Required | Data Type | Description |
-  |---|---|---|---|
+  | --- | --- | --- | --- |
   | `userName@example.com` | Required | String | The user's email. |
 
   ## Request parameters
@@ -113,7 +117,11 @@ defmodule BrazeEx.Api.SCIM do
 
   ## Remove Dashboard User Account
 
-  This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method. This is similar to deleting a user in the **Manage Users** section of the Braze dashboard. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  > This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
+
+
+
+  This is similar to deleting a user in the **Manage Users** section of the Braze dashboard. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -185,7 +193,11 @@ defmodule BrazeEx.Api.SCIM do
 
   ## Look Up an Existing Dashboard User Account
 
-  This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  > This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
+
+
+
+  For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -194,8 +206,8 @@ defmodule BrazeEx.Api.SCIM do
   ## Path parameters
 
   | Parameter | Required | Data Type | Description |
-  |---|---|---|---|
-  | `id` | Required | String | The user's resource ID. This parameter is returned by the  `POST` `/scim/v2/Users/` or `GET`  `/scim/v2/Users?filter=userName eq "user@test.com"` methods. |
+  | --- | --- | --- | --- |
+  | `id` | Required | String | The user's resource ID. This parameter is returned by the `POST` `/scim/v2/Users/` or `GET` `/scim/v2/Users?filter=userName eq "user@test.com"` methods. |
 
   ## Request parameters
 
@@ -273,7 +285,11 @@ defmodule BrazeEx.Api.SCIM do
 
   ## Update Dashboard User Account
 
-  This endpoint allows you to update an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method. It allows you to update of given and family names, permissions (for setting permissions at the company, app group, and team level) and department. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  > This endpoint allows you to update an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
+
+
+
+  It allows you to update of given and family names, permissions (for setting permissions at the company, app group, and team level) and department. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   For security reasons, `userName` (email address) cannot be updated through this endpoint. If you would like to change the `userName` (email address) for a user, contact [Support](https://www.braze.com/docs/support_contact/).
 
@@ -386,7 +402,11 @@ defmodule BrazeEx.Api.SCIM do
 
   ## Create New Dashboard User Account
 
-  This endpoint allows you to create a new dashboard user account by specifying email, given and family names, permissions (for setting permissions at the company, app group, and team level). For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  > This endpoint allows you to create a new dashboard user account by specifying email, given and family names, permissions (for setting permissions at the company, app group, and team level).  
+
+
+
+  For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -402,10 +422,9 @@ defmodule BrazeEx.Api.SCIM do
   | `department` | Required | String | Valid department string from the [department string documentation]({{site.baseurl}}/scim_api_appendix/#department-strings). |
   | `permissions` | Required | JSON object | Permissions object as described in the [permissions object documentation]({{site.baseurl}}/scim_api_appendix/#permissions-object). |
 
-
   ## Response
 
-  ```json
+  ``` json
   {
     "schemas": ["urn:ietf:params:scim:schemas:core:2.0:User"],
     "id": "dfa245b7-24195aec-887bb3ad-602b3340",
@@ -434,22 +453,23 @@ defmodule BrazeEx.Api.SCIM do
         ]
     }
   }
+
   ```
 
   ### Error states
 
   If a user with this email address already exists in Braze, the endpoint will respond with:
 
-  ```json
+  ``` json
   HTTP/1.1 409 Conflict
   Date: Tue, 10 Sep 2019 02:22:30 GMT
   Content-Type: text/json;charset=UTF-8
-
   {
   "schemas": ["urn:ietf:params:scim:api:messages:2.0:Error"],
   "detail": "User already exists in the database.",
   "status": 409
   }
+
   ```
 
   ### Parameters

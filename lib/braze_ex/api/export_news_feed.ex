@@ -13,7 +13,10 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ## Export News Feed Card Analytics
 
-  Use this endpoint to retrieve a daily series of engagement stats for a card over time.
+  > Use this endpoint to retrieve a daily series of engagement stats for a card over time. 
+
+
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), \`card_id\` can be found at **Developer Console > API Settings**.
 
   ## Rate limit
 
@@ -28,11 +31,11 @@ defmodule BrazeEx.Api.ExportNewsFeed do
     "message": (required, string) the status of the export, returns 'success' when completed without errors,
     "data" : [
         {
-            "time" : (string) point in time - as ISO 8601 extended when unit is "hour" and as ISO 8601 date when unit is "day",
-            "clicks" : (int) ,
-            "impressions" : (int),
-            "unique_clicks" : (int),
-            "unique_impressions" : (int)
+            "time" : (string) the point in time - as ISO 8601 extended when unit is "hour" and as ISO 8601 date when unit is "day",
+            "clicks" : (int) the number of clicks,
+            "impressions" : (int) the number of impressions,
+            "unique_clicks" : (int) the number of unique clicks,
+            "unique_impressions" : (int) the number of unique impressions
         },
         ...
     ]
@@ -40,12 +43,14 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ```
 
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
+
   ### Parameters
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:authorization` (String.t): 
-    - `:card_id` (String.t): (Required) String  See [Card API identifier](https://www.braze.com/docs/api/identifier_types/).  The `card_id` for a given card can be found in the **Developer Console** page and on the card details page within your dashboard, or you can use the [News Feed List Endpoint](https://www.braze.com/docs/api/endpoints/export/news_feed/get_news_feed_cards/).
+    - `:card_id` (String.t): (Required) String  See [Card API identifier](https://www.braze.com/docs/api/identifier_types/).  The `card_id` for a given card can be found in the **Settings > Setup and Testing > API Keys** page and on the card details page within your dashboard, or you can use the [News Feed List Endpoint](https://www.braze.com/docs/api/endpoints/export/news_feed/get_news_feed_cards/).
     - `:length` (integer()): (Required) Integer  Max number of units (days or hours) before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points. Can be `day` or `hour`, defaults to `day`.
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request. 
@@ -81,7 +86,10 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ## Export News Feed Cards Details
 
-  Use this endpoint to retrieve relevant information on a card, which can be identified by the `card_id`.
+  > Use this endpoint to retrieve relevant information on a card, which can be identified by the `card_id`. 
+
+
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `card_id` can be found at **Developer Console > API Settings**.
 
   ## Rate limit
 
@@ -109,13 +117,14 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   }
 
   ```
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
     - `:authorization` (String.t): 
-    - `:card_id` (String.t): (Required) String  See [Card API identifier](https://www.braze.com/docs/api/identifier_types/).  The `card_id` for a given card can be found in the **Developer Console** page and on the card details page within your dashboard, or you can use the [News Feed List Endpoint](https://www.braze.com/docs/api/endpoints/export/news_feed/get_news_feed_cards/).
+    - `:card_id` (String.t): (Required) String  See [Card API identifier](https://www.braze.com/docs/api/identifier_types/).  The `card_id` for a given card can be found in the **Settings > Setup and Testing > API Keys** page and on the card details page within your dashboard, or you can use the [News Feed List Endpoint](https://www.braze.com/docs/api/endpoints/export/news_feed/get_news_feed_cards/).
 
   ### Returns
 
@@ -144,7 +153,11 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ## Export News Feed Cards List
 
-  Use this endpoint to export a list of News Feed cards, each of which will include its name and card API identifier. The cards are returned in groups of 100 sorted by time of creation (oldest to newest by default).
+  > Use this endpoint to export a list of News Feed cards, each of which will include its name and card API identifier.  
+
+
+
+  The cards are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
   ## Rate limit
 
@@ -169,6 +182,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   }
 
   ```
+  > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
 
