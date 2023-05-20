@@ -306,6 +306,10 @@ defmodule BrazeEx.Api.UserData do
 
   ## Merge Users
 
+  Use this endpoint to merge one user into another user.
+
+  Up to 50 merges may be specified per request. This endpoint is asynchronous.
+
   ## Rate limit
 
   For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete`, `/users/alias/new`, `/users/identify`, and `/users/alias/update` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -357,8 +361,7 @@ defmodule BrazeEx.Api.UserData do
 
   Session data will only be merged if the app exists on both user profiles. For example, if our target user doesn't have an app summary for "ABCApp" but our original user does, the target user will have the "ABCApp" app summary on their profile after the merge. Note that message and message engagement history aren't retained after both user profiles are merged.
 
-
-  > The endpoint does not guarantee the sequence of `merge_updates` objects being updated.
+  The endpoint does not guarantee the sequence of `merge_updates` objects being updated.
 
   ## Example request
 
@@ -412,7 +415,7 @@ defmodule BrazeEx.Api.UserData do
 
   ### Example error response
 
-  The status code `400` could return the following response body. Refer to [Troubleshooting](#troubleshooting) for more information about errors you may encounter.
+  The status code `400` could return the following response body. Refer to Troubleshooting (below) for more information about errors you may encounter.
 
   ``` json
   {
@@ -425,12 +428,12 @@ defmodule BrazeEx.Api.UserData do
 
   The following table lists possible error messages that may occur.
 
-  | Error | Troubleshooting |  
-  | --- |  
-  | `'merge_updates' must be an array of objects` | Ensure that `merge_updates` is an array of objects. |  
-  | `a single request may not contain more than 50 merge updates` | You can only specify up to 50 merge updates in a single request. |  
-  | `identifiers must be objects with an 'external_id' property that is a string, or 'user_alias' property that is an object` | Check the identifiers in your request. |  
-  | `identifiers must be objects of the same type` | Ensure that the identifier object types match. |  
+  | Error | Troubleshooting |
+  | --- | --- |
+  | `'merge_updates' must be an array of objects` | Ensure that `merge_updates` is an array of objects. |
+  | `a single request may not contain more than 50 merge updates` | You can only specify up to 50 merge updates in a single request. |
+  | `identifiers must be objects with an 'external_id' property that is a string, or 'user_alias' property that is an object` | Check the identifiers in your request. |
+  | `identifiers must be objects of the same type` | Ensure that the identifier object types match. |
   | `'merge_updates' must only have 'identifier_to_merge' and 'identifier_to_keep'` | Ensure that `merge_updates` only contains the two objects `identifier_to_merge` and `identifier_to_keep`. |
 
   ### Parameters
@@ -472,7 +475,7 @@ defmodule BrazeEx.Api.UserData do
 
   Use this endpoint to record custom events, purchases, and update user profile attributes.
 
-  > **Note:** Braze processes the data passed via API at face value and customers should only pass deltas (changing data) to minimize unnecessary data point consumption. To read more, refer to [Data points](https://www.braze.com/docs/user_guide/onboarding_with_braze/data_points#data-points).
+  **Note:** Braze processes the data passed via API at face value and customers should only pass deltas (changing data) to minimize unnecessary data point consumption. To read more, refer to [Data points](https://www.braze.com/docs/user_guide/onboarding_with_braze/data_points#data-points).
 
   Customers using the API for server-to-server calls may need to whitelist `rest.iad-01.braze.com` if they’re behind a firewall.
 
@@ -484,19 +487,13 @@ defmodule BrazeEx.Api.UserData do
 
   ### Request parameters
 
-  > **Note:** For each of the request components listed in the following table, one of `external_id`, `user_alias`, or `braze_id` is required.
+  For each of the request components listed in the following table, one of `external_id`, `user_alias`, or `braze_id` is required.
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
   | `attributes` | Optional | Array of attributes objects | See [user attributes object](https://www.braze.com/docs/api/objects_filters/user_attributes_object/) |
   | `events` | Optional | Array of event objects | See [events object](https://www.braze.com/docs/api/objects_filters/event_object/) |
   | `purchases` | Optional | Array of purchase objects | See [purchases object](https://www.braze.com/docs/api/objects_filters/purchase_object/) |
-
-  Keep the following nuances in mind when using the `/users/track` endpoint:
-
-  - When creating alias-only users through this endpoint, you must explicitly set the `_update_existing_only` flag to `false`.
-  - Updating the subscription status with this endpoint will both update the user specified by their `external_id` (such as User1) and update the subscription status of any users with the same email as that user (User1).
-    
 
   ## User track responses
 
@@ -548,9 +545,15 @@ defmodule BrazeEx.Api.UserData do
 
   ### Fatal error response codes
 
-  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors & responses]({{site.baseurl}}/api/errors/#fatal-errors).
+  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors & responses](https://www.braze.com/api/errors/#fatal-errors).
 
   If you receive the error “provided external_id is blacklisted and disallowed”, your request may have included a “dummy user”. For more information, refer to [Spam blocking](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/user_archival/#spam-blocking).
+
+  ### Creating an alias-only user profile
+
+  Keep the following nuances in mind when using the `/users/track` endpoint:
+
+  You can use the `/users/track` endpoint to create a new alias-only user by setting the `_update_existing_only` key with a value of `false` in the body of the request. If this value is omitted, the alias-only user profile will not be created. Using an alias-only user guarantees that one profile with that alias will exist. This is especially helpful when building a new integration as it prevents the creation of duplicate user profiles.
 
   ### Importing legacy user data
 
@@ -573,7 +576,7 @@ defmodule BrazeEx.Api.UserData do
 
   ```
 
-  > **Warning:** When the `X-Braze-Bulk` header is present with any value, Braze will consider the request a bulk request. Set the value to `true`. Currently, setting the value to `false` does not disable the header—it will still be treated as if it were true.
+  Warning: When the `X-Braze-Bulk` header is present with any value, Braze will consider the request a bulk request. Set the value to `true`. Currently, setting the value to `false` does not disable the header—it will still be treated as if it were true.
 
   #### Use cases
 
