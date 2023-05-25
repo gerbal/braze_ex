@@ -19,6 +19,7 @@ lib/braze_ex/api/export_users.ex
 lib/braze_ex/api/messaging_live_activities.ex
 lib/braze_ex/api/messaging_schedule_mesages.ex
 lib/braze_ex/api/messaging_send_messages.ex
+lib/braze_ex/api/preference_center.ex
 lib/braze_ex/api/scim.ex
 lib/braze_ex/api/sms.ex
 lib/braze_ex/api/subscription_groups_sms.ex

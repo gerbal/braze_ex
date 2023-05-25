@@ -91,12 +91,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   | Error | Troubleshooting |
   | --- | --- |
   | `catalog-not-found` | Check that the catalog name is valid. |
-  | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
-  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
   | `ids-too-large` | Item IDs can't be more than 250 characters. |
   | `ids-not-unique` | Check that the item IDs are unique in the request. |
   | `ids-not-strings` | Item IDs must be of type string. |
   | `items-missing-ids` | There are items that do not have item IDs. Check that each item has an item ID. |
+  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
+  | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
 
   ### Parameters
 
@@ -224,15 +224,17 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   | Error | Troubleshooting |
   | --- | --- |
   | `catalog-not-found` | Check that the catalog name is valid. |
-  | `item-array-invalid` | `items` must be an array of objects. |
-  | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
-  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
-  | `ids-too-large` | Item IDs can't be more than 250 characters. |
-  | `ids-not-unique` | Item IDs must be unique in the request. |
   | `ids-not-strings` | Item IDs must be of type string. |
-  | `items-missing-ids` | There are items that do not have item IDs. Check that each item has an item ID. |
-  | `items-too-large` | Item values can't exceed 5,000 characters. |
+  | `ids-not-unique` | Item IDs must be unique in the request. |
+  | `ids-too-large` | Item IDs can't be more than 250 characters. |
+  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
   | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
+  | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
+  | `items-missing-ids` | There are items that do not have item IDs. Check that each item has an item ID. |
+  | `item-array-invalid` | `items` must be an array of objects. |
+  | `items-too-large` | Item values can't exceed 5,000 characters. |
+  | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
+  | `too-deep-nesting-in-value-object` | Item objects can't have more than 50 levels of nesting. |
   | `unable-to-coerce-value` | Item types can't be converted. |
 
   ### Parameters
@@ -380,18 +382,18 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   | Error | Troubleshooting |
   | --- | --- |
   | `catalog-not-found` | Check that the catalog name is valid. |
-  | `item-array-invalid` | `items` must be an array of objects. |
-  | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
-  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
-  | `ids-too-large` | Item IDs can't be more than 250 characters. |
-  | `ids-not-unique` | Item IDs must be unique in the request. |
   | `ids-not-strings` | Item IDs must be of type string. |
+  | `ids-not-unique` | Item IDs must be unique in the request. |
+  | `ids-too-large` | Item IDs can't be more than 250 characters. |
+  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
+  | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
+  | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
+  | `item-array-invalid` | `items` must be an array of objects. |
   | `items-missing-ids` | There are items that do not have item IDs. Check that each item has an item ID. |
   | `items-too-large` | Item values can't exceed 5,000 characters. |
-  | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
-  | `unable-to-coerce-value` | Item types can't be converted. |
-  | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
+  | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
   | `too-deep-nesting-in-value-object` | Item objects can't have more than 50 levels of nesting. |
+  | `unable-to-coerce-value` | Item types can't be converted. |
 
   ### Parameters
 
@@ -504,22 +506,19 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | `request_includes_too_many_items` | Your request has too many items. The item limit per request is 50. |
-  | `id_in_body` | Remove any item IDs in the request body. |
+  | `catalog_not_found` | Check that the catalog name is valid. | 
+  | `ids_not_string` | Confirm that each item ID is a string. |
+  | `ids_not_unique` | Check that each item ID is unique. |
   | `ids_too_large` | Character limit for each item ID is 250 characters. |
-  | `invalid_ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
-  | `items_too_large` | Item values can't exceed 5,000 characters. |
-  | `invalid_fields` | Confirm that the fields in the request exist in the catalog. |
-  | `unable_to_coerce_value` | Item types can't be converted. |
-  | `invalid_keys_in_value_object` | Item object keys can't include `.` or `$`. |
-  | `too_deep_nesting_in_value_object` | Item objects can't have more than 50 levels of nesting. |
-  | `already_reached_catalog_item_limit` | Maximum number of catalogs reached. Contact your Braze account manager for more information. |
-  | `already_reached_company_item_limit` | Maximum number of items reached. Contact your Braze account manager for more information. |
-  | `item_already_exists` | The item already exists in the catalog. |
-  | `filtered-set-field-too-long` | The field value is being used in a filtered set that exceeds the character limit for an item. |
-  | `arbitrary_error` | An arbitrary error occurred. Please try again or contact [Support]({{site.baseurl}}/support_contact/). |
   | `item_array_invalid` | `items` must be an array of objects. |
-  | `catalog_not_found` | Check that the catalog name is valid. |
+  | `items_missing_ids` | Confirm that each item has an ID. |
+  | `items_too_large` | Item values can't exceed 5,000 characters. |
+  | `invalid_ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
+  | `invalid_fields` | Confirm that the fields in the request exist in the catalog. |
+  | `invalid_keys_in_value_object` | Item object keys can't include `.` or `$`. |
+  | `too_deep_nesting_in_value_object` | Item objects can't have more than 50 levels of nesting. 
+  | `request_includes_too_many_items` | Your request has too many items. The item limit per request is 50. |
+  | `unable_to_coerce_value` | Item types can't be converted. |
 
   ### Parameters
 

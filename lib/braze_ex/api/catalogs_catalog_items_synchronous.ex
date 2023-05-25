@@ -18,7 +18,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -136,8 +136,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | `invalid-cursor` | Check that your `cursor` is valid. |
   | `catalog-not-found` | Check that the catalog name is valid. |
+  | `invalid-cursor` | Check that your `cursor` is valid. |
 
   ### Parameters
 
@@ -180,7 +180,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -246,9 +246,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   | Error | Troubleshooting |
   | --- | --- |
+  | `arbitrary-error` | An arbitrary error occurred. Please try again or contact [Support](https://www.braze.com/docs/support_contact/). |
   | `catalog-not-found` | Check that the catalog name is valid. |
   | `item-not-found` | Check that the item to be deleted exists in your catalog. |
-  | `arbitrary-error` | An arbitrary error occurred. Please try again or contact [Support]({{site.baseurl}}/support_contact/). |
 
   ### Parameters
 
@@ -422,7 +422,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   ## Rate Limit
 
-  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -499,18 +499,20 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   | Error | Troubleshooting |
   | --- | --- |
+  | `arbitrary-error` | An arbitrary error occurred. Please try again or contact [Support](https://www.braze.com/docs/support_contact/). |
   | `catalog-not-found` | Check that the catalog name is valid. |
+  | `filtered-set-field-too-long` | The field value is being used in a filtered set that exceeds the character limit for an item. |
+  | `id-in-body` | An item ID already exists in the catalog. |
+  | `ids-too-large` | Character limit for each item ID is 250 characters. |
+  | `invalid-ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
+  | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
+  | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
   | `item-not-found` | Check that the item is in the catalog. |
   | `item-array-invalid` | `items` must be an array of objects. |
-  | `request-includes-too-many-items` | You can only edit one catalog item per request. |
-  | `id-in-body` | An item ID already exists in the catalog. |
-  | `invalid-ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
-  | `ids-too-large` | Character limit for each item ID is 250 characters. |
   | `items-too-large` | Character limit for each item is 5,000 characters. |
-  | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
+  | `request-includes-too-many-items` | You can only edit one catalog item per request. |
+  | `too-deep-nesting-in-value-object` | Item objects can't have more than 50 levels of nesting. |
   | `unable-to-coerce-value` | Item types can't be converted. |
-  | `filtered-set-field-too-long` | The field value is being used in a filtered set that exceeds the character limit for an item. |
-  | `arbitrary-error` | An arbitrary error occurred. Please try again or contact [Support]({{site.baseurl}}/support_contact/). |
 
   ### Parameters
 
@@ -561,7 +563,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -641,21 +643,22 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | `catalog-not-found` | Check that the catalog name is valid. |
-  | `item-array-invalid` | `items` must be an array of objects. |
-  | `request-includes-too-many-items` | You can only create one catalog item per request. |
-  | `id-in-body` | Remove any item IDs in the request body. |
-  | `invalid-ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
-  | `ids-too-large` | Character limit for each item ID is 250 characters. |
-  | `items-too-large` | Character limit for each item is 5,000 characters. |
-  | `item-already-exists` | The item already exists in the catalog. |
-  | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
-  | `fields-do-not-match` | Fields must match the fields in the catalog. |
-  | `filtered-set-field-too-long` | The field value is being used in a filtered set that exceeds the character limit for an item. |
   | `already-reached-catalog-item-limit` | Maximum number of catalogs reached. Contact your Braze account manager for more information. |
   | `already-reached-company-item-limit` | Maximum number of catalog items reached. Contact your Braze account manager for more information. |
+  | `arbitrary-error` | An arbitrary error occurred. Please try again or contact [Support](https://www.braze.com/docs/support_contact/). |
+  | `catalog-not-found` | Check that the catalog name is valid. |
+  | `filtered-set-field-too-long` | The field value is being used in a filtered set that exceeds the character limit for an item. |
+  | `id-in-body` | Remove any item IDs in the request body. |
+  | `ids-too-large` | Character limit for each item ID is 250 characters. |
+  | `invalid-ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
+  | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
+  | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
+  | `item-already-exists` | The item already exists in the catalog. |
+  | `item-array-invalid` | `items` must be an array of objects. | 
+  | `items-too-large` | Character limit for each item is 5,000 characters. |
+  | `request-includes-too-many-items` | You can only create one catalog item per request. |
+  | `too-deep-nesting-in-value-object` | Item objects can't have more than 50 levels of nesting. |
   | `unable-to-coerce-value` | Item types can't be converted. |
-  | `arbitrary-error` | An arbitrary error occurred. Please try again or contact [Support]({{site.baseurl}}/support_contact/). |
 
   ### Parameters
 
@@ -718,14 +721,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   | --- | --- | --- | --- |
   | `catalog_name` | Required | String | Name of the catalog. |
   | `item_id` | Required | String | The ID of the catalog item. |
-  | {: .reset-td-br-1 .reset-td-br-2 .reset-td-br-3 .reset-td-br-4} |  |  |  |
 
   ## Request parameters
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
   | `items` | Required | Array | An array that contains item objects. The item objects should contain fields that exist in the catalog except for the `id` field. Only one item object is allowed per request. |
-  | {: .reset-td-br-1 .reset-td-br-2 .reset-td-br-3 .reset-td-br-4} |  |  |  |
 
   ## Example request
 
@@ -793,23 +794,22 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | `request_includes_too_many_items` | Your request has too many items. The item limit per request is 50. |
+  | `already_reached_catalog_item_limit` | Maximum number of catalogs reached. Contact your Braze account manager for more information. |
+  | `already_reached_company_item_limit` | Maximum number of items reached. Contact your Braze account manager for more information. |
+  | `arbitrary_error` | An arbitrary error occurred. Please try again or contact [Support](https://www.braze.com/docs/support_contact/). |
+  | `catalog_not_found` | Check that the catalog name is valid. |
+  | `filtered-set-field-too-long` | The field value is being used in a filtered set that exceeds the character limit for an item. |
   | `id_in_body` | Remove any item IDs in the request body. |
   | `ids_too_large` | Character limit for each item ID is 250 characters. |
   | `invalid_ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
-  | `items_too_large` | Item values can't exceed 5,000 characters. |
   | `invalid_fields` | Confirm that the fields in the request exist in the catalog. |
-  | `unable_to_coerce_value` | Item types can't be converted. |
   | `invalid_keys_in_value_object` | Item object keys can't include `.` or `$`. |
-  | `too_deep_nesting_in_value_object` | Item objects can't have more than 50 levels of nesting. |
-  | `already_reached_catalog_item_limit` | Maximum number of catalogs reached. Contact your Braze account manager for more information. |
-  | `already_reached_company_item_limit` | Maximum number of items reached. Contact your Braze account manager for more information. |
   | `item_already_exists` | The item already exists in the catalog. |
-  | `filtered-set-field-too-long` | The field value is being used in a filtered set that exceeds the character limit for an item. |
-  | `arbitrary_error` | An arbitrary error occurred. Please try again or contact [Support](https://www.braze.com/docs/support_contact/). |
   | `item_array_invalid` | `items` must be an array of objects. |
-  | `catalog_not_found` | Check that the catalog name is valid. |
-  | {: .reset-td-br-1 .reset-td-br-2} |  |
+  | `items_too_large` | Item values can't exceed 5,000 characters. |
+  | `request_includes_too_many_items` | Your request has too many items. The item limit per request is 50. |
+  | `too_deep_nesting_in_value_object` | Item objects can't have more than 50 levels of nesting. |
+  | `unable_to_coerce_value` | Item types can't be converted. |
 
   ### Parameters
 
