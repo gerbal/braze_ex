@@ -16,6 +16,8 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   > Use this endpoint to delete a catalog. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete` permission.
+
   ## Rate limit
 
   This endpoint has a shared rate limit of 5 requests per minute between all synchronous catalog endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -110,6 +112,8 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   > Use this endpoint to return a list of catalogs in a workspace. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.get` permission.
 
   ## Rate limit
 
@@ -243,6 +247,8 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   > Use this endpoint to create a catalog. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.create` permission.
 
   ## Rate limit
 
@@ -393,7 +399,7 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   | --- | --- |
   | `catalog-array-invalid` | `catalogs` must be an array of objects. |
   | `catalog-name-already-exists` | Catalog with that name already exists. |
-  | `catalog-name-too-large`  | Character limit for a catalog name is 250. |
+  | `catalog-name-too-large` | Character limit for a catalog name is 250. |
   | `description-too-long` | Character limit for description is 250. |
   | `field-names-not-unique` | The same field name is referenced twice. |
   | `field-names-too-large` | Character limit for a field name is 250. |
