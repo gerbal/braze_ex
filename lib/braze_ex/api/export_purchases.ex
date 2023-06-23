@@ -16,6 +16,8 @@ defmodule BrazeEx.Api.ExportPurchases do
   > Use this endpoint to return a paginated lists of product IDs. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `purchases.product_list` permission.
+
   ## Rate limit
 
   For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 1,000 requests per hour to this endpoint. This rate limit is shared with the `/events/list` endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -33,6 +35,7 @@ defmodule BrazeEx.Api.ExportPurchases do
   }
 
   ```
+
   > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
@@ -72,6 +75,8 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   > Use this endpoint to return the total number of purchases in your app over a time range. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `purchases.quantity_series` permission.
 
   ## Rate limit
 
@@ -150,6 +155,8 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   > Use this endpoint to return the total money spent in your app over a time range. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `purchases.revenue_series` permission.
 
   ## Rate limit
 

@@ -13,11 +13,15 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   ## Remove External ID
 
-  Use this endpoint to remove your users' old deprecated external IDs.
+  > Use this endpoint to remove your users' old deprecated external IDs. 
+
+
+  To use this endpoint, you’ll need to generate an API key with the `users.external_ids.remove` permission.
 
   You can send up to 50 external IDs per request. You will need to create a new [API key](https://www.braze.com/docs/api/api_key/) with permissions for this endpoint.
 
-  > Warning: This endpoint completely removes the deprecated ID and cannot be undone. Using this endpoint to remove deprecated \`external_ids\` that are still associated with users in your system can permanently prevent you from finding those users' data. 
+  > **Warning:** This endpoint completely removes the deprecated ID and cannot be undone. Using this endpoint to remove deprecated \`external_ids\` that are still associated with users in your system can permanently prevent you from finding those users' data. 
+
 
   ## Rate limit
 
@@ -29,7 +33,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
   | --- | --- | --- | --- |
   | `external_ids` | Required | Array of strings | External identifiers for the users to remove |
 
-  > Important: Only deprecated IDs can be removed; attempting to remove a primary external ID will result in an error.
+  > Important: Only deprecated IDs can be removed; attempting to remove a primary external ID will result in an error. 
 
 
   ## Response
@@ -90,7 +94,10 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   ## Rename External ID
 
-  Use this endpoint to rename your users’ external IDs.
+  > Use this endpoint to rename your users’ external IDs. 
+
+
+  To use this endpoint, you’ll need to generate an API key with the `users.external_ids.rename` permission.
 
   You can send up to 50 rename objects per request. You will need to create a new [API key](https://www.braze.com/docs/api/api_key/) with permissions for this endpoint.
 
@@ -98,7 +105,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   After your old naming schema is no longer in use, we highly recommend removing deprecated external IDs using the [`/users/external_ids/remove` endpoint](https://www.braze.com/docs/api/endpoints/user_data/external_id_migration/post_external_ids_remove).
 
-  > Warning: Make sure to remove deprecated external IDs with the 
+  > **Warning:** Make sure to remove deprecated external IDs with the 
 
 
   ## Rate limit

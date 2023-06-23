@@ -16,6 +16,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to return multiple catalog items and their content. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.get_items` permission.
+
   ## Rate limit
 
   This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -178,6 +180,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to delete an item in your catalog. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_item` permission.
+
   ## Rate limit
 
   This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -294,9 +298,11 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to return a catalog item and its content. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.get_item` permission.
+
   ## Rate limit
 
-  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -419,6 +425,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
   > Use this endpoint to edit an item in your catalog. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.update_item` permission.
 
   ## Rate Limit
 
@@ -561,6 +569,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to create an item in your catalog. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.create_item` permission.
+
   ## Rate limit
 
   This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -654,7 +664,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
   | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
   | `item-already-exists` | The item already exists in the catalog. |
-  | `item-array-invalid` | `items` must be an array of objects. | 
+  | `item-array-invalid` | `items` must be an array of objects. |
   | `items-too-large` | Character limit for each item is 5,000 characters. |
   | `request-includes-too-many-items` | You can only create one catalog item per request. |
   | `too-deep-nesting-in-value-object` | Item objects can't have more than 50 levels of nesting. |
@@ -707,9 +717,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to update an item in your catalog. 
 
 
-  If the `item_id` isn't found, this endpoint will create the item. This endpoint is synchronous.
-
   To use this endpoint, you'll need to generate an API key with the `catalogs.replace_item` permission.
+
+  If the `item_id` isn't found, this endpoint will create the item. This endpoint is synchronous.
 
   ## Rate limit
 

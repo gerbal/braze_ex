@@ -13,14 +13,15 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## Export User Profile by Global Control Group
 
-  > Use this endpoint to export all users within a Global Control Group.  
-
+  > Use this endpoint to export all users within a Global Control Group. 
 
 
   User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
 
   > Warning: Individual custom attributes cannot be exported. However, all custom attributes can be exported by including custom_attributes in the fields_to_export array (e.g.,\[‘first_name’, ‘email’, ‘custom_attributes’\]). 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `users.export.global_control_group` permission.
 
   ## Rate limit
 
@@ -164,9 +165,10 @@ defmodule BrazeEx.Api.ExportUsers do
   }
 
   ```
+
   ### Sample output
 
-  ```json
+  ``` json
   {
     "created_at" : "2020-07-10 15:00:00.000 UTC",
     "external_id" : "A8i3mkd99",
@@ -240,6 +242,7 @@ defmodule BrazeEx.Api.ExportUsers do
       ...
     ],
   }
+
   ```
 
   ### Parameters
@@ -280,15 +283,16 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ## Export User Profile by Identifier
 
-  > Use this endpoint to export data from any user profile by specifying a user identifier.  
-
+  > Use this endpoint to export data from any user profile by specifying a user identifier. 
 
 
   Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
 
+  To use this endpoint, you’ll need to generate an API key with the `users.export.ids` permission.
+
   ## Rate limit
 
-  For customers who onboarded with Braze on or after August 16, 2021, we apply a rate limit of 2,500 requests per minute to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after August 16, 2021, we apply a rate limit of 2,500 requests per minute to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -307,8 +311,8 @@ defmodule BrazeEx.Api.ExportUsers do
   The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
 
   | Field to export | Data type | Description |
-  |---|---|---|
-  | `apps` | Array | Apps this user has logged sessions for, which includes the fields:<br><br>- `name`: app name<br>- `platform`: app platform, such as iOS, Android, or Web<br>- `version`: app version number or name <br>- `sessions`: total number of sessions for this app<br>- `first_used`: date of first session<br>- `last_used`: date of last session<br><br>All fields are strings. |
+  | --- | --- | --- |
+  | `apps` | Array | Apps this user has logged sessions for, which includes the fields:  <br>  <br>\- `name`: app name  <br>\- `platform`: app platform, such as iOS, Android, or Web  <br>\- `version`: app version number or name  <br>\- `sessions`: total number of sessions for this app  <br>\- `first_used`: date of first session  <br>\- `last_used`: date of last session  <br>  <br>All fields are strings. |
   | `attributed_campaign` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for a particular ad campaign. |
   | `attributed_source` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for the platform the ad was on. |
   | `attributed_adgroup` | String | Data from [attribution integrations](https:/www.braze.com/docs/partners/message_orchestration/attribution), if set up. Identifier for an optional sub-grouping below campaign. |
@@ -318,12 +322,12 @@ defmodule BrazeEx.Api.ExportUsers do
   | `created_at` | String | Date and time for when the user profile was created, in ISO 8601 format. |
   | `custom_attributes` | Object | Custom attribute key-value pairs for this user. |
   | `custom_events` | Array | Custom events attributed to this user in the last 90 days. |
-  | `devices` | Array | Information about the user's device, which could include the following depending on platform:<br><br>- `model`: Device's model name<br>- `os`: Device's operating system<br>- `carrier`: Device's service carrier, if available<br>- `idfv`: (iOS) Braze's device identifier, the Apple Identifier for Vendor, if exists<br>- `idfa`: (iOS) Identifier for Advertising, if exists<br>- `device_id`: (Android) Braze's device identifier<br>- `google_ad_id`: (Android) Google Play Advertising Identifier, if exists<br>- `roku_ad_id`: (Roku) Roku Advertising Identifier<br>- `ad_tracking_enabled`: If ad tracking is enabled on the device, can be true or false |
+  | `devices` | Array | Information about the user's device, which could include the following depending on platform:  <br>  <br>\- `model`: Device's model name  <br>\- `os`: Device's operating system  <br>\- `carrier`: Device's service carrier, if available  <br>\- `idfv`: (iOS) Braze's device identifier, the Apple Identifier for Vendor, if exists  <br>\- `idfa`: (iOS) Identifier for Advertising, if exists  <br>\- `device_id`: (Android) Braze's device identifier  <br>\- `google_ad_id`: (Android) Google Play Advertising Identifier, if exists  <br>\- `roku_ad_id`: (Roku) Roku Advertising Identifier  <br>\- `ad_tracking_enabled`: If ad tracking is enabled on the device, can be true or false |
   | `dob` | String | User's date of birth in the format `YYYY-MM-DD`. |
   | `email` | String | User's email address. |
   | `external_id` | String | Unique user identifier for identified users. |
   | `first_name` | String | User's first name. |
-  | `gender` | String | User's gender. Possible values are:<br><br>- `M`: male<br>- `F`: female<br>- `O`: other<br>- `N`: not applicable<br>- `P`: prefer not to say<br>- `nil`: unknown |
+  | `gender` | String | User's gender. Possible values are:  <br>  <br>\- `M`: male  <br>\- `F`: female  <br>\- `O`: other  <br>\- `N`: not applicable  <br>\- `P`: prefer not to say  <br>\- `nil`: unknown |
   | `home_city` | String | User's home city. |
   | `language` | String | User's language in ISO-639-1 standard. |
   | `last_coordinates` | Array of floats | User's most recent device location, formatted as `[longitude, latitude]`. |
@@ -491,7 +495,9 @@ defmodule BrazeEx.Api.ExportUsers do
   }
 
   ```
+
   #### Sample output
+
   ``` json
   {
     "created_at" : "2020-07-10 15:00:00.000 UTC",
@@ -626,7 +632,9 @@ defmodule BrazeEx.Api.ExportUsers do
       ...
     ]
   }
+
   ```
+
   > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
@@ -681,11 +689,12 @@ defmodule BrazeEx.Api.ExportUsers do
   > Beginning December 2021, the following changed for this API: 
 
   > 1\. The fields_to_export field in this API request is required. The option to default to all fields has been removed.  
-  2\. The fields for custom_events, purchases, campaigns_received, and canvases_received only contain data from the last 90 days.  
-
+  2\. The fields for custom_events, purchases, campaigns_received, and canvases_received only contain data from the last 90 days. 
 
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `segment_id` can be found at **Developer Console > API Settings**.
+
+  To use this endpoint, you’ll need to generate an API key with the `users.export.segment` permission.
 
   ## Rate limit
 

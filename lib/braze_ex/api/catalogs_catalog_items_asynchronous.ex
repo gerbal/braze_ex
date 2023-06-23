@@ -15,6 +15,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   > Use this endpoint to delete multiple items in your catalog. 
 
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_items` permission.
 
   Each request can support up to 50 items. This endpoint is asynchronous.
 
@@ -134,8 +135,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   ## Edit Multiple Catalog Items
 
-  > Use this endpoint to edit multiple items in your catalog. 
+  > Use this endpoint to delete multiple items in your catalog. 
 
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_items` permission.
 
   Each request can support up to 50 items. This endpoint is asynchronous.
 
@@ -153,27 +155,19 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
-  | `items` | Required | Array | An array that contains item objects. The item objects should contain fields that exist in the catalog. Up to 50 item objects are allowed per request. |
+  | `items` | Required | Array | An array that contains item objects. The item objects should contain an `id` referencing the items Braze should delete. Up to 50 item objects are allowed per request. |
 
   ## Example request
 
   ```
-  curl --location --request PATCH 'https://rest.iad-03.braze.com/catalogs/restaurants/items' \
+  curl --location --request DELETE 'https://rest.iad-03.braze.com/catalogs/restaurants/items' \
   --header 'Content-Type: application/json' \
   --header 'Authorization: Bearer YOUR-REST-API-KEY' \
   --data-raw '{
   "items": [
-    {
-      "id": "restaurant1",
-      "Name": "Restaurant",
-      "Loyalty_Program": false,
-      "Open_Time": "2021-09-03T09:03:19.967+00:00"
-    },
-    {
-      "id": "restaurant3",
-      "City": "San Francisco",
-      "Rating": 2
-    }
+    {"id": "restaurant1"},
+    {"id": "restaurant2"},
+    {"id": "restaurant3"}
   ]
   }'
 
@@ -202,17 +196,13 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   {
   "errors": [
     {
-      "id": "invalid-fields",
-      "message": "Some of the fields given do not exist in the catalog",
-      "parameters": [
-        "id"
-      ],
-      "parameter_values": [
-        "restaurant1"
-      ]
+      "id": "items-missing-ids",
+      "message": "There are 1 item(s) that do not have ids",
+      "parameters": [],
+      "parameter_values": []
     }
   ],
-  "message": "Invalid Request"
+  "message": "Invalid Request",
   }
 
   ```
@@ -224,18 +214,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   | Error | Troubleshooting |
   | --- | --- |
   | `catalog-not-found` | Check that the catalog name is valid. |
-  | `ids-not-strings` | Item IDs must be of type string. |
-  | `ids-not-unique` | Item IDs must be unique in the request. |
   | `ids-too-large` | Item IDs can't be more than 250 characters. |
-  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
-  | `invalid-fields` | Confirm that the fields in the request exist in the catalog. |
-  | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
+  | `ids-not-unique` | Check that the item IDs are unique in the request. |
+  | `ids-not-strings` | Item IDs must be of type string. |
   | `items-missing-ids` | There are items that do not have item IDs. Check that each item has an item ID. |
-  | `item-array-invalid` | `items` must be an array of objects. |
-  | `items-too-large` | Item values can't exceed 5,000 characters. |
+  | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
   | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
-  | `too-deep-nesting-in-value-object` | Item objects can't have more than 50 levels of nesting. |
-  | `unable-to-coerce-value` | Item types can't be converted. |
 
   ### Parameters
 
@@ -278,6 +262,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   > Use this endpoint to create multiple items in your catalog. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.add_items` permission.
 
   Each request can support up to 50 items. This endpoint is asynchronous.
 

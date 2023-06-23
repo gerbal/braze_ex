@@ -16,6 +16,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   > Use this endpoint to create email templates on the Braze dashboard. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `templates.email.create` permission.
+
   These templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.
 
   Users’ email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.
@@ -89,7 +91,10 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   > Use this endpoint to get information on your email templates. 
 
-  > **Important:** Templates built using the Drag & Drop Editor are not accepted. 
+
+  To use this endpoint, you’ll need to generate an API key with the `templates.email.info` permission.
+
+  > **Important:** Templates built using the drag-and-drop editor for email are not accepted. 
 
 
   ### Rate limit
@@ -157,6 +162,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   > Use this endpoint to get a list of available templates in your Braze account. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `templates.email.list` permission.
+
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -223,9 +230,11 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   > Use this endpoint to update email templates on the Braze dashboard. 
 
 
-  You can access an email template’s `email_template_id` by navigating to it on the **Templates & Media** page. The [Create email template endpoint](https://www.braze.com/docs/api/endpoints/templates/email_templates/post_create_email_template/) will also return an `email_template_id` reference.
+  To use this endpoint, you’ll need to generate an API key with the `templates.email.update` permission.
 
-  All fields other than the `email_template_id` are optional, but you must specify at least one field to update.
+  You can access an email template’s `email_template_id` by navigating to it on the **Templates & Media** page. The [Create email template endpoint](https://www.braze.com/docs/api/endpoints/templates/email_templates/post_create_email_template/) will also return an `email_template_id` reference.
+
+  All fields other than the `email_template_id` are optional, but you must specify at least one field to update.
 
   ### Rate limit
 

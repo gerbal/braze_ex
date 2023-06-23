@@ -13,10 +13,10 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Blacklist Email Addresses
 
-  > Braze has released the [`/email/blocklist` endpoint](https://www.braze.com/docs/api/endpoints/email/post_blocklist/) with the same functionality as the `/email/blacklist` endpoint. It is recommended to use the `/email/blocklist` endpoint instead.
+  > Use this endpoint to unsubscribe a user from email and mark them as hard bounced. 
 
 
-  Use this endpoint to unsubscribe a user from email and mark them as hard bounced.
+  To use this endpoint, you’ll need to generate an API key with the `email.blacklist` permission.
 
   ## Rate limit
 
@@ -26,7 +26,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
-  | `email` | Required | String or array | String email address to blacklist, or an array of up to 50 email addresses to blacklist. |
+  | `email` | Required | String or array | String email address to blacklist, or an array of up to 50 email addresses to blocklist. |
 
   ### Parameters
 
@@ -68,6 +68,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   > Use this endpoint to unsubscribe a user from email and mark them as hard bounced. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `email.blacklist` permission.
 
   ## Rate limit
 
@@ -122,6 +124,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   We will also remove them from the bounce list maintained by your email provider.
 
+  To use this endpoint, you’ll need to generate an API key with the `email.bounce.remove` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -172,6 +176,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   > Use this endpoint to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `email.hard_bounces` permission.
 
   **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. If you provide all three, `start_date`, `end_date`, and an `email`, we prioritize the emails given and disregard the date range.
 
@@ -264,6 +270,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   We will also remove them from the spam list maintained by your email provider.
 
+  To use this endpoint, you’ll need to generate an API key with the `email.spam.remove` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -317,6 +325,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   You can set the email subscription state for an email address that is not yet associated with any of your users within Braze. When that email address is subsequently associated with a user, the email subscription state that you uploaded will be automatically set.
 
+  To use this endpoint, you’ll need to generate an API key with the `email.status` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -365,11 +375,12 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   ## Query List of Unsubscribed Email Addresses
 
-  > Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`.  
-
+  > Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`. 
 
 
   You can use this endpoint to set up a bi-directional sync between Braze and other email systems or your own database.
+
+  To use this endpoint, you’ll need to generate an API key with the `email.unsubscribe` permission.
 
   **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`.
 

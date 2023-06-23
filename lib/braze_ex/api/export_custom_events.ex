@@ -16,7 +16,9 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   > Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period. 
 
 
-  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `app_id` can be found at**Developer Console** > **API Settings**
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `app_id` can be found at**Developer Console** > **API Settings**
+
+  To use this endpoint, you’ll need to generate an API key with the `events.data_series` permission.
 
   ## Rate limit
 
@@ -93,6 +95,8 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   > Use this endpoint to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `events.list` permission.
 
   ## Rate limit
 

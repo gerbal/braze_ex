@@ -13,9 +13,10 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Schedule API Triggered Campaigns
 
-  > Use this endpoint to send dashboard created campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent.  
+  > Use this endpoint to send dashboard created campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `campaigns.trigger.schedule.create` permission.
 
   You can pass in `trigger_properties` that will be templated into the message itself.
 
@@ -101,6 +102,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   > The delete schedule endpoint allows you to cancel a message that you previously scheduled API-triggered Canvases before it has been sent. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `campaigns.trigger.schedule.delete` permission.
+
   Scheduled messages or triggers that are deleted very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second deletions could be applied to all, some, or none of your targeted users.
 
   ### Rate limit
@@ -152,13 +155,14 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Update Scheduled API Triggered Campaigns
 
-  > Use this endpoint to update scheduled API-triggered campaigns created in the dashboard, allowing you to decide what action should trigger the message to be sent.  
+  > Use this endpoint to update scheduled API-triggered campaigns created in the dashboard, allowing you to decide what action should trigger the message to be sent. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `campaigns.trigger.schedule.update` permission.
 
   You can pass in `trigger_properties` that will be templated into the message itself.
 
-  Note that to send messages with this endpoint, you must have a Campaign ID, created when you build an [API-Triggered Campaign](https://www.braze.com/docs/api/api_campaigns/).
+  Note that to send messages with this endpoint, you must have a campaign ID, created when you build an [API-triggered campaign](https://www.braze.com/docs/api/api_campaigns/).
 
   Any schedule will completely overwrite the one that you provided in the create schedule request or in previous update schedule requests. For example, if you originally provide `"schedule" : {"time" : "2015-02-20T13:14:47", "in_local_time" : true}` and then in your update you provide `"schedule" : {"time" : "2015-02-20T14:14:47"}`, your message will now be sent at the provided time in UTC, not in the user's local time. Scheduled triggers that are updated very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second changes could be applied to all, some, or none of your targeted users.
 
@@ -212,9 +216,10 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Schedule API Triggered Canvases
 
-  > Use this endpoint to schedule Canvas messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent.  
+  > Use this endpoint to schedule Canvas messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `canvas.trigger.schedule.create` permission.
 
   You can pass in `canvas_entry_properties` that will be templated into the messages sent by the first steps of the Canvas.
 
@@ -284,6 +289,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   > Use this endpoint to cancel a Canvas message that you previously scheduled via API-triggered before it has been sent. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `canvas.trigger.schedule.delete` permission.
+
   Scheduled messages or triggers that are deleted very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second deletions could be applied to all, some, or none of your targeted users.
 
   ### Rate limit
@@ -333,9 +340,10 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Update Scheduled API Triggered Canvases
 
-  > Use this endpoint to update scheduled API-triggered Canvases that were created in the dashboard.  
+  > Use this endpoint to update scheduled API-triggered Canvases that were created in the dashboard. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `canvas.trigger.schedule.update` permission.
 
   This allows you to decide what action should trigger the message to be sent. You can pass in `trigger_properties` that will be templated into the message itself.
 
@@ -393,9 +401,10 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Create Scheduled Messages
 
-  > Use this endpoint to schedule a campaign, Canvas, or other message to be sent at a designated time (up to 90 days in the future) and provides you with an identifier to reference that message for updates.  
+  > Use this endpoint to schedule a campaign, Canvas, or other message to be sent at a designated time (up to 90 days in the future) and provides you with an identifier to reference that message for updates. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `messages.schedule.create` permission.
 
   If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/) after all scheduled messages have been sent.
 
@@ -477,6 +486,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   > Use this endpoint to cancel a message that you previously scheduled before it has been sent. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `messages.schedule.delete` permission.
+
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -525,9 +536,10 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## Update Scheduled Messages
 
-  > Use this endpoint to update scheduled messages.  
+  > Use this endpoint to update scheduled messages. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `messages.schedule.update` permission.
 
   This endpoint accepts updates to either the `schedule` or `messages` parameter or both. Your request must contain at least one of those two keys.
 
@@ -581,9 +593,10 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   ## List Upcoming Scheduled Campaigns and Canvases
 
-  > Use this endpoint to return a JSON list of information about scheduled campaigns and entry Canvases between now and a designated `end_time` specified in the request.  
+  > Use this endpoint to return a JSON list of information about scheduled campaigns and entry Canvases between now and a designated `end_time` specified in the request. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `messages.schedule_broadcasts` permission.
 
   Daily, recurring messages will only appear once with their next occurrence. Results returned in this endpoint are only for campaigns and Canvases created and scheduled in Braze.
 

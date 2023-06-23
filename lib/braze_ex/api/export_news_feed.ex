@@ -18,6 +18,8 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), \`card_id\` can be found at **Developer Console > API Settings**.
 
+  To use this endpoint, you’ll need to generate an API key with the `feed.data_series` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -91,6 +93,8 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `card_id` can be found at **Developer Console > API Settings**.
 
+  To use this endpoint, you’ll need to generate an API key with the `feed.details` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -117,6 +121,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   }
 
   ```
+
   > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters
@@ -153,11 +158,12 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   ## Export News Feed Cards List
 
-  > Use this endpoint to export a list of News Feed cards, each of which will include its name and card API identifier.  
-
+  > Use this endpoint to export a list of News Feed cards, each of which will include its name and card API identifier. 
 
 
   The cards are returned in groups of 100 sorted by time of creation (oldest to newest by default).
+
+  To use this endpoint, you’ll need to generate an API key with the `feed.list` permission.
 
   ## Rate limit
 
@@ -182,6 +188,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   }
 
   ```
+
   > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 
   ### Parameters

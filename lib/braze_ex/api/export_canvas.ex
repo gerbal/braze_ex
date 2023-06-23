@@ -16,6 +16,8 @@ defmodule BrazeEx.Api.ExportCanvas do
   > Use this endpoint to export time series data for a Canvas. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `canvas.data_series` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -126,8 +128,10 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ## Export Canvas Data Analytics Summary
 
-  > Use this endpoint allows to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results. 
+  > Use this endpoint to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `canvas.data_summary` permission.
 
   ## Rate limit
 
@@ -235,6 +239,8 @@ defmodule BrazeEx.Api.ExportCanvas do
   > Use this endpoint to export metadata about a Canvas, such as the name, time created, current status, and more. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `canvas.details` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -323,13 +329,14 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ## Export Canvas List
 
-  > Use this endpoint to export a list of Canvases, including the name, Canvas API identifier and associated tags.  
-
+  > Use this endpoint to export a list of Canvases, including the name, Canvas API identifier and associated tags. 
 
 
   Canvases are returned in groups of 100 sorted by time of creation (oldest to newest by default).
 
   Archived Canvases will not be included in the API response unless the `include_archived` field is specified. Canvases that are stopped but not archived, however, will be returned by default.
+
+  To use this endpoint, you’ll need to generate an API key with the `canvas.list` permission.
 
   ## Rate limit
 

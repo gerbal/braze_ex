@@ -13,11 +13,12 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
   ## Export App Sessions by Time
 
-  > Use this endpoint to retrieve a series of the number of sessions for your app over a designated time period.  
-
+  > Use this endpoint to retrieve a series of the number of sessions for your app over a designated time period. 
 
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `segment_id` can be found at **Developer Console > API Settings**.
+
+  To use this endpoint, you’ll need to generate an API key with the `sessions.data_series` permission.
 
   ## Rate limit
 

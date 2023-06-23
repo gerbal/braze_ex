@@ -18,6 +18,8 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   Data returned includes how many messages were sent, opened, clicked, or converted by messaging channel.
 
+  To use this endpoint, you’ll need to generate an API key with the `campaigns.data_series` permission.
+
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `campaign_id` can be found at **Developer Console > API Settings**.
 
   ## Rate limit
@@ -236,9 +238,11 @@ defmodule BrazeEx.Api.ExportCampaign do
   > Use this endpoint to retrieve relevant information on a specified campaign, which can be identified by the `campaign_id`. 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `campaign.details` permission.
+
   If you want to retrieve Canvas data, refer to the [Canvas Details](https://www.braze.com/docs/api/endpoints/export/canvas/get_canvas_details/) endpoint.
 
-  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `campaign_id` can be found at **Developer Console** > **API Settings**
+  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `campaign_id` can be found at **Developer Console** > **API Settings**
 
   ## Rate limit
 
@@ -495,11 +499,12 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   ## Export Campaign List
 
-  > Use this endpoint to export a list of campaigns, each of which will include its name, campaign API identifier, whether it is an API campaign, and tags associated with the campaign.  
-
+  > Use this endpoint to export a list of campaigns, each of which will include its name, campaign API identifier, whether it is an API campaign, and tags associated with the campaign. 
 
 
   The campaigns are returned in groups of 100 sorted by time of creation (oldest to newest by default).
+
+  To use this endpoint, you’ll need to generate an API key with the `campaigns.list` permission.
 
   ## Rate limit
 
@@ -568,13 +573,14 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   ## Export Send Analytics
 
-  > Use this endpoint to retrieve a daily series of various stats for a tracked `send_id`.  
-
+  > Use this endpoint to retrieve a daily series of various stats for a tracked `send_id`. 
 
 
   Braze stores send analytics for 14 days after the send.
 
   Campaign conversions will be attributed towards the most recent send id that a given user has received from the campaign.
+
+  To use this endpoint, you’ll need to generate an API key with the `sends.data_series` permission.
 
   ## Rate limit
 

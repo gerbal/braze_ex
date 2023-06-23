@@ -16,6 +16,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   > Use this endpoint to create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `content_blocks.create` permission.
+
   ### Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -105,11 +107,12 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   ## See Content Block Information
 
-  > Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/).  
+  > Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
 
+  To use this endpoint, you’ll need to generate an API key with the `content_blocks.info` permission.
 
-  Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `content_block_id`can be found at ****Developer Console** > **API Settings****.
+  **Note:** If you are using our [older navigation](https://www.braze.com/docs/navigation), `content_block_id`can be found at ****Developer Console** > **API Settings****.
 
   ### Rate limit
 
@@ -185,6 +188,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   > Use this endpoint to list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information. 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `content_blocks.list` permission.
 
   ### Rate limit
 
@@ -271,6 +276,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   > Use this endpoint to update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
+
+  To use this endpoint, you’ll need to generate an API key with the `content_blocks.update` permission.
 
   ### Rate limit
 

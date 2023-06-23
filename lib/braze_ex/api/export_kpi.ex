@@ -13,11 +13,12 @@ defmodule BrazeEx.Api.ExportKPI do
 
   ## Export Daily Active Users by Date
 
-  > Use this endpoint to retrieve a daily series of the total number of unique active users on each date.  
-
+  > Use this endpoint to retrieve a daily series of the total number of unique active users on each date. 
 
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), API Keys can be found at **Developer Console > API Settings**.
+
+  To use this endpoint, you’ll need to generate an API key with the `kpi.dau.data_series` permission.
 
   ## Rate limit
 
@@ -82,11 +83,12 @@ defmodule BrazeEx.Api.ExportKPI do
 
   ## Export Monthly Active Users for Last 30 Days
 
-  > Use this endpoint to retrieve a daily series of the total number of unique active users over a 30-day rolling window.  
-
+  > Use this endpoint to retrieve a daily series of the total number of unique active users over a 30-day rolling window. 
 
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), API Keys can be found at **Developer Console > API Settings**.
+
+  To use this endpoint, you’ll need to generate an API key with the `kpi.mau.data_series` permission.
 
   ## Rate limit
 
@@ -156,6 +158,8 @@ defmodule BrazeEx.Api.ExportKPI do
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `app_id` can be found at **Developer Console** > **API Settings**.
 
+  To use this endpoint, you’ll need to generate an API key with the `kpi.new_users.data_series` permission.
+
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
@@ -223,6 +227,8 @@ defmodule BrazeEx.Api.ExportKPI do
 
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), API Keys can be found at **Developer Console > API Settings**.
+
+  To use this endpoint, you’ll need to generate an API key with the `kpi.uninstalls.data_series` permission.
 
   ## Rate limit
 
