@@ -2573,7 +2573,7 @@
         }
       ],
       "id": "2caba516-ea27-47ed-b8d5-a64b211db7d0",
-      "description": "The Braze messaging API provides you with two distinct options for sending messages to your users. You can provide the message contents and configuration in the API request with the /messages/send and /messages/schedule endpoints. Alternatively, you can manage the details of your message with an API-Triggered Delivery campaign in the dashboard and just control when and to whom it is sent with the campaigns/trigger/send and campaigns/trigger/schedule endpoints. The following sections will detail the request specification for both methods.\n\nThe examples below contain the URL https://rest.iad-01.braze.com, but some customers will need to use a different endpoint URL, for example if you are hosted in Braze’s EU data center or have a dedicated Braze installation. Your Success Manager will inform you if you should use a different endpoint URL.\n\nSimilarly to other campaigns, you can limit the number of times a particular user can receive a Messaging API campaign by configuring re-eligibility settings in the Braze Dashboard. Braze will not deliver API messages to users that haven’t become re-eligible for the campaign regardless of how many API requests are sent.\n\n",
+      "description": "The Braze messaging API provides you with two distinct options for sending messages to your users. You can provide the message contents and configuration in the API request with the /messages/send and /messages/schedule endpoints. Alternatively, you can manage the details of your message with an API-Triggered Delivery campaign in the dashboard and just control when and to whom it is sent with the campaigns/trigger/send and campaigns/trigger/schedule endpoints. The following sections will detail the request specification for both methods.\n\nThe examples below contain the URL [https://rest.iad-01.braze.com](https://rest.iad-01.braze.com), but some customers will need to use a different endpoint URL, for example if you are hosted in Braze’s EU data center or have a dedicated Braze installation. Your Success Manager will inform you if you should use a different endpoint URL.\n\nSimilarly to other campaigns, you can limit the number of times a particular user can receive a Messaging API campaign by configuring re-eligibility settings in the Braze Dashboard. Braze will not deliver API messages to users that haven’t become re-eligible for the campaign regardless of how many API requests are sent.",
       "_postman_id": "2caba516-ea27-47ed-b8d5-a64b211db7d0"
     },
     {
@@ -2595,13 +2595,14 @@
               }
             ],
             "url": {
-              "raw": "https://{{instance_url}}/preference_center_v1/{PreferenceCenterExternalID}/url/{UserID}?preference_center_api_id={{preference_center_api_id}}&external_id={{external_id}}",
+              "raw": "https://{{instance_url}}/preference_center/v1/{PreferenceCenterExternalID}/url/{UserID}?preference_center_api_id={{preference_center_api_id}}&external_id={{external_id}}",
               "protocol": "https",
               "host": [
                 "{{instance_url}}"
               ],
               "path": [
-                "preference_center_v1",
+                "preference_center",
+                "v1",
                 "{PreferenceCenterExternalID}",
                 "url",
                 "{UserID}"
@@ -2618,7 +2619,7 @@
                 }
               ]
             },
-            "description": "> Use this endpoint to generate a URL for a preference center. \n  \n\nTo use this endpoint, you’ll need to generate an API key with the `preference_center.user.get` permission.\n\nEach preference center URL is unique to each user.\n\n## Rate limit\n\nThis endpoint has a rate limit of 1,000 requests per minute, per workspace.\n\n## Path parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `preferenceCenterExternalID` | Required | String | The ID for your preference center. |\n| `userID` | Required | String | The user ID. |\n\n## Example request\n\n```\ncurl --location --request GET 'https://rest.iad-01.braze.com/preference_center/v1/$preference_center_external_id/url/$user_external_id' \\\n--header 'Authorization: Bearer YOUR-API-KEY-HERE'\n\n```\n\n## Response\n\n``` json\n{\n  \"preference_center_url\": \"https://www.example.com/preferences\"\n}\n\n```"
+            "description": "> Use this endpoint to generate a URL for a preference center. \n  \n\nTo use this endpoint, you’ll need to generate an API key with the `preference_center.user.get` permission.\n\nEach preference center URL is unique to each user.\n\n## Rate limit\n\nThis endpoint has a rate limit of 1,000 requests per minute, per workspace.\n\n## Path parameters\n\n| Parameter | Required | Data Type | Description |\n| --- | --- | --- | --- |\n| `preferenceCenterExternalID` | Required | String | The ID for your preference center. |\n| `userID` | Required | String | The user ID. |\n\n## Example request\n\n```\ncurl --location --request GET 'https://rest.iad-01.braze.com/preference_center/v1/$preference_center_external_id/url/$user_external_id' \\\n--header 'Authorization: Bearer YOUR-API-KEY-HERE'\n\n ```\n\n## Response\n\n``` json\n{\n  \"preference_center_url\": \"https://www.example.com/preferences\"\n}\n\n ```"
           },
           "response": [],
           "_postman_id": "0bc750ff-068e-4391-897e-6eddca2561cd"
