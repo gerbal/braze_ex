@@ -15,13 +15,18 @@ build:
     just refresh-postman
     just fetch-api-info
     just postman-to-openapi
-    # just bump-version
     just set-missing-content-types
     just fixup-postman-spec
     just regenerate
     just prepare-readme
+    just prepare-release
 
-    
+prepare-release:
+    just bump-version
+    just fixup-postman-spec
+    just regenerate
+    just prepare-readme
+
 
 deps: 
     npm install
@@ -52,7 +57,7 @@ set-missing-content-types:
 
 bump-version: 
     # Version will only bump if api spec has unstaged changes
-    ! git diff --exit-code {{postman_path}}
+    ! git diff-index --quiet HEAD --
     @echo {{version}}
     awk  -i inplace -F. '/[0-9]+\./{$NF++;print}BEGIN{OFS="."}' VERSION
     @echo "Openapi Spec has changed. Bumping Version from {{version}} to `cat VERSION`"
