@@ -93,7 +93,7 @@ defmodule BrazeEx.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - BrazeEx 1.0.7 - elixir"
+          "openapi-generator - BrazeEx 1.0.8 - elixir"
         )
       )
 

@@ -88,9 +88,10 @@ elixir:
 publish:elixir
     #!/usr/bin/env bash
     if ! git diff-index --quiet HEAD --; then
+        git add .
+        git commit -am "🤖 Version Bump to `cat VERSION`"
         mix deps.get
         mix hex.publish --yes
-        git commit -am "🤖 Version Bump to `cat VERSION`"
         git push
     else
         echo "No Changes to publish"

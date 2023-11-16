@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Braze Endpoints
   description: Braze HTTP API (generated from Braze Postman Collection)
-  version: 1.0.7
+  version: 1.0.8
 externalDocs:
   url: https://www.braze.com/docs/developer_guide/rest_api/basics
   description: API Overview
