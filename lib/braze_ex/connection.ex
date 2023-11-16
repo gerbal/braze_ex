@@ -82,6 +82,7 @@ defmodule BrazeEx.Connection do
       )
 
     tesla_options = Application.get_env(:tesla, __MODULE__, [])
+    tesla_options = Keyword.merge(tesla_options, options)
     middleware = Keyword.get(tesla_options, :middleware, [])
     json_engine = Keyword.get(tesla_options, :json, Poison)
 
@@ -92,7 +93,7 @@ defmodule BrazeEx.Connection do
         Keyword.get(
           tesla_options,
           :user_agent,
-          "openapi-generator - BrazeEx 1.0.6 - elixir"
+          "openapi-generator - BrazeEx 1.0.7 - elixir"
         )
       )
 
