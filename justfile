@@ -27,6 +27,10 @@ prepare-release:
     just regenerate
     just prepare-readme
 
+changed:
+    ! git update-index --refresh
+    ! git diff-index --quiet HEAD lib && git diff-index --quiet HEAD {{postman_path}}
+    @echo {{version}}
 
 deps: 
     npm install
@@ -57,7 +61,7 @@ set-missing-content-types:
 
 bump-version: 
     # Version will only bump if api spec has unstaged changes
-    ! git diff-index --quiet HEAD --
+    just changed
     @echo {{version}}
     awk  -i inplace -F. '/[0-9]+\./{$NF++;print}BEGIN{OFS="."}' VERSION
     @echo "Openapi Spec has changed. Bumping Version from {{version}} to `cat VERSION`"
