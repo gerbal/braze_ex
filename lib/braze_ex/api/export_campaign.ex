@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportCampaign do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export Campaign Analytics
 
   > Use this endpoint to retrieve a daily series of various stats for a campaign over time. 
@@ -200,7 +199,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:campaign_id` (String.t): (Required) String  See [campaign API identifier](https://www.braze.com/docs/api/identifier_types/).  The `campaign_id` for API campaigns can be found at **Settings > Setup and Testing > API Keys** and the **Campaign Details** page within your dashboard, or you can use the [List campaigns endpoint](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaigns/).
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
@@ -229,10 +228,12 @@ defmodule BrazeEx.Api.ExportCampaign do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Campaign Details
 
   > Use this endpoint to retrieve relevant information on a specified campaign, which can be identified by the `campaign_id`. 
@@ -468,7 +469,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:campaign_id` (String.t): (Required) String  See [campaign API identifier](https://www.braze.com/docs/api/identifier_types/).  The `campaign_id` for API campaigns can be found on the **Settings > Setup and Testing > API Keys** and the campaign details page within your dashboard, or you can use the [Campaign List Endpoint](https://www.braze.com/docs/api/endpoints/export/campaigns/get_campaign_analytics/#campaign-list-endpoint).
 
   ### Returns
@@ -493,10 +494,12 @@ defmodule BrazeEx.Api.ExportCampaign do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Campaign List
 
   > Use this endpoint to export a list of campaigns, each of which will include its name, campaign API identifier, whether it is an API campaign, and tags associated with the campaign. 
@@ -537,11 +540,11 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:page` (integer()): (Optional) Integer  The page of campaigns to return, defaults to 0 (returns the first set of up to 100).
     - `:include_archived` (boolean()): (Optional) Boolean  Whether or not to include archived campaigns, defaults to false.
     - `:sort_direction` (String.t): (Optional) String  - Sort creation time from newest to oldest: pass in the value `desc`. - Sort creation time from oldest to newest: pass in the value `asc`.  If `sort_direction` is not included, the default order is oldest to newest.
-    - `:last_edit_periodtime_left_square_bracketgt_right_square_bracket` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Filters the results and only returns campaigns that were edited greater than the time provided till now. Format is `yyyy-MM-DDTHH:mm:ss`.
+    - `:"last_edit.time[gt]"` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Filters the results and only returns campaigns that were edited greater than the time provided till now. Format is `yyyy-MM-DDTHH:mm:ss`.
 
   ### Returns
 
@@ -567,10 +570,12 @@ defmodule BrazeEx.Api.ExportCampaign do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Send Analytics
 
   > Use this endpoint to retrieve a daily series of various stats for a tracked `send_id`. 
@@ -639,7 +644,7 @@ defmodule BrazeEx.Api.ExportCampaign do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:campaign_id` (String.t): (Required) String  See [Campaign API identifier](https://www.braze.com/docs/api/identifier_types/).
     - `:send_id` (String.t): (Required) String  See [Send API identifier](https://www.braze.com/docs/api/identifier_types/).
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
@@ -670,5 +675,8 @@ defmodule BrazeEx.Api.ExportCampaign do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## List User's  Subscription Group Status - SMS
 
   > Use this endpoint to get the subscription state of a user in a subscription group. 
@@ -47,7 +46,7 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:subscription_group_id` (String.t): (Required) String  The `id` of your subscription group.
     - `:external_id` (String.t): (Required*) String  The `external_id` of the user (must include at least one and at most 50 `external_ids`).  When both an `external_id` and `phone` are submitted, only the external_id(s) provided will be applied to the result query. 
     - `:phone` (float()): (Required*) String in [E.164](https://en.wikipedia.org/wiki/E.164) format  The phone number of the user (must include at least one phone number and at most 50 phone numbers).
@@ -76,10 +75,12 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update User's Subscription Group Status - SMS
 
   > Use this endpoint to batch update the subscription state of up to 50 users on the Braze dashboard. 
@@ -123,8 +124,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -151,10 +152,12 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## List User's Subscription Group - SMS
 
   > Use this endpoint to list and get the subscription groups of a certain user. 
@@ -172,7 +175,7 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:external_id` (String.t): (Required*) String  The `external_id` of the user (must include at least one and at most 50 `external_ids`).
     - `:limit` (integer()): (Optional) Integer  The limit on the maximum number of results returned. Default (and max) limit is 100.
     - `:offset` (integer()): (Optional) Integer   Number of templates to skip before returning the rest of the templates that fit the search criteria.
@@ -203,10 +206,12 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update User's Subscription Group Status V2
 
   > Use this endpoint to batch update the subscription state of up to 50 users on the Braze dashboard. 
@@ -244,8 +249,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -272,5 +277,8 @@ defmodule BrazeEx.Api.SubscriptionGroupsSMSAndWhatsApp do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

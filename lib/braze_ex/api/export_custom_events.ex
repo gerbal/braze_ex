@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export Custom Events Analytics
 
   > Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period. 
@@ -52,7 +51,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:event` (String.t): (Required) String  The name of the custom event for which to return analytics. 
     - `:length` (integer()): (Required) Integer  Maximum number of units (days or hours) before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points - can be `day` or `hour`, defaults to `day`.
@@ -87,10 +86,12 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Custom Events List
 
   > Use this endpoint to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically. 
@@ -129,7 +130,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:page` (integer()): (Optional) Integer  The page of event names to return, defaults to 0 (returns the first set of up to 250).
 
   ### Returns
@@ -153,5 +154,8 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

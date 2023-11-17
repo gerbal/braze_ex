@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Delete Catalog
 
   > Use this endpoint to delete a catalog. 
@@ -79,8 +78,8 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   - `connection` (BrazeEx.Connection): Connection to server
   - `catalog_name` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -104,10 +103,12 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## List Catalogs
 
   > Use this endpoint to return a list of catalogs in a workspace. 
@@ -215,8 +216,8 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -239,10 +240,12 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Create Catalog
 
   > Use this endpoint to create a catalog. 
@@ -416,8 +419,8 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -443,5 +446,8 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Remove External ID
 
   > Use this endpoint to remove your users' old deprecated external IDs. 
@@ -60,8 +59,8 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -88,10 +87,12 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Rename External ID
 
   > Use this endpoint to rename your users’ external IDs. 
@@ -165,8 +166,8 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -193,5 +194,8 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

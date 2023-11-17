@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.SMS do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Query Invalid Phone Numbers
 
   > Use this endpoint to pull a list of phone numbers that have been deemed “invalid” within a certain time frame. 
@@ -57,7 +56,7 @@ defmodule BrazeEx.Api.SMS do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:start_date` (String.t): (Optional*) String in YYYY-MM-DD format  Start date of the range to retrieve invalid phone numbers, must be earlier than `end_date`. This is treated as midnight in UTC time by the API. 
     - `:end_date` (String.t): (Optional*) String in YYYY-MM-DD format  End date of the range to retrieve invalid phone numbers. This is treated as midnight in UTC time by the API. 
     - `:limit` (integer()): (Optional) Integer Optional field to limit the number of results returned. Defaults to 100, maximum is 500.
@@ -90,10 +89,12 @@ defmodule BrazeEx.Api.SMS do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Remove Invalid Phone Numbers
 
   > Use this endpoint to remove “invalid” phone numbers from Braze’s invalid list. 
@@ -117,8 +118,8 @@ defmodule BrazeEx.Api.SMS do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
-    - `:content_type` (String.t): 
+    - `:Authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -145,5 +146,8 @@ defmodule BrazeEx.Api.SMS do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

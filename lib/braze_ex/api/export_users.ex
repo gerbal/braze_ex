@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportUsers do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export User Profile by Global Control Group
 
   > Use this endpoint to export all users within a Global Control Group. 
@@ -249,8 +248,8 @@ defmodule BrazeEx.Api.ExportUsers do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -277,10 +276,12 @@ defmodule BrazeEx.Api.ExportUsers do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export User Profile by Identifier
 
   > Use this endpoint to export data from any user profile by specifying a user identifier. 
@@ -641,8 +642,8 @@ defmodule BrazeEx.Api.ExportUsers do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -669,10 +670,12 @@ defmodule BrazeEx.Api.ExportUsers do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export User Profile by Segment
 
   > Use this endpoint to export all the users within a segment. 
@@ -1055,8 +1058,8 @@ defmodule BrazeEx.Api.ExportUsers do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -1083,5 +1086,8 @@ defmodule BrazeEx.Api.ExportUsers do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

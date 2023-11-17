@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportCanvas do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export Canvas Data Series Analytics
 
   > Use this endpoint to export time series data for a Canvas. 
@@ -85,7 +84,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:canvas_id` (String.t): (Required) String  See [Canvas API Identifier](https://www.braze.com/docs/api/identifier_types/).
     - `:ending_at` (String.t): (Required) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data export should end. Defaults to time of the request.
     - `:starting_at` (String.t): (Optional*) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)   Date on which the data export should begin.  *Either `length` or `starting_at` is required.
@@ -122,10 +121,12 @@ defmodule BrazeEx.Api.ExportCanvas do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Canvas Data Analytics Summary
 
   > Use this endpoint to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results. 
@@ -193,7 +194,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:canvas_id` (String.t): (Required) String   See [Canvas API identifier](https://www.braze.com/docs/api/identifier_types/).
     - `:ending_at` (String.t): (Required) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string) Date on which the data export should end. Defaults to time of the request
     - `:starting_at` (String.t): (Optional*) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data export should begin.  *Either `length` or `starting_at` is required.
@@ -230,10 +231,12 @@ defmodule BrazeEx.Api.ExportCanvas do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Canvas Details
 
   > Use this endpoint to export metadata about a Canvas, such as the name, time created, current status, and more. 
@@ -299,7 +302,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:canvas_id` (String.t): (Required) String  See [Canvas API Identifier](https://www.braze.com/docs/api/identifier_types/) 
 
   ### Returns
@@ -323,10 +326,12 @@ defmodule BrazeEx.Api.ExportCanvas do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Canvas List
 
   > Use this endpoint to export a list of Canvases, including the name, Canvas API identifier and associated tags. 
@@ -368,11 +373,11 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:page` (integer()): (Optional) Integer  The page of Canvases to return, defaults to `0` (returns the first set of up to 100).
     - `:include_archived` (boolean()): (Optional) Boolean  Whether or not to include archived Canvases, defaults to `false`.
     - `:sort_direction` (String.t): (Optional) String  - Sort creation time from newest to oldest: pass in the value `desc`. - Sort creation time from oldest to newest: pass in the value `asc`.  If `sort_direction` is not included, the default order is oldest to newest.
-    - `:last_edit_periodtime_left_square_bracketgt_right_square_bracket` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Filters the results and only returns Canvases that were edited greater than the time provided till now. Format is `yyyy-MM-DDTHH:mm:ss`.
+    - `:"last_edit.time[gt]"` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Filters the results and only returns Canvases that were edited greater than the time provided till now. Format is `yyyy-MM-DDTHH:mm:ss`.
 
   ### Returns
 
@@ -398,5 +403,8 @@ defmodule BrazeEx.Api.ExportCanvas do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

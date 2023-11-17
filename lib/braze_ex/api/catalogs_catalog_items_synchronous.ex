@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## List Multiple Catalog Item Details
 
   > Use this endpoint to return multiple catalog items and their content. 
@@ -146,8 +145,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   - `connection` (BrazeEx.Connection): Connection to server
   - `catalog_name` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -171,10 +170,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Delete a Catalog Item
 
   > Use this endpoint to delete an item in your catalog. 
@@ -260,8 +261,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   - `catalog_name` (String.t): 
   - `item_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -289,10 +290,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## List Catalog Item Details
 
   > Use this endpoint to return a catalog item and its content. 
@@ -388,8 +391,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   - `catalog_name` (String.t): 
   - `item_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -417,10 +420,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Edit Catalog Items
 
   > Use this endpoint to edit an item in your catalog. 
@@ -528,8 +533,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   - `catalog_name` (String.t): 
   - `item_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -560,10 +565,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Create Catalog Item
 
   > Use this endpoint to create an item in your catalog. 
@@ -676,8 +683,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   - `catalog_name` (String.t): 
   - `item_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -708,10 +715,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Catalog Item
 
   > Use this endpoint to update an item in your catalog. 
@@ -827,8 +836,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   - `catalog_name` (String.t): 
   - `item_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -859,5 +868,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

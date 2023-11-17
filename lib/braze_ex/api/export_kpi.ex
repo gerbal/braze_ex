@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportKPI do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export Daily Active Users by Date
 
   > Use this endpoint to retrieve a daily series of the total number of unique active users on each date. 
@@ -48,7 +47,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional)  Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string) Date on which the data series should end. Defaults to time of the request.
     - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
@@ -77,10 +76,12 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Monthly Active Users for Last 30 Days
 
   > Use this endpoint to retrieve a daily series of the total number of unique active users over a 30-day rolling window. 
@@ -118,7 +119,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional)  Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
     - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
@@ -147,10 +148,12 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Daily New Users by Date
 
   > Use this endpoint to retrieve a daily series of the total number of new users on each date. 
@@ -188,7 +191,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
     - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
@@ -217,10 +220,12 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export KPIs for Daily App Uninstalls by Date
 
   > Use this endpoint to retrieve a daily series of the total number of uninstalls on each date. 
@@ -258,7 +263,7 @@ defmodule BrazeEx.Api.ExportKPI do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional)  Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
     - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
@@ -287,5 +292,8 @@ defmodule BrazeEx.Api.ExportKPI do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

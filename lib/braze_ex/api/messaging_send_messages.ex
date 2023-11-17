@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Send Campaign Messages via API Triggered Delivery
 
   > Use this endpoint to send immediate, ad-hoc messages to designated users via API-triggered delivery. 
@@ -67,8 +66,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -95,10 +94,12 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Send Canvas Messages via API Triggered Delivery
 
   > Use this endpoint to send Canvas messages via API-triggered delivery. 
@@ -152,8 +153,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -180,10 +181,12 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Send Messages Immediately via API Only
 
   > Use this endpoint to send immediate, ad-hoc messages to designated users via the Braze API. 
@@ -229,8 +232,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -256,10 +259,12 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Create Send IDs For Message Send Tracking
 
   > Use this endpoint to create send IDs that can be used to send messages and track message performance programatically, without campaign creation for each send. 
@@ -298,8 +303,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -326,10 +331,12 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Send Transactional Email via API Triggered Delivery
 
   > Use this endpoint to send immediate, ad-hoc transactional messages to a designated user. 
@@ -542,8 +549,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   - `connection` (BrazeEx.Connection): Connection to server
   - `campaign_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -573,5 +580,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Schedule API Triggered Campaigns
 
   > Use this endpoint to send dashboard created campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
@@ -65,8 +64,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -93,10 +92,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Delete Scheduled API Triggered Campaigns
 
   > The delete schedule endpoint allows you to cancel a message that you previously scheduled API-triggered Canvases before it has been sent. 
@@ -121,8 +122,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -149,10 +150,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Scheduled API Triggered Campaigns
 
   > Use this endpoint to update scheduled API-triggered campaigns created in the dashboard, allowing you to decide what action should trigger the message to be sent. 
@@ -182,8 +185,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -210,10 +213,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Schedule API Triggered Canvases
 
   > Use this endpoint to schedule Canvas messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
@@ -252,8 +257,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -280,10 +285,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Delete Scheduled API-Triggered Canvases
 
   > Use this endpoint to cancel a Canvas message that you previously scheduled via API-triggered before it has been sent. 
@@ -306,8 +313,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (map()): 
 
   ### Returns
@@ -334,10 +341,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Scheduled API Triggered Canvases
 
   > Use this endpoint to update scheduled API-triggered Canvases that were created in the dashboard. 
@@ -367,8 +376,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -395,10 +404,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Create Scheduled Messages
 
   > Use this endpoint to schedule a campaign, Canvas, or other message to be sent at a designated time (up to 90 days in the future) and provides you with an identifier to reference that message for updates. 
@@ -477,10 +488,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Delete Scheduled Messages
 
   > Use this endpoint to cancel a message that you previously scheduled before it has been sent. 
@@ -502,8 +515,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -530,10 +543,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Scheduled Messages
 
   > Use this endpoint to update scheduled messages. 
@@ -559,8 +574,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -587,10 +602,12 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## List Upcoming Scheduled Campaigns and Canvases
 
   > Use this endpoint to return a JSON list of information about scheduled campaigns and entry Canvases between now and a designated `end_time` specified in the request. 
@@ -628,7 +645,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:end_time` (String.t): (Required) String in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format  End date of the range to retrieve upcoming scheduled Campaigns and Canvases. This is treated as midnight in UTC time by the API.
 
   ### Returns
@@ -653,5 +670,8 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

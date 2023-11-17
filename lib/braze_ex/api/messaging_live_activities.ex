@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.MessagingLiveActivities do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Update Live Activity
 
   > Use this endpoint to update and end [Live Activities](https://www.braze.com/docs/developer_guide/platform_integration_guides/swift/live_activities/live_activities/) displayed by your iOS app. This endpoint requires additional setup. 
@@ -73,8 +72,8 @@ defmodule BrazeEx.Api.MessagingLiveActivities do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -101,5 +100,8 @@ defmodule BrazeEx.Api.MessagingLiveActivities do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

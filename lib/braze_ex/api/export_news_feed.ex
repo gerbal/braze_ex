@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportNewsFeed do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export News Feed Card Analytics
 
   > Use this endpoint to retrieve a daily series of engagement stats for a card over time. 
@@ -51,7 +50,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:card_id` (String.t): (Required) String  See [Card API identifier](https://www.braze.com/docs/api/identifier_types/).  The `card_id` for a given card can be found in the **Settings > Setup and Testing > API Keys** page and on the card details page within your dashboard, or you can use the [News Feed List Endpoint](https://www.braze.com/docs/api/endpoints/export/news_feed/get_news_feed_cards/).
     - `:length` (integer()): (Required) Integer  Max number of units (days or hours) before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points. Can be `day` or `hour`, defaults to `day`.
@@ -82,10 +81,12 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export News Feed Cards Details
 
   > Use this endpoint to retrieve relevant information on a card, which can be identified by the `card_id`. 
@@ -128,7 +129,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:card_id` (String.t): (Required) String  See [Card API identifier](https://www.braze.com/docs/api/identifier_types/).  The `card_id` for a given card can be found in the **Settings > Setup and Testing > API Keys** page and on the card details page within your dashboard, or you can use the [News Feed List Endpoint](https://www.braze.com/docs/api/endpoints/export/news_feed/get_news_feed_cards/).
 
   ### Returns
@@ -152,10 +153,12 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export News Feed Cards List
 
   > Use this endpoint to export a list of News Feed cards, each of which will include its name and card API identifier. 
@@ -195,7 +198,7 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:page` (integer()): (Optional) Integer  The page of cards to return, defaults to 0 (returns the first set of up to 100).
     - `:include_archived` (boolean()): (Optional) Boolean  Whether or not to include archived cards, defaults to false.
     - `:sort_direction` (String.t): (Optional) String  - Sort creation time from newest to oldest: pass in the value `desc`. - Sort creation time from oldest to newest: pass in the value `asc`.  If `sort_direction` is not included, the default order is oldest to newest.
@@ -223,5 +226,8 @@ defmodule BrazeEx.Api.ExportNewsFeed do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

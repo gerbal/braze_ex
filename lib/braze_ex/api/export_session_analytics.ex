@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export App Sessions by Time
 
   > Use this endpoint to retrieve a series of the number of sessions for your app over a designated time period. 
@@ -48,7 +47,7 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series - must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points. Can be `day` or `hour`, defaults to `day`. 
     - `:ending_at` (String.t): (Optional) Datetime (ISO 8601 string)  Date on which the data series should end. Defaults to time of the request.
@@ -81,5 +80,8 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

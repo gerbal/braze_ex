@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Create Email Template
 
   > Use this endpoint to create email templates on the Braze dashboard. 
@@ -55,8 +54,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -83,10 +82,12 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## See Email Template Information
 
   > Use this endpoint to get information on your email templates. 
@@ -128,7 +129,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:email_template_id` (String.t): (Required) String  See [email template's API identifier](https://www.braze.com/docs/api/identifier_types/).
 
   ### Returns
@@ -153,10 +154,12 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## List Available Email Templates
 
   > Use this endpoint to get a list of available templates in your Braze account. 
@@ -190,7 +193,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:modified_after` (String.t): (Optional) String in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  Retrieve only templates updated at or after the given time.
     - `:modified_before` (String.t): (Optional) String in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  Retrieve only templates updated at or before the given time.
     - `:limit` (integer()): (Optional) Positive Number  Maximum number of templates to retrieve. Default to 100 if not provided, with a maximum acceptable value of 1000.
@@ -221,10 +224,12 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Email Template
 
   > Use this endpoint to update email templates on the Braze dashboard. 
@@ -269,8 +274,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -297,5 +302,8 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

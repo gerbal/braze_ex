@@ -96,14 +96,19 @@ defmodule BrazeEx.RequestBuilder do
       Tesla.Multipart.add_field(
         multipart,
         key,
-        Poison.encode!(value),
+        Jason.encode!(value),
         headers: [{:"Content-Type", "application/json"}]
       )
     end)
   end
 
   def add_param(request, :headers, key, value) do
-    Tesla.put_header(request, key, value)
+    headers =
+      request
+      |> Map.get(:headers, [])
+      |> List.keystore(key, 0, {key, value})
+
+    Map.put(request, :headers, headers)
   end
 
   def add_param(request, :file, name, path) do
@@ -143,8 +148,8 @@ defmodule BrazeEx.RequestBuilder do
     Map.put_new(request, :body, "")
   end
 
-  @type status_code :: 100..599
-  @type response_mapping :: [{status_code, struct() | false}]
+  @type status_code :: :default | 100..599
+  @type response_mapping :: [{status_code, false | %{} | module()}]
 
   @doc """
   Evaluate the response from a Tesla request.
@@ -184,5 +189,11 @@ defmodule BrazeEx.RequestBuilder do
 
   defp decode(%Tesla.Env{} = env, false), do: {:ok, env}
 
-  defp decode(%Tesla.Env{body: body}, struct), do: Poison.decode(body, as: struct)
+  defp decode(%Tesla.Env{body: body}, %{}) do
+    BrazeEx.Deserializer.jason_decode(body)
+  end
+
+  defp decode(%Tesla.Env{body: body}, module) do
+    BrazeEx.Deserializer.jason_decode(body, module)
+  end
 end

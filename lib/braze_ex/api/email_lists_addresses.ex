@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Blacklist Email Addresses
 
   > Use this endpoint to unsubscribe a user from email and mark them as hard bounced. 
@@ -32,8 +31,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -60,10 +59,12 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Blocklist Email Addresses
 
   > Use this endpoint to unsubscribe a user from email and mark them as hard bounced. 
@@ -85,8 +86,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -113,10 +114,12 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Remove Hard Bounced Emails
 
   > Use this endpoint to remove email addresses from your Braze bounce list. 
@@ -140,8 +143,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -168,10 +171,12 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Query Hard Bounced Emails
 
   > Use this endpoint to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame. 
@@ -226,7 +231,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:start_date` (String.t): (Optional*) String in YYYY-MM-DD format   Start date of the range to retrieve hard bounces, must be earlier than `end_date`. This is treated as midnight in UTC time by the API.  *You must provide either an `email` or a `start_date`, and an `end_date`. 
     - `:end_date` (String.t): (Optional*) String in YYYY-MM-DD format  String in YYYY-MM-DD format. End date of the range to retrieve hard bounces. This is treated as midnight in UTC time by the API.  *You must provide either an `email` or a `start_date`, and an `end_date`.
     - `:limit` (integer()): (Optional) Integer  Optional field to limit the number of results returned. Defaults to 100, maximum is 500.
@@ -259,10 +264,12 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Remove Email Addresses from Spam List
 
   > Use this endpoint to remove email addresses from your Braze spam list. 
@@ -286,8 +293,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -314,10 +321,12 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Change Email Subscription Status
 
   > Use this endpoint to set the email subscription state for your users. Users can be `opted_in`, `unsubscribed`, or `subscribed` (not specifically opted in or out). 
@@ -342,8 +351,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -369,10 +378,12 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Query List of Unsubscribed Email Addresses
 
   > Use this endpoint to return emails that have unsubscribed during the time period from `start_date` to `end_date`. 
@@ -429,7 +440,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:start_date` (String.t): (Optional*) String in YYYY-MM-DD format  Start date of the range to retrieve unsubscribes, must be earlier than end_date. This is treated as midnight in UTC time by the API.
     - `:end_date` (String.t): (Optional*)  String in YYYY-MM-DD format  End date of the range to retrieve unsubscribes. This is treated as midnight in UTC time by the API.
     - `:limit` (integer()): (Optional) Integer  Optional field to limit the number of results returned. Limit must be greater than 1. Defaults to 100, maximum is 500.
@@ -464,5 +475,8 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Create Content Block
 
   > Use this endpoint to create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
@@ -73,8 +72,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -101,10 +100,12 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## See Content Block Information
 
   > Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
@@ -153,7 +154,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:content_block_id` (String.t): (Required) String  The content block identifier.   You can find this by either listing content block information through an API call or going to **Settings > Setup and Testing > API Keys**, then scrolling to the bottom and searching for your content block API identifier.
     - `:include_inclusion_data` (boolean()): (Optional) Boolean  When set to `true`, the API returns back the Message Variation API identifier of campaigns and Canvases where this content block is included, to be used in subsequent calls. The results exclude archived or deleted Campaigns or Canvases.
 
@@ -180,10 +181,12 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## List Available Content Blocks
 
   > Use this endpoint to list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information. 
@@ -237,7 +240,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:modified_after` (String.t): (Optional) String in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  Retrieve only content blocks updated at or after the given time.
     - `:modified_before` (String.t): (Optional) String in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)  Retrieve only content blocks updated at or before the given time.
     - `:limit` (integer()): (Optional) Positive Number  Maximum number of content blocks to retrieve. Default to 100 if not provided, with a maximum acceptable value of 1000.
@@ -268,10 +271,12 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Content Block
 
   > Use this endpoint to update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
@@ -337,8 +342,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -365,5 +370,8 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

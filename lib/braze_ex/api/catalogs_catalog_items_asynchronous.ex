@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Delete Multiple Catalog Items
 
   > Use this endpoint to delete multiple items in your catalog. 
@@ -104,8 +103,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   - `connection` (BrazeEx.Connection): Connection to server
   - `catalog_name` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -129,10 +128,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Edit Multiple Catalog Items
 
   > Use this endpoint to delete multiple items in your catalog. 
@@ -226,8 +227,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   - `connection` (BrazeEx.Connection): Connection to server
   - `catalog_name` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -254,10 +255,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Create Multiple Catalog Items
 
   > Use this endpoint to create multiple items in your catalog. 
@@ -386,8 +389,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   - `connection` (BrazeEx.Connection): Connection to server
   - `catalog_name` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -414,10 +417,12 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Catalog Item
 
   > Use this endpoint to send Canvas messages via API-triggered delivery. 
@@ -511,8 +516,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   - `connection` (BrazeEx.Connection): Connection to server
   - `catalog_name` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -539,5 +544,8 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

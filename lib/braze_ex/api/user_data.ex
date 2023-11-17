@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.UserData do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Create New User Aliases
 
   > Use this endpoint to add new user aliases for existing identified users, or to create new unidentified users. 
@@ -38,8 +37,8 @@ defmodule BrazeEx.Api.UserData do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -66,10 +65,12 @@ defmodule BrazeEx.Api.UserData do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update User Alias
 
   > Use this endpoint to update existing user aliases. 
@@ -108,8 +109,8 @@ defmodule BrazeEx.Api.UserData do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -136,10 +137,12 @@ defmodule BrazeEx.Api.UserData do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Delete Users
 
   > Use this endpoint to delete any user profile by specifying a known user identifier. 
@@ -168,8 +171,8 @@ defmodule BrazeEx.Api.UserData do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -195,10 +198,12 @@ defmodule BrazeEx.Api.UserData do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Identify Users
 
   > Use this endpoint to identify an unidentified (alias-only) user. 
@@ -293,8 +298,8 @@ defmodule BrazeEx.Api.UserData do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -320,10 +325,12 @@ defmodule BrazeEx.Api.UserData do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Merge Users
 
   > Use this endpoint to merge one user into another user. 
@@ -463,8 +470,8 @@ defmodule BrazeEx.Api.UserData do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -490,10 +497,12 @@ defmodule BrazeEx.Api.UserData do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Track Users
 
   > Use this endpoint to record custom events, purchases, and update user profile attributes. 
@@ -615,8 +624,8 @@ defmodule BrazeEx.Api.UserData do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -642,5 +651,8 @@ defmodule BrazeEx.Api.UserData do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

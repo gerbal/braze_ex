@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportPurchases do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export Product IDs
 
   > Use this endpoint to return a paginated lists of product IDs. 
@@ -42,7 +41,7 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:page` (integer()): (Optional) Integer  The page of your product list that you would like to view.
 
   ### Returns
@@ -67,10 +66,12 @@ defmodule BrazeEx.Api.ExportPurchases do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Number of Purchases
 
   > Use this endpoint to return the total number of purchases in your app over a time range. 
@@ -114,7 +115,7 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:ending_at` (String.t): (Optional) Datetime (ISO 8601 string) Date on which the data series should end. Defaults to time of the request.
     - `:length` (integer()): (Required) Integer Maximum number of days before ending_at to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (integer()): (Optional) String Unit of time between data points. Can be `day` or `hour`, defaults to `day`. 
@@ -147,10 +148,12 @@ defmodule BrazeEx.Api.ExportPurchases do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Revenue Data by Time
 
   > Use this endpoint to return the total money spent in your app over a time range. 
@@ -194,7 +197,7 @@ defmodule BrazeEx.Api.ExportPurchases do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:ending_at` (String.t): (Optional) Datetime (ISO 8601 string) Date on which the data series should end. Defaults to time of the request.
     - `:length` (integer()): (Required) Integer Maximum number of days before ending_at to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (integer()): (Optional) String Unit of time between data points. Can be `day` or `hour`, defaults to `day`. 
@@ -227,5 +230,8 @@ defmodule BrazeEx.Api.ExportPurchases do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

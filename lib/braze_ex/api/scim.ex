@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.SCIM do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Search Existing Dashboard User by Email
 
   > This endpoint allows you to look up an existing dashboard user account by specifying their email in the filter query parameter.  
@@ -83,9 +82,9 @@ defmodule BrazeEx.Api.SCIM do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:x_request_origin` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:"X-Request-Origin"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:filter` (String.t): 
 
   ### Returns
@@ -111,10 +110,12 @@ defmodule BrazeEx.Api.SCIM do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Remove Dashboard User Account
 
   > This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
@@ -160,9 +161,9 @@ defmodule BrazeEx.Api.SCIM do
   - `connection` (BrazeEx.Connection): Connection to server
   - `id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:x_request_origin` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:"X-Request-Origin"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -187,10 +188,12 @@ defmodule BrazeEx.Api.SCIM do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Look Up an Existing Dashboard User Account
 
   > This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
@@ -252,9 +255,9 @@ defmodule BrazeEx.Api.SCIM do
   - `connection` (BrazeEx.Connection): Connection to server
   - `id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:x_request_origin` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:"X-Request-Origin"` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -279,10 +282,12 @@ defmodule BrazeEx.Api.SCIM do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Dashboard User Account
 
   > This endpoint allows you to update an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
@@ -366,9 +371,9 @@ defmodule BrazeEx.Api.SCIM do
   - `connection` (BrazeEx.Connection): Connection to server
   - `id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:x_request_origin` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:"X-Request-Origin"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -396,10 +401,12 @@ defmodule BrazeEx.Api.SCIM do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Create New Dashboard User Account
 
   > This endpoint allows you to create a new dashboard user account by specifying email, given and family names, permissions (for setting permissions at the company, app group, and team level).  
@@ -476,9 +483,9 @@ defmodule BrazeEx.Api.SCIM do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:x_request_origin` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:"X-Request-Origin"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -505,5 +512,8 @@ defmodule BrazeEx.Api.SCIM do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

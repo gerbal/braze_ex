@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.PreferenceCenter do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## List Preference Centers
 
   > Use this endpoint to list your available preference centers. 
@@ -72,7 +71,7 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -95,10 +94,12 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Create Preference Center
 
   > Use this endpoint to create a preference center to allow users to manage their notification preferences for email campaigns. 
@@ -161,8 +162,8 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -189,10 +190,12 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## View Details for Preference Center
 
   > Use this endpoint to view the details for your preference centers, including when it was created and updated. 
@@ -247,7 +250,7 @@ defmodule BrazeEx.Api.PreferenceCenter do
   - `connection` (BrazeEx.Connection): Connection to server
   - `preference_center_external_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
 
   ### Returns
 
@@ -277,10 +280,12 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Update Preference Center
 
   > Use this endpoint to update a preference center. 
@@ -342,8 +347,8 @@ defmodule BrazeEx.Api.PreferenceCenter do
   - `connection` (BrazeEx.Connection): Connection to server
   - `preference_center_external_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:content_type` (String.t): 
-    - `:authorization` (String.t): 
+    - `:"Content-Type"` (String.t): 
+    - `:Authorization` (String.t): 
     - `:body` (String.t): 
 
   ### Returns
@@ -377,10 +382,12 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Generate Preference Center URL
 
   > Use this endpoint to generate a URL for a preference center. 
@@ -424,7 +431,7 @@ defmodule BrazeEx.Api.PreferenceCenter do
   - `preference_center_external_id` (String.t): 
   - `user_id` (String.t): 
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:preference_center_api_id` (String.t): 
     - `:external_id` (String.t): (Required) String
 
@@ -460,5 +467,8 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end

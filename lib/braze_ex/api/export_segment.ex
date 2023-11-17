@@ -10,7 +10,6 @@ defmodule BrazeEx.Api.ExportSegment do
   import BrazeEx.RequestBuilder
 
   @doc """
-
   ## Export Segment Analytics
 
   > Use this endpoint to retrieve a daily series of the estimated size of a segment over time. 
@@ -48,7 +47,7 @@ defmodule BrazeEx.Api.ExportSegment do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/).  The `segment_id` for a given segment can be found in your **Settings > Setup and Testing > API Keys.** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/get_segment/).
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series - must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
@@ -77,10 +76,12 @@ defmodule BrazeEx.Api.ExportSegment do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Segment Details
 
   > Use this endpoint to retrieve relevant information on a segment, which can be identified by the `segment_id`. 
@@ -117,7 +118,7 @@ defmodule BrazeEx.Api.ExportSegment do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/).  The `segment_id` for a given segment can be found in your **Settings > Setup and Testing > API Keys** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/get_segment/).
 
   ### Returns
@@ -142,10 +143,12 @@ defmodule BrazeEx.Api.ExportSegment do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 
   @doc """
-
   ## Export Segment List
 
   > Use this endpoint to export a list of segments, each of which will include its name, Segment API identifier, and whether it has analytics tracking enabled. 
@@ -185,7 +188,7 @@ defmodule BrazeEx.Api.ExportSegment do
 
   - `connection` (BrazeEx.Connection): Connection to server
   - `opts` (keyword): Optional parameters
-    - `:authorization` (String.t): 
+    - `:Authorization` (String.t): 
     - `:page` (integer()): (Optional) Integer  The page of segments to return, defaults to 0 (returns the first set of up to 100).
     - `:sort_direction` (String.t): (Optional) String  - Sort creation time from newest to oldest: pass in the value `desc`. - Sort creation time from oldest to newest: pass in the value `asc`.  If `sort_direction` is not included, the default order is oldest to newest.
 
@@ -211,5 +214,8 @@ defmodule BrazeEx.Api.ExportSegment do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response([
+      {200, false}
+    ])
   end
 end
