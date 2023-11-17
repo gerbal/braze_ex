@@ -10,9 +10,8 @@ defmodule {{moduleName}}.Api.{{classname}} do
 {{#operation}}
 
   @doc """
-
   {{#summary}}
-  ## {{&.}}
+  ## {{&summary}}
   {{/summary}}
 
   {{#unescapedNotes}}
@@ -31,7 +30,7 @@ defmodule {{moduleName}}.Api.{{classname}} do
     - `:body` ({{dataType}}): {{&description}}
 {{/isBodyParam}}
 {{^isBodyParam}}
-    - `{{#atom}}{{#underscored}}{{&paramName}}{{/underscored}}{{/atom}}` ({{&dataType}}): {{&description}}
+    - `{{#atom}}{{&baseName}}{{/atom}}` ({{&dataType}}): {{&description}}
 {{/isBodyParam}}
 {{/optionalParams}}
 
@@ -78,6 +77,10 @@ defmodule {{moduleName}}.Api.{{classname}} do
 
     connection
     |> Connection.request(request)
+    |> evaluate_response({{#responses}}{{#-first}}[
+{{/-first}}
+      {{=<% %>=}}{<%& codeMappingKey%>, <%decodedStruct%>}<%={{ }}=%>{{^-last}},{{/-last}}
+{{#-last}}    ]{{/-last}}{{/responses}})
   end
   {{/operation}}
 {{/operations}}
