@@ -9,6 +9,6 @@ additionalProperties:
     enumUnknownDefaultCase: true
     customDeps: 
         - '{:tesla, "~> 1.4"}'
-        - '{:poison, "> 0.0.0"}'
+        - '{:jason, "> 0.0.0"}'
         - '{:ex_doc, "~> 0.28", only: :dev, runtime: false}'
 

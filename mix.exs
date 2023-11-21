@@ -4,7 +4,7 @@ defmodule BrazeEx.Mixfile do
   def project do
     [
       app: :braze_ex,
-      version: "1.0.10",
+      version: "1.0.11",
       elixir: "~> 1.10",
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
@@ -38,7 +38,7 @@ defmodule BrazeEx.Mixfile do
   defp deps do
     [
       {:tesla, "~> 1.4"},
-      {:poison, "> 0.0.0"},
+      {:jason, "> 0.0.0"},
       {:ex_doc, "~> 0.28", only: :dev, runtime: false}
     ]
   end
