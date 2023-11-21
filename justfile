@@ -29,7 +29,7 @@ prepare-release:
 
 changed:
     ! git update-index --refresh
-    ! git diff-index --quiet HEAD lib && git diff-index --quiet HEAD {{postman_path}}
+    ! git diff-index --quiet HEAD lib || git diff-index --quiet HEAD {{postman_path}}
     @echo {{version}}
 
 deps: 
