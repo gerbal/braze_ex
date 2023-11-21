@@ -178,6 +178,11 @@ defmodule BrazeEx.RequestBuilder do
     decode(env, struct)
   end
 
+  defp resolve_mapping(%Tesla.Env{status: status} = env, [{200, false} | _], _)
+       when status >= 200 and status < 300 do
+    decode(env, false)
+  end
+
   defp resolve_mapping(env, [{:default, struct} | tail], _),
     do: resolve_mapping(env, tail, struct)
 

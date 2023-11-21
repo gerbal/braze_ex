@@ -15,9 +15,7 @@ defmodule BrazeEx.Api.UserData do
   > Use this endpoint to add new user aliases for existing identified users, or to create new unidentified users. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `users.alias.new` permission.
-
-  Up to 50 user aliases may be specified per request.
+  Up to 50 user aliases may be specified per request. To use this endpoint, you’ll need to generate an [API key](https://www.braze.com/docs/api/api_key/) with the `users.alias.new` permission.
 
   **Adding a user alias for an existing user** requires an `external_id` to be included in the new user alias object. If the `external_id` is present in the object but there is no user with that `external_id`, the alias will not be added to any users. If an `external_id` is not present, a user will still be created but will need to be identified later. You can do this using the "Identifying Users" and the `users/identify` endpoint.
 
@@ -25,7 +23,7 @@ defmodule BrazeEx.Api.UserData do
 
   ### Rate limit
 
-  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete` and `/users/identify` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete`, `/users/identify`, `/users/merge`, and `/users/alias/update` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Request parameters
 
@@ -148,16 +146,14 @@ defmodule BrazeEx.Api.UserData do
   > Use this endpoint to delete any user profile by specifying a known user identifier. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `users.delete` permission.
+  Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. To use this endpoint, you’ll need to generate an API key with the `users.delete` permission.
 
-  Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request.
-
-  > **Important:** Deleting user profiles cannot be undone. It will permanently remove users which may cause discrepancies in your data. Learn more about what happens when you [delete a user profile via API](https://braze.com/docs/help/help_articles/api/delete_user/) in our Help documentation. 
+  > **Warning:** Deleting user profiles cannot be undone. It will permanently remove users which may cause discrepancies in your data. Learn more about what happens when you [delete a user profile via API](https://braze.com/docs/help/help_articles/api/delete_user/) in our Help documentation. 
 
 
   ### Rate limit
 
-  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/alias/new` and `/users/identify` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete`, `/users/identify`, `/users/merge`, and `/users/alias/update` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Request parameter
 
@@ -209,7 +205,7 @@ defmodule BrazeEx.Api.UserData do
   > Use this endpoint to identify an unidentified (alias-only) user. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `users.identify` permission.
+  To use this endpoint, you’ll need to generate an API key with the `users.identify` permission.
 
   Calling `/users/identify` combines the alias-only profile with the identified profile and removes the alias-only profile.
 
@@ -217,7 +213,7 @@ defmodule BrazeEx.Api.UserData do
 
   Subsequently, you can associate multiple additional user aliases with a single `external_id`.
 
-  - When these subsequent associations are made with the `merge_behavior` field set to `none`, only the push tokens and message history associated with the user alias are retained; any attributes, events, or purchases will be "orphaned" and not available on the identified user. One workaround is to export the aliased user's data before identification using the [`/users/export/ids` endpoint](https://www.braze.com/docs/api/endpoints/export/user_data/post_users_identifier/), then re-associate the attributes, events, and purchases with the identified user.
+  - When these subsequent associations are made with the `merge_behavior` field set to `none`, only the push tokens and message history associated with the user alias are retained; any attributes, events, or purchases will be "orphaned" and not available on the identified user. One workaround is to export the aliased user's data before identification using the [<code>/users/export/ids</code> endpoint](https://www.braze.com/docs/api/endpoints/export/user_data/post_users_identifier/), then re-associate the attributes, events, and purchases with the identified user.
   - When associations are made with the `merge_behavior` field set to `merge`, this endpoint will merge [specific fields](#merge) found on the anonymous user to the identified user.
     
 
@@ -226,7 +222,7 @@ defmodule BrazeEx.Api.UserData do
 
   ### Rate limit
 
-  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete` and `/users/alias/new` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete`, `/users/identify`, `/users/merge`, and `/users/alias/update` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ### Parameters
 
@@ -336,7 +332,7 @@ defmodule BrazeEx.Api.UserData do
   > Use this endpoint to merge one user into another user. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `users.merge` permission.
+  To use this endpoint, you’ll need to generate an API key with the `users.merge` permission.
 
   Up to 50 merges may be specified per request. This endpoint is asynchronous.
 

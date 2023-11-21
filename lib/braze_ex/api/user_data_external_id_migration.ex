@@ -15,9 +15,7 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
   > Use this endpoint to remove your users' old deprecated external IDs. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `users.external_ids.remove` permission.
-
-  You can send up to 50 external IDs per request. You will need to create a new [API key](https://www.braze.com/docs/api/api_key/) with permissions for this endpoint.
+  You can send up to 50 external IDs per request. To use this endpoint, you’ll need to generate an [API key](https://www.braze.com/docs/api/api_key/) with the `users.external_ids.remove` permission.
 
   > **Warning:** This endpoint completely removes the deprecated ID and cannot be undone. Using this endpoint to remove deprecated \`external_ids\` that are still associated with users in your system can permanently prevent you from finding those users' data. 
 
@@ -97,14 +95,11 @@ defmodule BrazeEx.Api.UserDataExternalIDMigration do
 
   > Use this endpoint to rename your users’ external IDs. 
 
-
-  To use this endpoint, you’ll need to generate an API key with the `users.external_ids.rename` permission.
-
-  You can send up to 50 rename objects per request. You will need to create a new [API key](https://www.braze.com/docs/api/api_key/) with permissions for this endpoint.
+  You can send up to 50 rename objects per request. To use this endpoint, you’ll need to generate an [API key](https://www.braze.com/docs/api/api_key/)  with the `users.external_ids.rename` permission.
 
   This endpoint sets a new (primary) `external_id` for the user and deprecates their existing `external_id`. This means that the user can be identified by either `external_id` until the deprecated one is removed. Having multiple external IDs allows for a migration period so that older versions of your apps that use the previous external ID naming schema don't break.
 
-  After your old naming schema is no longer in use, we highly recommend removing deprecated external IDs using the [`/users/external_ids/remove` endpoint](https://www.braze.com/docs/api/endpoints/user_data/external_id_migration/post_external_ids_remove).
+  After your old naming schema is no longer in use, we highly recommend removing deprecated external IDs using the [<code>/users/external_ids/remove</code> endpoint](https://www.braze.com/docs/api/endpoints/user_data/external_id_migration/post_external_ids_remove).
 
   > **Warning:** Make sure to remove deprecated external IDs with the 
 
