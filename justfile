@@ -19,7 +19,6 @@ build:
     just fixup-postman-spec
     just regenerate
     just prepare-readme
-    just prepare-release
 
 prepare-release:
     just bump-version
@@ -60,8 +59,6 @@ set-missing-content-types:
     yq -iP '.paths."/catalogs/{catalog_name}/items".post.requestBody.content = {"*/*": {"schema": {"type": "string"}}}' {{api_spec_path}} 
 
 bump-version: 
-    # Version will only bump if api spec has unstaged changes
-    just changed
     @echo {{version}}
     awk  -i inplace -F. '/[0-9]+\./{$NF++;print}BEGIN{OFS="."}' VERSION
     @echo "Openapi Spec has changed. Bumping Version from {{version}} to `cat VERSION`"

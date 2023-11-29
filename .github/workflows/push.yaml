@@ -22,6 +22,15 @@ jobs:
         uses: ai/asdf-cache-action@v1
       - uses: extractions/setup-just@v1
       - run: just build
+      - name: check for changes
+        uses: tj-actions/verify-changed-files@v16
+        id: verify-changed-files
+        with: 
+          files: |
+            priv
+      - run: just bump-version
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
       - run: just publish
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
         env:
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
