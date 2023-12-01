@@ -12,8 +12,7 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Search Existing Dashboard User by Email
 
-  > This endpoint allows you to look up an existing dashboard user account by specifying their email in the filter query parameter.  
-
+  > This endpoint allows you to look up an existing dashboard user account by specifying their email in the filter query parameter. 
 
 
   Note that when the query parameter is URL encoded it will read like this:
@@ -60,7 +59,7 @@ defmodule BrazeEx.Api.SCIM do
                 "appGroup": [
                     {
                         "appGroupId": "241adcd25789fabcded",
-                        "appGroupName": "Test App Group",
+                        "appGroupName": "Test Workspace",
                         "appGroupPermissions": ["basic_access","send_campaigns_canvases"],
                         "team": [
                             {
@@ -118,8 +117,7 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Remove Dashboard User Account
 
-  > This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
-
+  > This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method. 
 
 
   This is similar to deleting a user in the **Manage Users** section of the Braze dashboard. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
@@ -196,8 +194,7 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Look Up an Existing Dashboard User Account
 
-  > This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
-
+  > This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method. 
 
 
   For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
@@ -234,7 +231,7 @@ defmodule BrazeEx.Api.SCIM do
         "appGroup": [
             {
                 "appGroupId": "241adcd25789fabcded",
-                "appGroupName": "Test App Group",
+                "appGroupName": "Test Workspace",
                 "appGroupPermissions": ["basic_access","send_campaigns_canvases"],
                 "team": [
                     {
