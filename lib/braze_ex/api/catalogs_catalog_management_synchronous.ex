@@ -251,7 +251,7 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   > Use this endpoint to create a catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.create` permission.
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.create` permission.
 
   ## Rate limit
 

@@ -70,7 +70,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   > Use this endpoint to unsubscribe a user from email and mark them as hard bounced. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `email.blacklist` permission.
+  To use this endpoint, you’ll need to generate an API key with the `email.blacklist` permission.
 
   ## Rate limit
 
@@ -127,7 +127,7 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   We will also remove them from the bounce list maintained by your email provider.
 
-  To use this endpoint, you’ll need to generate an API key with the `email.bounce.remove` permission.
+  To use this endpoint, you’ll need to generate an API key with the `email.bounce.remove` permission.
 
   ## Rate limit
 
@@ -182,9 +182,10 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   > Use this endpoint to pull a list of email addresses that have “hard bounced” your email messages within a certain time frame. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `email.hard_bounces` permission.
+  To use this endpoint, you’ll need to generate an API key with the `email.hard_bounces` permission.
 
-  **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. If you provide all three, `start_date`, `end_date`, and an `email`, we prioritize the emails given and disregard the date range.
+  > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. If you provide all three, `start_date`, `end_date`, and an `email`, we prioritize the emails given and disregard the date range. 
+
 
   If your date range has more than `limit` number of hard bounces, you will need to make multiple API calls, each time increasing the `offset` until a call returns either fewer than `limit` or zero results.
 
@@ -272,12 +273,10 @@ defmodule BrazeEx.Api.EmailListsAddresses do
   @doc """
   ## Remove Email Addresses from Spam List
 
-  > Use this endpoint to remove email addresses from your Braze spam list. 
+  > Use this endpoint to remove email addresses from your Braze spam list and spam list maintained by your email provider. 
 
 
-  We will also remove them from the spam list maintained by your email provider.
-
-  To use this endpoint, you’ll need to generate an API key with the `email.spam.remove` permission.
+  To use this endpoint, you’ll need to generate an API key with the `email.spam.remove` permission.
 
   ## Rate limit
 
@@ -391,9 +390,10 @@ defmodule BrazeEx.Api.EmailListsAddresses do
 
   You can use this endpoint to set up a bi-directional sync between Braze and other email systems or your own database.
 
-  To use this endpoint, you’ll need to generate an API key with the `email.unsubscribe` permission.
+  To use this endpoint, you’ll need to generate an API key with the `email.unsubscribe` permission.
 
-  **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`.
+  > **Note:** You must provide an `end_date`, as well as either an `email` or a `start_date`. 
+
 
   If your date range has more than `limit` number of unsubscribes, you will need to make multiple API calls, each time increasing the `offset` until a call returns either fewer than `limit` or zero results.
 

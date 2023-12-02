@@ -14,13 +14,14 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   > Use this endpoint to delete multiple items in your catalog. 
 
+
   To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_items` permission.
 
   Each request can support up to 50 items. This endpoint is asynchronous.
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 100 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -138,13 +139,14 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   > Use this endpoint to delete multiple items in your catalog. 
 
+
   To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_items` permission.
 
   Each request can support up to 50 items. This endpoint is asynchronous.
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 100 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -216,11 +218,17 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   | --- | --- |
   | `catalog-not-found` | Check that the catalog name is valid. |
   | `ids-too-large` | Item IDs can't be more than 250 characters. |
-  | `ids-not-unique` | Check that the item IDs are unique in the request. |
   | `ids-not-strings` | Item IDs must be of type string. |
-  | `items-missing-ids` | There are items that do not have item IDs. Check that each item has an item ID. |
+  | `ids-not-unique` | Item IDs must be unique in the request. |
   | `invalid-ids` | Item IDs can only include letters, numbers, hyphens, and underscores. |
+  | `invalid-fields` | Confirm that all fields you are sending in the API request already exist in the catalog. This is not related to the ID field mentioned in the error. |
+  | `invalid-keys-in-value-object` | Item object keys can't include `.` or `$`. |
+  | `items-missing-ids` | There are items that do not have item IDs. Check that each item has an item ID. |
+  | `item-array-invalid` | `items` must be an array of objects. |
+  | `items-too-large` | Item values can't exceed 5,000 characters. |
   | `request-includes-too-many-items` | Your request has too many items. The item limit per request is 50. |
+  | `too-deep-nesting-in-value-object` | Item objects can't have more than 50 levels of nesting. |
+  | `unable-to-coerce-value` | Item types can't be converted. |
 
   ### Parameters
 
@@ -266,13 +274,13 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   > Use this endpoint to create multiple items in your catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.add_items` permission.
+  To use this endpoint, you’ll need to generate an API key with the `catalogs.add_items` permission.
 
   Each request can support up to 50 items. This endpoint is asynchronous.
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 100 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -423,20 +431,18 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   end
 
   @doc """
-  ## Update Catalog Item
+  ## Update Multiple Catalog Items
 
-  > Use this endpoint to send Canvas messages via API-triggered delivery. 
+  > Use this endpoint to update multiple items in your catalog. 
 
 
   To use this endpoint, you'll need to generate an API key with the `catalogs.replace_item` permission.
 
-  API-triggered Delivery allows you to store message content in the Braze dashboard while dictating when a message is sent, and to whom via your API.
-
-  Note that to send messages with this endpoint, you must have a [Canvas ID](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier), created when you build a Canvas.
+  If a catalog item doesn’t exist, this endpoint will create the item in your catalog. Each request can support up to 50 catalog items. This endpoint is asynchronous.
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 50 requests per minute between all synchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Request parameters
 
@@ -452,6 +458,32 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   | `items` | Required | Array | An array that contains item objects. The item objects should contain fields that exist in the catalog except for the `id` field. Only one item object is allowed per request. |
 
   ## Example request
+
+  ``` json
+  curl --location --request PUT 'https://rest.iad-03.braze.com/catalogs/restaurants/items' \
+  --header 'Content-Type: application/json' \
+  --header 'Authorization: Bearer YOUR-REST-API-KEY' \
+  --data-raw '{
+  "items": [
+    {
+      "id": "restaurant1",
+      "Name": "Restaurant",
+      "Loyalty_Program": false,
+      "Location": {
+        "Latitude": 33.6112,
+        "Longitude": -117.8711
+      },
+      "Open_Time": "2021-09-03T09:03:19.967+00:00"
+    },
+    {
+      "id": "restaurant3",
+      "City": "San Francisco",
+      "Rating": 2
+    }
+  ]
+  }'
+
+  ```
 
   ## Response
 
@@ -470,7 +502,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   ### Example error response
 
-  The status code `400` could return the following response body. Refer to [Troubleshooting](#troubleshooting) for more information about errors you may encounter.
+  The status code `400` could return the following response body. Refer to [Troubleshooting](https://www.braze.com/docs/api/endpoints/catalogs/catalog_items/asynchronous/put_update_catalog_items/#troubleshooting) for more information about errors you may encounter.
 
   ``` json
   {
@@ -497,7 +529,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   | Error | Troubleshooting |
   | --- | --- |
-  | `catalog_not_found` | Check that the catalog name is valid. | 
+  | `catalog_not_found` | Check that the catalog name is valid. |
   | `ids_not_string` | Confirm that each item ID is a string. |
   | `ids_not_unique` | Check that each item ID is unique. |
   | `ids_too_large` | Character limit for each item ID is 250 characters. |
@@ -507,7 +539,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   | `invalid_ids` | Supported characters for item ID names are letters, numbers, hyphens, and underscores. |
   | `invalid_fields` | Confirm that the fields in the request exist in the catalog. |
   | `invalid_keys_in_value_object` | Item object keys can't include `.` or `$`. |
-  | `too_deep_nesting_in_value_object` | Item objects can't have more than 50 levels of nesting. 
+  | `too_deep_nesting_in_value_object` | Item objects can't have more than 50 levels of nesting. |
   | `request_includes_too_many_items` | Your request has too many items. The item limit per request is 50. |
   | `unable_to_coerce_value` | Item types can't be converted. |
 

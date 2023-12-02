@@ -132,7 +132,7 @@ defmodule BrazeEx.Api.ExportCanvas do
   > Use this endpoint to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.data_summary` permission.
+  To use this endpoint, you’ll need to generate an API key with the `canvas.data_summary` permission.
 
   ## Rate limit
 
@@ -242,7 +242,7 @@ defmodule BrazeEx.Api.ExportCanvas do
   > Use this endpoint to export metadata about a Canvas, such as the name, time created, current status, and more. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.details` permission.
+  To use this endpoint, you’ll need to generate an API key with the `canvas.details` permission.
 
   ## Rate limit
 
@@ -250,7 +250,8 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   ## Response
 
-  Note: All Canvas steps have a next_paths field, which is an array of `{name, next_step_id}` data. For full steps and Message steps, the `next_step_ids` field will be present, but will not contain data for other Canvas Flow steps.
+  > **Note:** All Canvas steps have a next_paths field, which is an array of `{name, next_step_id}` data. For full steps and Message steps, the `next_step_ids` field will be present, but will not contain data for other Canvas Flow steps. 
+
 
   ``` json
   Content-Type: application/json
@@ -341,7 +342,7 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   Archived Canvases will not be included in the API response unless the `include_archived` field is specified. Canvases that are stopped but not archived, however, will be returned by default.
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.list` permission.
+  To use this endpoint, you’ll need to generate an API key with the `canvas.list` permission.
 
   ## Rate limit
 
