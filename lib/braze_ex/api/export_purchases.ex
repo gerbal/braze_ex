@@ -119,7 +119,7 @@ defmodule BrazeEx.Api.ExportPurchases do
     - `:ending_at` (String.t): (Optional) Datetime (ISO 8601 string) Date on which the data series should end. Defaults to time of the request.
     - `:length` (integer()): (Required) Integer Maximum number of days before ending_at to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:unit` (integer()): (Optional) String Unit of time between data points. Can be `day` or `hour`, defaults to `day`. 
-    - `:app_id` (String.t): (Optional) String App API identifier retrieved from the Settings > Setup and Testing > API Keys to limit analytics to a specific app.
+    - `:app_id` (String.t): (Optional) String App API identifier retrieved from the [API Keys](https://www.braze.com/docs/user_guide/administrative/app_settings/api_settings_tab/) page. If excluded, results for all apps in the workspace will be returned.
     - `:product` (String.t): (Optional) String Name of product to filter response by. If excluded, results for all apps will be returned.
 
   ### Returns

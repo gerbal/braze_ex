@@ -51,7 +51,7 @@ defmodule BrazeEx.Api.ExportSessionAnalytics do
     - `:length` (integer()): (Required) Integer  Max number of days before `ending_at` to include in the returned series - must be between 1 and 100 (inclusive).
     - `:unit` (String.t): (Optional) String  Unit of time between data points. Can be `day` or `hour`, defaults to `day`. 
     - `:ending_at` (String.t): (Optional) Datetime (ISO 8601 string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the **Settings > Setup and Testing > API Keys** to limit analytics to a specific app.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the [API Keys](https://www.braze.com/docs/user_guide/administrative/app_settings/api_settings_tab/) page to limit analytics to a specific app.
     - `:segment_id` (String.t): (Required) String  See [Segment API identifier](https://www.braze.com/docs/api/identifier_types/). Segment ID indicating the analytics-enabled segment for which sessions should be returned.
 
   ### Returns

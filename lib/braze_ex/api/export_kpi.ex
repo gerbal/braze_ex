@@ -50,7 +50,7 @@ defmodule BrazeEx.Api.ExportKPI do
     - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional)  Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string) Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the [API Keys](https://www.braze.com/docs/user_guide/administrative/app_settings/api_settings_tab/) page. If excluded, results for all apps in the workspace will be returned.
 
   ### Returns
 
@@ -122,7 +122,7 @@ defmodule BrazeEx.Api.ExportKPI do
     - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional)  Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the [API Keys](https://www.braze.com/docs/user_guide/administrative/app_settings/api_settings_tab/) page. If excluded, results for all apps in the workspace will be returned.
 
   ### Returns
 
@@ -194,7 +194,7 @@ defmodule BrazeEx.Api.ExportKPI do
     - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional) Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the [API Keys](https://www.braze.com/docs/user_guide/administrative/app_settings/api_settings_tab/) page. If excluded, results for all apps in the workspace will be returned.
 
   ### Returns
 
@@ -266,7 +266,7 @@ defmodule BrazeEx.Api.ExportKPI do
     - `:Authorization` (String.t): 
     - `:length` (integer()): (Required) Integer  Maximum number of days before `ending_at` to include in the returned series. Must be between 1 and 100 (inclusive).
     - `:ending_at` (String.t): (Optional)  Datetime ([ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) string)  Date on which the data series should end. Defaults to time of the request.
-    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from **Settings > Setup and Testing > API Keys**. If excluded, results for all apps in workspace will be returned.
+    - `:app_id` (String.t): (Optional) String  App API identifier retrieved from the [API Keys](https://www.braze.com/docs/user_guide/administrative/app_settings/api_settings_tab/) page. If excluded, results for all apps in the workspace will be returned.
 
   ### Returns
 

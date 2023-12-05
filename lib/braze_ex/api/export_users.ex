@@ -15,12 +15,13 @@ defmodule BrazeEx.Api.ExportUsers do
   > Use this endpoint to export all users within a Global Control Group. 
 
 
-  User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
+  User data is exported as multiple files of user JSON objects separated by new lines (such as one JSON object per line).
 
-  > Warning: Individual custom attributes cannot be exported. However, all custom attributes can be exported by including custom_attributes in the fields_to_export array (e.g.,\[‘first_name’, ‘email’, ‘custom_attributes’\]). 
+  | Warning |
+  | --- |
+  | Individual custom attributes cannot be exported. However, all custom attributes can be exported by including `custom_attributes` in the `fields_to_export` array (for example, `[‘first_name’, ‘email’, ‘custom_attributes’]`). |
 
-
-  To use this endpoint, you’ll need to generate an API key with the `users.export.global_control_group` permission.
+  To use this endpoint, you’ll need to generate an API key with the `users.export.global_control_group` permission.
 
   ## Rate limit
 
@@ -35,7 +36,7 @@ defmodule BrazeEx.Api.ExportUsers do
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
   | `callback_endpoint` | Optional | String | Endpoint to post a download URL to when the export is available. |
-  | `fields_to_export` | Required\* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>\*Beginning April 2021, new accounts must specify specific fields to export. |
+  | `fields_to_export` | Required\* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>_\*Beginning April 2021, new accounts must specify specific fields to export._ |
   | `output_format` | Optional | String | When using your own S3 bucket, allows to specify file format as `zip` or `gzip`. Defaults to ZIP file format. |
 
   ## Fields to export
@@ -91,8 +92,9 @@ defmodule BrazeEx.Api.ExportUsers do
 
   User export object (we will include the least data possible - if a field is missing from the object it should be assumed to be null, false, or empty):
 
-  ```
+  ``` json
   {
+    "created_at" : (string),
     "external_id" : (string),
     "user_aliases" : [
       {
@@ -106,9 +108,9 @@ defmodule BrazeEx.Api.ExportUsers do
     "email" : (string),
     "dob" : (string) date for the user's date of birth,
     "home_city" : (string),
-    "country" : (string),
+    "country" : (string) ISO-3166-1 alpha-2 standard,
     "phone" : (string),
-    "language" : (string) ISO-639 two letter code,
+    "language" : (string) ISO-639-1 standard,
     "time_zone" : (string),
     "last_coordinates" : (array of float) [lon, lat],
     "gender" : (string) "M" | "F",
@@ -119,47 +121,46 @@ defmodule BrazeEx.Api.ExportUsers do
     "attributed_ad" : (string),
     "custom_attributes" : (object) custom attribute key-value pairs,
     "custom_events" : [
-        {
-            "name" : (string),
-            "first" : (string) date,
-            "last" : (string) date,
-            "count" : (int)
-        },
-        ...
+      {
+        "name" : (string),
+        "first" : (string) date,
+        "last" : (string) date,
+        "count" : (int)
+      },
+      ...
     ],
     "purchases" : [
-        {
-            "name" : (string),
-            "first" : (string) date,
-            "last" : (string) date,
-            "count" : (int)
-        },
-        ...
+      {
+        "name" : (string),
+        "first" : (string) date,
+        "last" : (string) date,
+         "count" : (int)
+      },
+      ...
     ],
     "devices" : [
-        {
-            "model" : (string),
-            "os" : (string),
-            "carrier" : (string),
-            "idfv" : (string) only included for iOS devices,
-            "idfa" : (string) only included for iOS devices when IDFA collection is enabled,
-            "google_ad_id" : (string) only included for Android devices when Google Play Advertising Identifier collection is enabled,
-            "roku_ad_id" : (string) only included for Roku devices,
-            "windows_ad_id" : (string) only included for Windows devices,
-            "ad_tracking_enabled" : (bool)
-        },
-        ...
+      {
+        "model" : (string),
+        "os" : (string),
+        "carrier" : (string),
+        "idfv" : (string) only included for iOS devices when IDFV collection is enabled,
+        "idfa" : (string) only included for iOS devices when IDFA collection is enabled,
+        "google_ad_id" : (string) only included for Android devices when Google Play Advertising Identifier collection is enabled,
+        "roku_ad_id" : (string) only included for Roku devices,
+        "ad_tracking_enabled" : (bool)
+      },
+      ...
     ],
     "apps" : [
-        {
-            "name" : (string),
-            "platform" : (string),
-            "version" : (string),
-            "sessions" : (string),
-            "first_used" : (string) date,
-            "last_used" : (string) date
-        },
-        ...
+      {
+        "name" : (string),
+        "platform" : (string),
+        "version" : (string),
+        "sessions" : (string),
+        "first_used" : (string) date,
+        "last_used" : (string) date
+      },
+      ...
     ],
   }
 
@@ -168,6 +169,7 @@ defmodule BrazeEx.Api.ExportUsers do
   ### Sample output
 
   ``` json
+  {
   {
     "created_at" : "2020-07-10 15:00:00.000 UTC",
     "external_id" : "A8i3mkd99",
@@ -289,7 +291,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   Up to 50 `external_ids` or `user_aliases` can be included in a single request. Should you want to specify `device_id` or `email_address` only one of either identifier can be included per request.
 
-  To use this endpoint, you’ll need to generate an API key with the `users.export.ids` permission.
+  To use this endpoint, you’ll need to generate an API key with the `users.export.ids` permission.
 
   ## Rate limit
 
@@ -341,6 +343,10 @@ defmodule BrazeEx.Api.ExportUsers do
   | `uninstalled_at` | Timestamp | Date and time the user uninstalls the app. Omitted if the app has not been uninstalled. |
   | `user_aliases` | Object | [User aliases object](https:/www.braze.com/docs/api/objects_filters/user_alias_object#user-alias-object-specification) containing the `alias_name` and `alias_label`, if exists. |
 
+  Be aware that the `/users/export/ids` endpoint will pull together the entire user profile for this user, including data such as all campaigns and Canvases received, all custom events performed, all purchases made, and all custom attributes. As a result, this endpoint is slower than other REST API endpoints.
+
+  Depending on the data requested, this API endpoint may not be sufficient to meet your needs due to the 2,500 requests per minute rate limit. If you anticipate using this endpoint regularly to export users, instead consider exporting users by segment, which is asynchronous and more optimized for larger data pulls.
+
   ### Response
 
   ``` json
@@ -362,6 +368,7 @@ defmodule BrazeEx.Api.ExportUsers do
 
   ``` json
   {
+    "created_at": (string),
     "external_id" : (string),
     "user_aliases" : [
       {
@@ -375,9 +382,9 @@ defmodule BrazeEx.Api.ExportUsers do
     "email" : (string),
     "dob" : (string) date for the user's date of birth,
     "home_city" : (string),
-    "country" : (string),
+    "country" : (string) ISO-3166-1 alpha-2 standard,
     "phone" : (string),
-    "language" : (string) ISO-639 two letter code,
+    "language" : (string) ISO-639-1 standard,
     "time_zone" : (string),
     "last_coordinates" : (array of float) [lon, lat],
     "gender" : (string) "M" | "F",
@@ -390,108 +397,108 @@ defmodule BrazeEx.Api.ExportUsers do
     "email_subscribe" : (string) "opted_in" | "subscribed" | "unsubscribed",
     "custom_attributes" : (object) custom attribute key-value pairs,
     "custom_events" : [
-        {
-            "name" : (string),
-            "first" : (string) date,
-            "last" : (string) date,
-            "count" : (int)
-        },
-        ...
+      {
+        "name" : (string),
+        "first" : (string) date,
+        "last" : (string) date,
+        "count" : (int)
+      },
+      ...
     ],
     "purchases" : [
-        {
-            "name" : (string),
-            "first" : (string) date,
-            "last" : (string) date,
-            "count" : (int)
-        },
-        ...
+      {
+        "name" : (string),
+        "first" : (string) date,
+        "last" : (string) date,
+        "count" : (int)
+      },
+      ...
     ],
     "devices" : [
-        {
-            "model" : (string),
-            "os" : (string),
-            "carrier" : (string),
-            "idfv" : (string) only included for iOS devices,
-            "idfa" : (string) only included for iOS devices when IDFA collection is enabled,
-            "google_ad_id" : (string) only included for Android devices when Google Play Advertising Identifier collection is enabled,
-            "roku_ad_id" : (string) only included for Roku devices,
-            "windows_ad_id" : (string) only included for Windows devices,
-            "ad_tracking_enabled" : (bool)
-        },
-        ...
+      {
+        "model" : (string),
+        "os" : (string),
+        "carrier" : (string),
+        "idfv" : (string) only included for iOS devices when IDFV collection is enabled,
+        "idfa" : (string) only included for iOS devices when IDFA collection is enabled,
+        "google_ad_id" : (string) only included for Android devices when Google Play Advertising Identifier collection is enabled,
+        "roku_ad_id" : (string) only included for Roku devices,
+        "ad_tracking_enabled" : (bool)
+      },
+      ...
     ],
     "push_tokens" : [
-        {
-            "app" : (string) app name,
-            "platform" : (string),
-            "token" : (string)
-        },
-        ...
+      {
+        "app" : (string) app name,
+        "platform" : (string),
+        "token" : (string)
+      },
+      ...
     ],
     "apps" : [
-        {
-            "name" : (string),
-            "platform" : (string),
-            "version" : (string),
-            "sessions" : (integer),
-            "first_used" : (string) date,
-            "last_used" : (string) date
-        },
-        ...
+      {
+        "name" : (string),
+        "platform" : (string),
+        "version" : (string),
+        "sessions" : (integer),
+        "first_used" : (string) date,
+        "last_used" : (string) date
+      },
+      ...
     ],
     "campaigns_received" : [
-        {
-            "name" : (string),
-            "last_received" : (string) date,
-            "engaged" : {
-                "opened_email" : (bool),
-                "opened_push" : (bool),
-                "clicked_email" : (bool),
-                "clicked_triggered_in_app_message" : (bool)
-            },
-            "converted" : (bool),
-            "api_campaign_id" : (string),
-            "variation_name" : (optional, string) exists only if it is a multivariate campaign,
-            "variation_api_id" : (optional, string) exists only if it is a multivariate campaign,
-            "in_control" : (optional, bool) exists only if it is a multivariate campaign
+      {
+        "name" : (string),
+        "last_received" : (string) date,
+        "engaged" : 
+         {
+           "opened_email" : (bool),
+           "opened_push" : (bool),
+           "clicked_email" : (bool),
+           "clicked_triggered_in_app_message" : (bool)
+          },
+          "converted" : (bool),
+          "api_campaign_id" : (string),
+          "variation_name" : (optional, string) exists only if it is a multivariate campaign,
+          "variation_api_id" : (optional, string) exists only if it is a multivariate campaign,
+          "in_control" : (optional, bool) exists only if it is a multivariate campaign
         },
-        ...
+      ...
     ],
     "canvases_received": [
-        {
+      {
+        "name": (string),
+        "api_canvas_id": (string),
+        "last_received_message": (string) date,
+        "last_entered": (string) date,
+        "variation_name": (string),
+        "in_control": (bool),
+        "last_exited": (string) date,
+        "steps_received": [
+          {
             "name": (string),
-            "api_canvas_id": (string),
-            "last_received_message": (string) date,
-            "last_entered": (string) date,
-            "variation_name": (string),
-            "in_control": (bool),
-            "last_exited": (string) date,
-            "steps_received": [
-                {
-                    "name": (string),
-                    "api_canvas_step_id": (string),
-                    "last_received": (string) date
-                },
-                {
-                    "name": (string),
-                    "api_canvas_step_id": (string),
-                    "last_received": (string) date
-                },
-                {
-                    "name": (string),
-                    "api_canvas_step_id": (string),
-                    "last_received": (string) date
-                }
-            ]
-        },
-        ...
+            "api_canvas_step_id": (string),
+            "last_received": (string) date
+          },
+          {
+            "name": (string),
+            "api_canvas_step_id": (string),
+            "last_received": (string) date
+          },
+          {
+            "name": (string),
+            "api_canvas_step_id": (string),
+            "last_received": (string) date
+          }
+        ]
+      },
+      ...
     ],
     "cards_clicked" : [
-        {
-            "name" : (string)
-        },
-        ...
+      {
+        "name" : (string)
+      },
+      ...
     ]
   }
 
@@ -681,23 +688,17 @@ defmodule BrazeEx.Api.ExportUsers do
   > Use this endpoint to export all the users within a segment. 
 
 
-  User data is exported as multiple files of user JSON objects separated by new lines (i.e., one JSON object per line).
+  | Important |
+  | --- |
+  | Beginning December 2021, the following changed for this API:  <br>  <br>1\. The fields_to_export field in this API request is required. The option to default to all fields has been removed.  <br>2\. The fields for custom_events, purchases, campaigns_received, and canvases_received only contain data from the last 90 days. |
 
-  Data is exported to an automatically generated URL, or to an S3 bucket if this integration is already set up.
+  User data is exported as multiple files of user JSON objects separated by new lines (such as one JSON object per line). Data is exported to an automatically generated URL, or to an S3 bucket if this integration is already set up. This endpoint is currently not supported by Google Cloud Storage.
 
-  This endpoint is currently not supported by Google Cloud Storage.
-
-  Note that a company may run at most one export per segment using this endpoint at a given time. Wait for your export to complete before retrying.
-
-  > Beginning December 2021, the following changed for this API: 
-
-  > 1\. The fields_to_export field in this API request is required. The option to default to all fields has been removed.  
-  2\. The fields for custom_events, purchases, campaigns_received, and canvases_received only contain data from the last 90 days. 
-
+  A company may run at most one export per segment using this endpoint at a given time. Wait for your export to complete before retrying.
 
   Note: If you are using our [older navigation](https://www.braze.com/docs/navigation), `segment_id` can be found at **Developer Console > API Settings**.
 
-  To use this endpoint, you’ll need to generate an API key with the `users.export.segment` permission.
+  To use this endpoint, you’ll need to generate an API key with the `users.export.segment` permission.
 
   ## Rate limit
 
@@ -711,14 +712,17 @@ defmodule BrazeEx.Api.ExportUsers do
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
-  | `segment_id` | Required | String | Identifier for the segment to be exported. See [segment identifier](https://www.braze.com/docs/api/identifier_types/).  <br>  <br>The segment_id for a given segment can be found in your **Settings > Setup and Testing > API Keys** within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/segments/get_segment/). |
+  | `segment_id` | Required | String | Identifier for the segment to be exported. See [segment identifier](https://www.braze.com/docs/api/identifier_types/).  <br>  <br>The `segment_id` for a given segment can be found on the [API Keys](https://www.braze.com/docs/user_guide/administrative/app_settings/api_settings_tab/) page within your Braze account or you can use the [Segment List Endpoint](https://www.braze.com/docs/api/endpoints/export/segments/get_segment/). |
   | `callback_endpoint` | Optional | String | Endpoint to post a download URL to when the export is available. |
-  | `fields_to_export` | Required\* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>\*Beginning April 2021, new accounts must specify specific fields to export. |
+  | `fields_to_export` | Required\* | Array of strings | Name of user data fields to export, you may also export custom attributes.  <br>  <br>_\*Beginning April 2021, new accounts must specify specific fields to export._ |
+  | `custom_attributes_to_export` | Optional | Array of strings | Name of specific custom attribute to export. Up to 500 custom attributes can be exported. To create and manage custom attributes in the dashboard, go to **Data Settings** > **Custom Attributes**. |
   | `output_format` | Optional | String | When using your own S3 bucket, allows you to specify file format as `zip` or `gzip`. Defaults to ZIP file format. |
+
+  If `custom_attributes` is included in the `fields_to_export` parameter, all custom attributes are exported regardless of what is in `custom_attributes_to_export`. If your goal is to export specific attributes, `custom_attributes` should not be included in the `fields_to_export` parameter. Instead, use the `custom_attributes_to_export` parameter.
 
   ### Fields to export
 
-  The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve response time of this API endpoint:
+  The following is a list of valid `fields_to_export`. Using `fields_to_export` to minimize the data returned can improve the response time of this API endpoint:
 
   | Field to export | Data type | Description |
   | --- | --- | --- |
@@ -755,6 +759,8 @@ defmodule BrazeEx.Api.ExportUsers do
   - The fields for `custom_events`, `purchases`, `campaigns_received`, and `canvases_received` will contain only contain data from the last 90 days.
   - Both `custom_events` and `purchases` contain fields for `first` and `count`. Both of these fields will reflect information from all time, and will not be limited to just data from the last 90 days. For example, if a particular user first did the event prior to 90 days ago, this will be accurately reflected in the `first` field, and the `count` field will take into account events that occurred prior to the last 90 days as well.
   - The number of concurrent segment exports a company can run at the endpoint level is capped at 100. Attempts that surpass this limit will result in an error.
+    
+  - Attempting to export a segment a second time while the first export job is still running will result in a 429 error.
     
 
   ### Response
