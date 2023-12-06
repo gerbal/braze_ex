@@ -117,7 +117,7 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Remove Dashboard User Account
 
-  > This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method. 
+  > This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [&lt;code&gt;POST&lt;/code&gt;](https://www.braze.com/docs/scim/post_create_user_account/) method. 
 
 
   This is similar to deleting a user in the **Manage Users** section of the Braze dashboard. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
@@ -135,6 +135,15 @@ defmodule BrazeEx.Api.SCIM do
   ## Request parameters
 
   There is no request body for this endpoint.
+
+  ## Example request
+
+  ``` json
+  curl --location --request DELETE 'https://rest.iad-01.braze.com/scim/v2/Users/dfa245b7-24195aec-887bb3ad-602b3340' \
+  --header 'Content-Type: application/json' \
+  --header 'X-Request-Origin: YOUR-REQUEST-ORIGIN-HERE' \
+  --header 'Authorization: Bearer YOUR-SCIM-TOKEN-HERE' \
+  ```
 
   ## Response
 
@@ -194,7 +203,7 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Look Up an Existing Dashboard User Account
 
-  > This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method. 
+  > This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [&lt;code&gt;POST&lt;/code&gt;](https://www.braze.com/docs/scim/post_create_user_account/) method. 
 
 
   For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
@@ -212,6 +221,16 @@ defmodule BrazeEx.Api.SCIM do
   ## Request parameters
 
   There is no request body for this endpoint.
+
+  ## Example request
+
+  ``` json
+
+  curl --location --request GET 'https://rest.iad-01.braze.com/scim/v2/Users/dfa245b7-24195aec-887bb3ad-602b3340' \
+  --header 'Content-Type: application/json' \
+  --header 'X-Request-Origin: YOUR-REQUEST-ORIGIN-HERE' \
+  --header 'Authorization: Bearer YOUR-API-KEY-HERE' \
+  ```
 
   ## Response
 

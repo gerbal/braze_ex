@@ -146,7 +146,9 @@ defmodule BrazeEx.Api.UserData do
   > Use this endpoint to delete any user profile by specifying a known user identifier. 
 
 
-  Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. To use this endpoint, you’ll need to generate an API key with the `users.delete` permission.
+  Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request.
+
+  > **Note:** To use this endpoint, you’ll need to generate an API key with the `users.delete` permission. 
 
   > **Warning:** Deleting user profiles cannot be undone. It will permanently remove users which may cause discrepancies in your data. Learn more about what happens when you [delete a user profile via API](https://braze.com/docs/help/help_articles/api/delete_user/) in our Help documentation. 
 
@@ -214,10 +216,10 @@ defmodule BrazeEx.Api.UserData do
   Subsequently, you can associate multiple additional user aliases with a single `external_id`.
 
   - When these subsequent associations are made with the `merge_behavior` field set to `none`, only the push tokens and message history associated with the user alias are retained; any attributes, events, or purchases will be "orphaned" and not available on the identified user. One workaround is to export the aliased user's data before identification using the [<code>/users/export/ids</code> endpoint](https://www.braze.com/docs/api/endpoints/export/user_data/post_users_identifier/), then re-associate the attributes, events, and purchases with the identified user.
-  - When associations are made with the `merge_behavior` field set to `merge`, this endpoint will merge [specific fields](#merge) found on the anonymous user to the identified user.
+  - When associations are made with the `merge_behavior` field set to `merge`, this endpoint will merge specific fields found on the anonymous user to the identified user.
     
 
-  > Note: To prevent unexpected loss of data when identifying users, we highly recommend that you first refer to [data collection best practices](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/best_practices/#capturing-user-data-when-alias-only-user-info-is-already-present) to learn about capturing user data when alias-only user info is already present. 
+  > **Tip**: To prevent unexpected loss of data when identifying users, we highly recommend that you first refer to [data collection best practices](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/best_practices/#capturing-user-data-when-alias-only-user-info-is-already-present) to learn about capturing user data when alias-only user info is already present. 
 
 
   ### Rate limit
@@ -230,6 +232,8 @@ defmodule BrazeEx.Api.UserData do
   | --- | --- | --- | --- |
   | `aliases_to_identify` | Required | Array of aliases to identify object | See [alias to identify object](https://www.braze.com/docs/api/objects_filters/aliases_to_identify/) and [user alias object](https://www.braze.com/docs/api/objects_filters/user_alias_object/). |
   | `merge_behavior` | Optional | String | One of `none` or `merge` is expected. |
+
+  > **Tip:** For more information on `alias_name` and `alias_label`, check out our [user aliases](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/user_profile_lifecycle#user-aliases) documentation.
 
   #### Merge_behavior field
 
@@ -274,21 +278,6 @@ defmodule BrazeEx.Api.UserData do
   Session data will only be merged if the app exists on both user profiles. For example, if our target user doesn't have an app summary for "ABCApp" but our original user does, the target user will have the "ABCApp" app summary on their profile after the merge.
 
   Setting the field to `none` will not merge any user data to the identified user profile.
-
-  ### Aliases to Identify object specification
-
-  ``` json
-  {
-  "external_id" : (required, string) see External User ID below,
-  // external_ids for users that do not exist will return a non-fatal error. 
-  // See Server Responses for details.
-  "user_alias" : {
-    "alias_name" : (required, string),
-    "alias_label" : (required, string)
-  }
-  }
-
-  ```
 
   ### Parameters
 
