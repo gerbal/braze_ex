@@ -28,7 +28,7 @@ jobs:
         with: 
           files: |
             priv
-      - run: just bump-version
+      - run: just prepare-release
         if: steps.verify-changed-files.outputs.files_changed == 'true'
       - run: just publish
         if: steps.verify-changed-files.outputs.files_changed == 'true'
