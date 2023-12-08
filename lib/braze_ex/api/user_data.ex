@@ -15,11 +15,15 @@ defmodule BrazeEx.Api.UserData do
   > Use this endpoint to add new user aliases for existing identified users, or to create new unidentified users. 
 
 
-  Up to 50 user aliases may be specified per request. To use this endpoint, you’ll need to generate an [API key](https://www.braze.com/docs/api/api_key/) with the `users.alias.new` permission.
+  Up to 50 user aliases may be specified per request. 
 
   **Adding a user alias for an existing user** requires an `external_id` to be included in the new user alias object. If the `external_id` is present in the object but there is no user with that `external_id`, the alias will not be added to any users. If an `external_id` is not present, a user will still be created but will need to be identified later. You can do this using the "Identifying Users" and the `users/identify` endpoint.
 
   **Creating a new alias-only user** requires the `external_id` to be omitted from the new user alias object. Once the user is created, use the `/users/track` endpoint to associate the alias-only user with attributes, events, and purchases, and the `/users/identify` endpoint to identify the user with an `external_id`.
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `users.alias.new` permission.
 
   ### Rate limit
 
@@ -74,13 +78,15 @@ defmodule BrazeEx.Api.UserData do
   > Use this endpoint to update existing user aliases. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `users.alias.update` permission.
-
   Up to 50 user aliases may be specified per request.
 
-  This endpoint does not guarantee the sequence of `alias_updates` objects being updated.
-
   Updating a user alias requires `alias_label`, `old_alias_name`, and `new_alias_name` to be included in the update user alias object. If there is no user alias associated with the `alias_label` and `old_alias_name`, no alias will be updated. If the given `alias_label` and `old_alias_name` is found, then the `old_alias_name` will be updated to the `new_alias_name`.
+
+  **Note:** This endpoint does not guarantee the sequence of `alias_updates` objects being updated.
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `users.alias.update` permission.
 
   ## Rate limit
 
@@ -148,9 +154,11 @@ defmodule BrazeEx.Api.UserData do
 
   Up to 50 `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request. Only one of `external_ids`, `user_aliases`, or `braze_ids` can be included in a single request.
 
-  > **Note:** To use this endpoint, you’ll need to generate an API key with the `users.delete` permission. 
+  > **Warning:** Deleting user profiles cannot be undone. It will permanently remove users which may cause discrepancies in your data. Learn more about what happens when you [delete a user profile via API](https://braze.com/docs/help/help_articles/api/delete_user/) in our Help documentation.  
 
-  > **Warning:** Deleting user profiles cannot be undone. It will permanently remove users which may cause discrepancies in your data. Learn more about what happens when you [delete a user profile via API](https://braze.com/docs/help/help_articles/api/delete_user/) in our Help documentation. 
+  ## Prerequisites
+
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `users.delete` permission.
 
 
   ### Rate limit
@@ -206,9 +214,6 @@ defmodule BrazeEx.Api.UserData do
 
   > Use this endpoint to identify an unidentified (alias-only) user. 
 
-
-  To use this endpoint, you’ll need to generate an API key with the `users.identify` permission.
-
   Calling `/users/identify` combines the alias-only profile with the identified profile and removes the alias-only profile.
 
   Identifying a user requires an `external_id` to be included in the `aliases_to_identify` object. If there is no user with that `external_id`, the `external_id` will simply be added to the aliased user's record, and the user will be considered identified. You can add up to 50 user aliases per request.
@@ -221,21 +226,25 @@ defmodule BrazeEx.Api.UserData do
 
   > **Tip**: To prevent unexpected loss of data when identifying users, we highly recommend that you first refer to [data collection best practices](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/best_practices/#capturing-user-data-when-alias-only-user-info-is-already-present) to learn about capturing user data when alias-only user info is already present. 
 
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `users.identify` permission.
 
-  ### Rate limit
+
+  ## Rate limit
 
   For customers who onboarded with Braze on or after September 16, 2021, we apply a shared rate limit of 20,000 requests per minute to this endpoint. This rate limit is shared with the `/users/delete`, `/users/identify`, `/users/merge`, and `/users/alias/update` endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Parameters
+  ## Parameters
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
   | `aliases_to_identify` | Required | Array of aliases to identify object | See [alias to identify object](https://www.braze.com/docs/api/objects_filters/aliases_to_identify/) and [user alias object](https://www.braze.com/docs/api/objects_filters/user_alias_object/). |
   | `merge_behavior` | Optional | String | One of `none` or `merge` is expected. |
 
-  > **Tip:** For more information on `alias_name` and `alias_label`, check out our [user aliases](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/user_profile_lifecycle#user-aliases) documentation.
+  > **Tip:** For more information on `alias_name` and `alias_label`, check out our [user aliases](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/user_profile_lifecycle#user-aliases) documentation. 
 
-  #### Merge_behavior field
+
+  ### Merge_behavior field
 
   Setting the `merge_behavior` field to `merge` sets the endpoint to merge any of the following fields found **exclusively** on the anonymous user to the identified user.
 
@@ -320,10 +329,10 @@ defmodule BrazeEx.Api.UserData do
 
   > Use this endpoint to merge one user into another user. 
 
-
-  To use this endpoint, you’ll need to generate an API key with the `users.merge` permission.
-
   Up to 50 merges may be specified per request. This endpoint is asynchronous.
+
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `users.merge` permission.
 
   ## Rate limit
 
@@ -492,20 +501,20 @@ defmodule BrazeEx.Api.UserData do
 
   > Use this endpoint to record custom events, purchases, and update user profile attributes. 
 
-
-  To use this endpoint, you’ll need to generate an API key with the `users.track` permission.
-
   **Note:** Braze processes the data passed via API at face value and customers should only pass deltas (changing data) to minimize unnecessary data point consumption. To read more, refer to [Data points](https://www.braze.com/docs/user_guide/onboarding_with_braze/data_points#data-points).
 
   Customers using the API for server-to-server calls may need to allowlist `rest.iad-01.braze.com` if they’re behind a firewall.
 
-  ### Rate limit
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `users.track` permission.
+
+  ## Rate limit
 
   We apply a base speed limit of 50,000 requests per minute to this endpoint for all customers. Each request to the `/users/track` endpoint can contain up to 75 events, 75 attribute updates, and 75 purchases. Each component (event, attribute, and purchase arrays), can update up to 75 users each for a max of 225 individual data points. Each update can also belong to the same user for a max of 225 updates to a single user in a request.
 
   See our page on [API rate limits](https://www.braze.com/docs/api/api_limits/) for details, and reach out to your customer success manager if you need your limit increased.
 
-  ### Request parameters
+  ## Request parameters
 
   For each of the request components listed in the following table, one of `external_id`, `user_alias`, or `braze_id` is required.
 
@@ -565,7 +574,7 @@ defmodule BrazeEx.Api.UserData do
 
   ### Fatal error response codes
 
-  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors & responses](https://www.braze.com/api/errors/#fatal-errors).
+  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors &amp; responses](https://www.braze.com/api/errors/#fatal-errors).
 
   If you receive the error “provided external_id is blacklisted and disallowed”, your request may have included a “dummy user”. For more information, refer to [Spam blocking](https://www.braze.com/docs/user_guide/data_and_analytics/user_data_collection/user_archival/#spam-blocking).
 

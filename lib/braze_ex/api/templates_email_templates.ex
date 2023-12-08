@@ -14,18 +14,18 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   > Use this endpoint to create email templates on the Braze dashboard. 
 
-
-  To use this endpoint, you’ll need to generate an API key with the `templates.email.create` permission.
-
   These templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.
 
   Users’ email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.
 
-  ### Rate limit
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `templates.email.create` permission.
+
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Request parameters
+  ## Request parameters
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
@@ -92,17 +92,14 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   > Use this endpoint to get information on your email templates. 
 
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `templates.email.info` permission.
 
-  To use this endpoint, you’ll need to generate an API key with the `templates.email.info` permission.
-
-  > **Important:** Templates built using the drag-and-drop editor for email are not accepted. 
-
-
-  ### Rate limit
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Response
+  ## Response
 
   ``` json
   Content-Type: application/json
@@ -165,16 +162,14 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   > Use this endpoint to get a list of available templates in your Braze account. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `templates.email.list` permission.
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `templates.email.list` permission.
 
-  ### Rate limit
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Response
-
-  > **Important:** Templates built using the Drag & Drop Editor for email are not provided in this response. 
-
+  ## Response  
 
   ``` json
   {

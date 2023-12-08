@@ -18,7 +18,7 @@ your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
-  [{:braze_ex, "~> 1.0.17"}]
+  [{:braze_ex, "~> 1.0.18"}]
 end
 ```
 

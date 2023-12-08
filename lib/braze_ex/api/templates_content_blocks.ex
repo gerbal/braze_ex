@@ -14,14 +14,14 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   > Use this endpoint to create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `content_blocks.create` permission.
 
-  To use this endpoint, you’ll need to generate an API key with the `content_blocks.create` permission.
-
-  ### Rate limit
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Request parameters
+  ## Request parameters
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
@@ -31,7 +31,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   | `state` | Optional | String | Choose `active` or `draft`. Defaults to `active` if not specified. |
   | `tags` | Optional | Array of strings | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |
 
-  ### Response
+  ## Response
 
   ``` json
   Content-Type: application/json
@@ -110,16 +110,16 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   > Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
+  **Note:** If you are using our [older navigation](https://www.braze.com/docs/navigation), `content_block_id` can be found at ****Developer Console** > **API Settings****.
 
-  To use this endpoint, you’ll need to generate an API key with the `content_blocks.info` permission.
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `content_blocks.info` permission.
 
-  **Note:** If you are using our [older navigation](https://www.braze.com/docs/navigation), `content_block_id`can be found at ****Developer Console** > **API Settings****.
-
-  ### Rate limit
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Response
+  ## Response
 
   ``` json
   Content-Type: application/json
@@ -282,13 +282,14 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   > Use this endpoint to update a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `content_blocks.update` permission.
+  ## Prerequisites
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `content_blocks.update` permission.
 
-  ### Rate limit
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/)
 
-  ### Request parameters
+  ## Request parameters
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
@@ -299,7 +300,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   | `state` | Optional | String | Choose `active` or `draft`. Defaults to `active` if not specified. |
   | `tags` | Optional | Array of strings | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |
 
-  ### Response
+  ## Response
 
   ``` json
   Content-Type: application/json
