@@ -14,11 +14,13 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   > Use this endpoint to create email templates on the Braze dashboard. 
 
+
   These templates will be available on the **Templates & Media** page. The response from this endpoint will include a field for `email_template_id`, which can be used to update the template in subsequent API calls.
 
   Users’ email subscription status can be updated and retrieved via Braze using a RESTful API. You can use the API to set up bi-directional sync between Braze and other email systems or your own database. All API requests are made over HTTPS.
 
   ## Prerequisites
+
   To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `templates.email.create` permission.
 
   ## Rate limit
@@ -92,7 +94,11 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   > Use this endpoint to get information on your email templates. 
 
+
+  **Important:** Templates built using the drag-and-drop editor are not accepted.
+
   ## Prerequisites
+
   To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `templates.email.info` permission.
 
   ## Rate limit
@@ -103,19 +109,19 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
   ``` json
   Content-Type: application/json
-  Authorization: Bearer YOUR-REST-API-KEY
+  Authorization: Bearer YOUR_REST_API_KEY
   {
-  "email_template_id": (string) your email template's API Identifier,
-  "template_name": (string) the name of your email template,
-  "description": (string) email template description,
-  "subject": (string) the email template subject line,
-  "preheader": (optional, string) the email preheader used to generate previews in some clients),
-  "body": (optional, string) the email template body that may include HTML,
-  "plaintext_body": (optional, string) a plaintext version of the email template body,
-  "should_inline_css": (optional, boolean) whether there is inline CSS in the body of the template - defaults to the css inlining value for the App Group,
-  "tags": (string) tag names,
-  "created_at": (string, in ISO 8601),
-  "updated_at": (string, in ISO 8601)
+  "email_template_id": (string) Your email template's API Identifier,
+  "template_name": (string) The name of your email template,
+  "description": (string) The email template description,
+  "subject": (string) The email template subject line,
+  "preheader": (optional, string) The email preheader used to generate previews in some clients),
+  "body": (optional, string) The email template body that may include HTML,
+  "plaintext_body": (optional, string) A plaintext version of the email template body,
+  "should_inline_css": (optional, boolean) Whether there is inline CSS in the body of the template - defaults to the css inlining value for the workspace,
+  "tags": (string) Tag names,
+  "created_at": (string) The time the email was created at in ISO 8601,
+  "updated_at": (string) The time the email was updated in ISO 8601
   }
 
   ```
@@ -163,15 +169,20 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
 
 
   ## Prerequisites
+
   To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `templates.email.list` permission.
 
   ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ## Response  
+  ## Response
+
+  **Important**: Templates built using the drag-and-drop editor are not provided in this response.
 
   ``` json
+  Content-Type: application/json
+  Authorization: Bearer YOUR_REST_API_KEY
   {
   "count": number of templates returned
   "templates": [template with the following properties]:
@@ -230,17 +241,19 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   > Use this endpoint to update email templates on the Braze dashboard. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `templates.email.update` permission.
-
   You can access an email template’s `email_template_id` by navigating to it on the **Templates & Media** page. The [Create email template endpoint](https://www.braze.com/docs/api/endpoints/templates/email_templates/post_create_email_template/) will also return an `email_template_id` reference.
 
   All fields other than the `email_template_id` are optional, but you must specify at least one field to update.
 
-  ### Rate limit
+  ## Prerequisites
+
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `templates.email.update` permission.
+
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Request parameters
+  ## Request parameters
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
@@ -253,7 +266,7 @@ defmodule BrazeEx.Api.TemplatesEmailTemplates do
   | `tags` | Optional | String | [Tags](https://www.braze.com/docs/user_guide/administrative/app_settings/manage_app_group/tags/) must already exist. |
   | `should_inline_css` | Optional | Boolean | Enables or disables the `inline_css` feature per template. If not provided, Braze will use the default setting for the AppGroup. One of `true` or `false` is expected. |
 
-  ### Possible errors
+  ### Troubleshooting
 
   The following table lists possible returned errors and their associated troubleshooting steps, if applicable.
 

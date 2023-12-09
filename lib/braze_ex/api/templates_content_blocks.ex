@@ -14,7 +14,9 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   > Use this endpoint to create a [Content Block](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
+
   ## Prerequisites
+
   To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `content_blocks.create` permission.
 
   ## Rate limit
@@ -110,9 +112,9 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
   > Use this endpoint to call information for your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/). 
 
-  **Note:** If you are using our [older navigation](https://www.braze.com/docs/navigation), `content_block_id` can be found at ****Developer Console** > **API Settings****.
 
   ## Prerequisites
+
   To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `content_blocks.info` permission.
 
   ## Rate limit
@@ -125,16 +127,17 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   Content-Type: application/json
   Authorization: Bearer YOUR_REST_API_KEY
   {
-  "content_block_id": "string",
-  "name": "string",
-  "content": "string",
-  "description": "string",
-  "content_type": "html or text",
-  "tags":  "array of strings",
-  "created_at": "time-in-iso",
-  "last_edited": "time-in-iso",
-  "inclusion_count" : "integer",
-  "message": "success"
+  "content_block_id": (string) the Content Block identifier,
+  "name": (string) the name of the Content Block,
+  "content": (string) the content in the Content Block,
+  "description": (string) the Content Block description,
+  "content_type": (string) the content type, html or text,
+  "tags": (array) An array of tags formatted as strings,
+  "created_at": (string) The time the Content Block was created in ISO 8601,
+  "last_edited": (string) The time the Content Block was last edited in ISO 8601,
+  "inclusion_count" : (integer) the inclusion count,
+  "inclusion_data": (array) the inclusion data,
+  "message": "success",
   }
 
   ```
@@ -148,7 +151,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   | `Content Block ID cannot be blank` | Make sure that a Content Block is listed in your request and is encapsulated in quotes (`""`). |
   | `Content Block ID is invalid for this App Group` | This Content Block doesn't exist or is in a different company account or app group. |
   | `Content Block has been deleted—content not available` | This Content Block, though it may have existed earlier, has been deleted. |
-  | `Include Inclusion Data—error` | This parameter only accepts boolean values (true or false). Make sure the value for `include_inclusion_data` is not encapsulated in quotes (`""`), which causes the value to be sent as a string instead. See [request parameters](#request-parameters) for details. |
+  | `Include Inclusion Data—error` | This parameter only accepts boolean values (true or false). Make sure the value for `include_inclusion_data` is not encapsulated in quotes (`""`), which causes the value to be sent as a string instead. See request headers for details. |
 
   ### Parameters
 
@@ -192,13 +195,24 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   > Use this endpoint to list your existing [Content Blocks](https://www.braze.com/docs/user_guide/engagement_tools/templates_and_media/content_blocks/) information. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `content_blocks.list` permission.
-
-  ### Rate limit
+  ## Rate limit
 
   We apply the default Braze rate limit of 250,000 requests per hour to this endpoint, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
-  ### Response
+  ## Prerequisites
+
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `content_blocks.list` permission.
+
+  ## Request parameters
+
+  | Parameter | Required | Data Type | Description |
+  |---|---|---|---|
+  | `modified_after`  | Optional | String in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format | Retrieve only Content Blocks updated at or after the given time. |
+  | `modified_before`  |  Optional | String in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format | Retrieve only Content Blocks updated at or before the given time. |
+  | `limit` | Optional | Positive Number | Maximum number of Content Blocks to retrieve. Default to 100 if not provided, with a maximum acceptable value of 1000. |
+  | `offset`  |  Optional | Positive Number | Number of Content Blocks to skip before returning rest of the templates that fit the search criteria. |
+
+  ## Response
 
   ``` json
   Content-Type: application/json
@@ -207,14 +221,14 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   "count": "integer",
   "content_blocks": [
     {
-      "content_block_id": "string",
-      "name": "string",
-      "content_type": "html or text",
-      "liquid_tag": "string",
-      "inclusion_count" : "integer",
-      "created_at": "time-in-iso",
-      "last_edited": "time-in-iso",
-      "tags" : "array of strings"
+      "content_block_id": (string) the Content Block identifier,
+      "name": (string) the name of the Content Block,
+      "content_type": (string) the content type, html or text,
+      "liquid_tag": (string) the Liquid tags,
+      "inclusion_count" : (integer) the inclusion count,
+      "created_at": (string) The time the Content Block was created in ISO 8601,
+      "last_edited": (string) The time the Content Block was last edited in ISO 8601,
+      "tags": (array) An array of tags formatted as strings,
     }
   ]
   }
@@ -283,6 +297,7 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
 
 
   ## Prerequisites
+
   To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `content_blocks.update` permission.
 
   ## Rate limit
