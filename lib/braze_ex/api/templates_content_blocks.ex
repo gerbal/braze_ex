@@ -206,11 +206,11 @@ defmodule BrazeEx.Api.TemplatesContentBlocks do
   ## Request parameters
 
   | Parameter | Required | Data Type | Description |
-  |---|---|---|---|
-  | `modified_after`  | Optional | String in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format | Retrieve only Content Blocks updated at or after the given time. |
-  | `modified_before`  |  Optional | String in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format | Retrieve only Content Blocks updated at or before the given time. |
+  | --- | --- | --- | --- |
+  | `modified_after` | Optional | String in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format | Retrieve only Content Blocks updated at or after the given time. |
+  | `modified_before` | Optional | String in [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601) format | Retrieve only Content Blocks updated at or before the given time. |
   | `limit` | Optional | Positive Number | Maximum number of Content Blocks to retrieve. Default to 100 if not provided, with a maximum acceptable value of 1000. |
-  | `offset`  |  Optional | Positive Number | Number of Content Blocks to skip before returning rest of the templates that fit the search criteria. |
+  | `offset` | Optional | Positive Number | Number of Content Blocks to skip before returning rest of the templates that fit the search criteria. |
 
   ## Response
 

@@ -12,14 +12,16 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Search Existing Dashboard User by Email
 
-  > This endpoint allows you to look up an existing dashboard user account by specifying their email in the filter query parameter. 
+  > Use this endpoint to look up an existing dashboard user account by specifying their email in the filter query parameter. 
 
 
   Note that when the query parameter is URL encoded it will read like this:
 
   `/scim/v2/Users?filter=userName eq "user@test.com"`
 
-  For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  ## Prerequisites
+
+  To use this endpoint, you'll need a SCIM token. For more information, refer to [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -117,10 +119,14 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Remove Dashboard User Account
 
-  > This endpoint allows you to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [&lt;code&gt;POST&lt;/code&gt;](https://www.braze.com/docs/scim/post_create_user_account/) method. 
+  > Use this endpoint to permanently delete an existing dashboard user by specifying the resource `id` returned by the SCIM [&lt;code&gt;POST&lt;/code&gt;](https://www.braze.com/docs/scim/post_create_user_account/) method. 
 
 
-  This is similar to deleting a user in the **Manage Users** section of the Braze dashboard. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  This is similar to deleting a user in the **Manage Users** section of the Braze dashboard.
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need a SCIM token. For more information, refer to [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -143,6 +149,7 @@ defmodule BrazeEx.Api.SCIM do
   --header 'Content-Type: application/json' \
   --header 'X-Request-Origin: YOUR-REQUEST-ORIGIN-HERE' \
   --header 'Authorization: Bearer YOUR-SCIM-TOKEN-HERE' \
+
   ```
 
   ## Response
@@ -203,10 +210,12 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Look Up an Existing Dashboard User Account
 
-  > This endpoint allows you to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [&lt;code&gt;POST&lt;/code&gt;](https://www.braze.com/docs/scim/post_create_user_account/) method. 
+  > Use this endpoint to look up an existing dashboard user account by specifying the resource `id` returned by the SCIM [&lt;code&gt;POST&lt;/code&gt;](https://www.braze.com/docs/scim/post_create_user_account/) method. 
 
 
-  For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  ## Prerequisites
+
+  To use this endpoint, you'll need a SCIM token. For more information, refer to [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -225,11 +234,11 @@ defmodule BrazeEx.Api.SCIM do
   ## Example request
 
   ``` json
-
   curl --location --request GET 'https://rest.iad-01.braze.com/scim/v2/Users/dfa245b7-24195aec-887bb3ad-602b3340' \
   --header 'Content-Type: application/json' \
   --header 'X-Request-Origin: YOUR-REQUEST-ORIGIN-HERE' \
   --header 'Authorization: Bearer YOUR-API-KEY-HERE' \
+
   ```
 
   ## Response
@@ -306,13 +315,16 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Update Dashboard User Account
 
-  > This endpoint allows you to update an existing dashboard user account by specifying the resource `id` returned by the SCIM [`POST`](https://www.braze.com/docs/scim/post_create_user_account/) method.  
+  > Use this endpoint to update an existing dashboard user account by specifying the resource `id` returned by the SCIM [&lt;code&gt;POST&lt;/code&gt;](https://www.braze.com/docs/scim/post_create_user_account/) method. 
 
 
-
-  It allows you to update of given and family names, permissions (for setting permissions at the company, app group, and team level) and department. For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  It allows you to update of given and family names, permissions (for setting permissions at the company, app group, and team level) and department.
 
   For security reasons, `userName` (email address) cannot be updated through this endpoint. If you would like to change the `userName` (email address) for a user, contact [Support](https://www.braze.com/docs/support_contact/).
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need a SCIM token. For more information, refer to [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -330,8 +342,8 @@ defmodule BrazeEx.Api.SCIM do
   | --- | --- | --- | --- |
   | `schemas` | Required | Array of strings | Expected SCIM 2.0 schema name for user object. |
   | `name` | Required | JSON object | This object contains the user's given name and family name. |
-  | `department` | Required | String | Valid department string from the [department string documentation]({{site.baseurl}}/scim_api_appendix/#department-strings). |
-  | `permissions` | Required | JSON object | Permissions object as described in the [permissions object documentation]({{site.baseurl}}/scim_api_appendix/#permissions-object). |
+  | `department` | Required | String | Valid department string from the [department string documentation](https://{{site.baseurl}}/scim_api_appendix/#department-strings). |
+  | `permissions` | Required | JSON object | Permissions object as described in the [permissions object documentation](https://{{site.baseurl}}/scim_api_appendix/#permissions-object). |
 
   ## Response
 
@@ -425,11 +437,12 @@ defmodule BrazeEx.Api.SCIM do
   @doc """
   ## Create New Dashboard User Account
 
-  > This endpoint allows you to create a new dashboard user account by specifying email, given and family names, permissions (for setting permissions at the company, app group, and team level).  
+  > Use this endpoint to create a new dashboard user account by specifying email, given and family names, permissions (for setting permissions at the company, app group, and team level). 
 
 
+  ## Prerequisites
 
-  For information on how to obtain a SCIM token, visit [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
+  To use this endpoint, you'll need a SCIM token. For more information, refer to [Automated user provisioning](https://www.braze.com/docs/scim/automated_user_provisioning/).
 
   ## Rate limit
 
@@ -442,8 +455,8 @@ defmodule BrazeEx.Api.SCIM do
   | `schemas` | Required | Array of strings | Expected SCIM 2.0 schema name for user object. |
   | `userName` | Required | String | The user’s email address. |
   | `name` | Required | JSON object | This object contains the user's given name and family name. |
-  | `department` | Required | String | Valid department string from the [department string documentation]({{site.baseurl}}/scim_api_appendix/#department-strings). |
-  | `permissions` | Required | JSON object | Permissions object as described in the [permissions object documentation]({{site.baseurl}}/scim_api_appendix/#permissions-object). |
+  | `department` | Required | String | Valid department string from the [department string documentation](https://{{site.baseurl}}/scim_api_appendix/#department-strings). |
+  | `permissions` | Required | JSON object | Permissions object as described in the [permissions object documentation](https://{{site.baseurl}}/scim_api_appendix/#permissions-object). |
 
   ## Response
 
