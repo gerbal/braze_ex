@@ -15,7 +15,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to return multiple catalog items and their content. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.get_items` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.get_items` permission.
 
   ## Rate limit
 
@@ -181,7 +183,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to delete an item in your catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_item` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.delete_item` permission.
 
   ## Rate limit
 
@@ -301,7 +305,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to return a catalog item and its content. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.get_item` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.get_item` permission.
 
   ## Rate limit
 
@@ -431,7 +437,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to edit an item in your catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.update_item` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.update_item` permission.
 
   ## Rate Limit
 
@@ -576,7 +584,9 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to create an item in your catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.create_item` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.create_item` permission.
 
   ## Rate limit
 
@@ -726,9 +736,11 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsSynchronous do
   > Use this endpoint to update an item in your catalog. 
 
 
-  To use this endpoint, you'll need to generate an API key with the `catalogs.replace_item` permission.
-
   If the `item_id` isn't found, this endpoint will create the item. This endpoint is synchronous.
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.replace_item` permission.
 
   ## Rate limit
 

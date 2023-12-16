@@ -15,6 +15,8 @@ defmodule BrazeEx.Api.PreferenceCenter do
   > Use this endpoint to list your available preference centers. 
 
 
+  ## Prerequisites
+
   To use this endpoint, you’ll need an API key with the `preference_center.list` permission.
 
   ## Rate limit
@@ -105,9 +107,11 @@ defmodule BrazeEx.Api.PreferenceCenter do
   > Use this endpoint to create a preference center to allow users to manage their notification preferences for email campaigns. 
 
 
-  To use this endpoint, you’ll need an API key with the `preference_center.update` permission.
-
   Check out [Creating a preference center via API](https://www.braze.com/docs/user_guide/message_building_by_channel/email/preference_center/) for details on how to include this in your email campaigns.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an API key with the `preference_center.update` permission.
 
   ## Rate limit
 
@@ -203,7 +207,7 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
   ## Prerequisites
 
-  To use this endpoint, generate an API key with the `preference_center.get` permission.
+  To use this endpoint, you'll need an API key with the `preference_center.get` permission.
 
   ## Rate limit
 
@@ -292,6 +296,8 @@ defmodule BrazeEx.Api.PreferenceCenter do
 
   > Use this endpoint to update a preference center. 
 
+
+  ## Prerequisites
 
   To use this endpoint, you’ll need an API key with the `preference_center.update` permission.
 
@@ -395,9 +401,11 @@ defmodule BrazeEx.Api.PreferenceCenter do
   > Use this endpoint to generate a URL for a preference center. 
 
 
-  To use this endpoint, you’ll need an API key with the `preference_center.user.get` permission.
-
   Each preference center URL is unique to each user.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an API key with the `preference_center.user.get` permission.
 
   ## Rate limit
 

@@ -14,7 +14,10 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   > Use this endpoint to retrieve a series of the number of occurrences of a custom event in your app over a designated time period. 
 
-  To use this endpoint, you’ll need to generate an API key with the `events.data_series` permission.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `events.data_series` permission.
 
   ## Rate limit
 
@@ -94,7 +97,9 @@ defmodule BrazeEx.Api.ExportCustomEvents do
   > Use this endpoint to export a list of custom events that have been recorded for your app. The event names are returned in groups of 250, sorted alphabetically. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `events.list` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `events.list` permission.
 
   ## Rate limit
 
@@ -119,7 +124,7 @@ defmodule BrazeEx.Api.ExportCustomEvents do
 
   ### Fatal error response codes
 
-  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors & responses](https://www.braze.com/docs/api/errors/#fatal-errors).
+  For status codes and associated error messages that will be returned if your request encounters a fatal error, reference [Fatal errors &amp; responses](https://www.braze.com/docs/api/errors/#fatal-errors).
 
   > **Tip:** For help with CSV and API exports, visit [Export troubleshooting](https://www.braze.com/docs/user_guide/data_and_analytics/export_braze_data/export_troubleshooting/).
 

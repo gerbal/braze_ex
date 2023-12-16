@@ -15,7 +15,9 @@ defmodule BrazeEx.Api.ExportCanvas do
   > Use this endpoint to export time series data for a Canvas. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.data_series` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an API key with the `canvas.data_series` permission.
 
   ## Rate limit
 
@@ -132,7 +134,9 @@ defmodule BrazeEx.Api.ExportCanvas do
   > Use this endpoint to export rollups of time series data for a Canvas, providing a concise summary of a Canvas’ results. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.data_summary` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `canvas.data_summary` permission.
 
   ## Rate limit
 
@@ -242,7 +246,9 @@ defmodule BrazeEx.Api.ExportCanvas do
   > Use this endpoint to export metadata about a Canvas, such as the name, time created, current status, and more. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.details` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `canvas.details` permission.
 
   ## Rate limit
 
@@ -342,7 +348,9 @@ defmodule BrazeEx.Api.ExportCanvas do
 
   Archived Canvases will not be included in the API response unless the `include_archived` field is specified. Canvases that are stopped but not archived, however, will be returned by default.
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.list` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `canvas.list` permission.
 
   ## Rate limit
 

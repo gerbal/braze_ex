@@ -15,7 +15,9 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   > Use this endpoint to delete a catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.delete` permission.
 
   ## Rate limit
 
@@ -114,7 +116,9 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   > Use this endpoint to return a list of catalogs in a workspace. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.get` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.get` permission.
 
   ## Rate limit
 
@@ -251,7 +255,9 @@ defmodule BrazeEx.Api.CatalogsCatalogManagementSynchronous do
   > Use this endpoint to create a catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.create` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.create` permission.
 
   ## Rate limit
 

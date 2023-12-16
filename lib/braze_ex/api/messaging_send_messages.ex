@@ -12,14 +12,15 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   @doc """
   ## Send Campaign Messages via API Triggered Delivery
 
-  > Use this endpoint to send immediate, ad-hoc messages to designated users via API-triggered delivery. 
-
-
-  To use this endpoint, you’ll need to generate an API key with the `campaigns.trigger.send` permission.
+  > Use this endpoint to send immediate, ad-hoc messages to designated users via API-triggered delivery.
 
   API-triggered delivery allows you to house message content inside of the Braze dashboard while dictating when a message is sent, and to whom via your API.
 
   If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/). Note that to send messages with this endpoint, you must have a [campaign ID](https://www.braze.com/docs/api/identifier_types/) created when you build an [API-triggered campaign](https://www.braze.com/docs/api/api_campaigns/).
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need to generate an API key with the `campaigns.trigger.send` permission.
 
   ## Rate limit
 
@@ -189,14 +190,15 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   @doc """
   ## Send Messages Immediately via API Only
 
-  > Use this endpoint to send immediate, ad-hoc messages to designated users via the Braze API. 
-
-
-  To use this endpoint, you’ll need to generate an API key with the `messages.send` permission.
+  > Use this endpoint to send immediate, ad-hoc messages to designated users via the Braze API.
 
   Be sure to include Messaging Objects in your body to complete your requests.
 
   If you are targeting a segment, a record of your request will be stored in the [Developer Console](https://dashboard.braze.com/app_settings/developer_console/activitylog/).
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need to generate an API key with the `messages.send` permission.
 
   ## Rate limit
 
@@ -267,12 +269,13 @@ defmodule BrazeEx.Api.MessagingSendMessages do
   @doc """
   ## Create Send IDs For Message Send Tracking
 
-  > Use this endpoint to create send IDs that can be used to send messages and track message performance programatically, without campaign creation for each send. 
-
-
-  To use this endpoint, you’ll need to generate an API key with the `sends.id.create` permission.
+  > Use this endpoint to create send IDs that can be used to send messages and track message performance programatically, without campaign creation for each send.
 
   Using the send identifier to track and send messages is useful if you are planning to programmatically generate and send content.
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need to generate an API key with the `sends.id.create` permission.
 
   ## Rate limit
 
@@ -282,8 +285,8 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   | Parameter | Required | Data Type | Description |
   | --- | --- | --- | --- |
-  | `campaign_id` | Required | String | See [campaign identifier]({{site.baseurl}}/api/identifier_types/). |
-  | `send_id` | Optional | String | See [send identifier]({{site.baseurl}}/api/identifier_types/). |
+  | `campaign_id` | Required | String | See [campaign identifier](https://www.braze.com/api/identifier_types/). |
+  | `send_id` | Optional | String | See [send identifier](https://www.braze.com/api/identifier_types/). |
 
   ## Response
 
@@ -341,15 +344,16 @@ defmodule BrazeEx.Api.MessagingSendMessages do
 
   > Use this endpoint to send immediate, ad-hoc transactional messages to a designated user. 
 
-
-  To use this endpoint, you’ll need to generate an API key with the `transactional.send` permission.
-
   This endpoint is used alongside the creation of a [Transactional Email campaign](https://www.braze.com/docs/api/api_campaigns/transactional_campaigns) and corresponding campaign ID.
 
   > **Important:** Transactional Email is currently available as part of select Braze packages. Reach out to your Braze customer success manager for more details. 
 
 
   Similar to the [Send triggered campaign endpoint](https://www.braze.com/docs/api/endpoints/messaging/send_messages/post_send_triggered_campaigns/), this campaign type allows you to house message content inside of the Braze dashboard while dictating when and to whom a message is sent via your API. Unlike the Send triggered campaign endpoint, which accepts an audience or segment to send messages to, a request to this endpoint must specify a single user either by `external_user_id` or `user_alias`, as this campaign type is purpose-built for 1:1 messaging of alerts like order confirmations or password resets.
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need to generate an API key with the `transactional.send` permission.
 
   ## Rate limit
 

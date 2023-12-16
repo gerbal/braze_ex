@@ -105,9 +105,11 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   > The delete schedule endpoint allows you to cancel a message that you previously scheduled API-triggered Canvases before it has been sent. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `campaigns.trigger.schedule.delete` permission.
-
   Scheduled messages or triggers that are deleted very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second deletions could be applied to all, some, or none of your targeted users.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need to generate an API key with the `campaigns.trigger.schedule.delete` permission.
 
   ### Rate limit
 
@@ -316,9 +318,11 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   > Use this endpoint to cancel a Canvas message that you previously scheduled via API-triggered before it has been sent. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `canvas.trigger.schedule.delete` permission.
-
   Scheduled messages or triggers that are deleted very close to or during the time they were supposed to be sent will be updated with best efforts, so last-second deletions could be applied to all, some, or none of your targeted users.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an API key with the `canvas.trigger.schedule.delete` permission.
 
   ### Rate limit
 
@@ -540,7 +544,9 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   > Use this endpoint to cancel a message that you previously scheduled before it has been sent. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `messages.schedule.delete` permission.
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an API key with the `messages.schedule.delete` permission.
 
   ### Rate limit
 
@@ -686,9 +692,11 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   > Use this endpoint to return a JSON list of information about scheduled campaigns and entry Canvases between now and a designated `end_time` specified in the request. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `messages.schedule_broadcasts` permission.
-
   Daily, recurring messages will only appear once with their next occurrence. Results returned in this endpoint are only for campaigns and Canvases created and scheduled in Braze.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an API key with the `messages.schedule_broadcasts` permission.
 
   ### Rate limit
 

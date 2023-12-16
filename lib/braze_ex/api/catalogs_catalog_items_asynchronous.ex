@@ -15,13 +15,15 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   > Use this endpoint to delete multiple items in your catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_items` permission.
-
   Each request can support up to 50 items. This endpoint is asynchronous.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.delete_items` permission.
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -140,13 +142,15 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   > Use this endpoint to delete multiple items in your catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.delete_items` permission.
-
   Each request can support up to 50 items. This endpoint is asynchronous.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.delete_items` permission.
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -274,13 +278,15 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   > Use this endpoint to create multiple items in your catalog. 
 
 
-  To use this endpoint, you’ll need to generate an API key with the `catalogs.add_items` permission.
-
   Each request can support up to 50 items. This endpoint is asynchronous.
+
+  ## Prerequisites
+
+  To use this endpoint, you’ll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.add_items` permission.
 
   ## Rate limit
 
-  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
+  This endpoint has a shared rate limit of 16,000 requests per minute between all asynchronous catalog item endpoints, as documented in [API rate limits](https://www.braze.com/docs/api/api_limits/).
 
   ## Path parameters
 
@@ -436,9 +442,11 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
   > Use this endpoint to update multiple items in your catalog. 
 
 
-  To use this endpoint, you'll need to generate an API key with the `catalogs.replace_item` permission.
-
   If a catalog item doesn’t exist, this endpoint will create the item in your catalog. Each request can support up to 50 catalog items. This endpoint is asynchronous.
+
+  ## Prerequisites
+
+  To use this endpoint, you'll need an [API key](https://braze.com/docs/api/api_key/) with the `catalogs.replace_item` permission.
 
   ## Rate limit
 
@@ -502,7 +510,7 @@ defmodule BrazeEx.Api.CatalogsCatalogItemsAsynchronous do
 
   ### Example error response
 
-  The status code `400` could return the following response body. Refer to [Troubleshooting](https://www.braze.com/docs/api/endpoints/catalogs/catalog_items/asynchronous/put_update_catalog_items/#troubleshooting) for more information about errors you may encounter.
+  The status code `400` could return the following response body. Refer to [Troubleshooting](https://www.braze.com/docs/api/endpoints/catalogs/catalog_items/asynchronous/put_update_catalog_items/#troubleshooting) for more information about errors you may encounter.
 
   ``` json
   {
