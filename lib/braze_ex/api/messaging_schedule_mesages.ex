@@ -12,7 +12,7 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   @doc """
   ## Schedule API Triggered Campaigns
 
-  > Use this endpoint to send dashboard created campaign messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
+  > Use this endpoint to send dashboard created campaign messages via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
 
 
   You can pass in `trigger_properties` that will be templated into the message itself.
@@ -243,14 +243,16 @@ defmodule BrazeEx.Api.MessagingScheduleMesages do
   @doc """
   ## Schedule API Triggered Canvases
 
-  > Use this endpoint to schedule Canvas messages (up to 90 days in advance) via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
+  > Use this endpoint to schedule Canvas messages via API-triggered delivery, allowing you to decide what action should trigger the message to be sent. 
 
-
-  To use this endpoint, you’ll need to generate an API key with the `canvas.trigger.schedule.create` permission.
 
   You can pass in `canvas_entry_properties` that will be templated into the messages sent by the first steps of the Canvas.
 
   Note that to send messages with this endpoint, you must have a [Canvas ID](https://www.braze.com/docs/api/identifier_types/#canvas-api-identifier) created when you build a Canvas.
+
+  ### Prerequisites
+
+  To use this endpoint, you’ll need an API key with the `canvas.trigger.schedule.create` permission.
 
   ### Rate limit
 
